@@ -8,7 +8,7 @@
 
 .dates .date {
 	text-align: center;
-	color: #fff;
+	color: var(--blanc);
 	line-height: 1;
 }
 
@@ -28,7 +28,7 @@
 	font-weight: 700;
 	font-size: 19px;
 	letter-spacing: 1px;
-	color: #f61ff1;
+	color: var(--rose);
 }
 
 .dates .sep {
@@ -50,22 +50,22 @@
 	font-weight: 700;
 	font-size: 19px;
 	letter-spacing: 1px;
-	color: #00daff;
+	color: var(--bleu);
 }
 
 .dj .electro {
-	color: #f61ff1;
+	color: var(--rose);
 }
 
 .dj .raggae {
-	color: #b617ff;
+	color: var(--violet);
 }
 
 .location {
 	margin: 28px 0 0 15px;
 	max-width: 320px;
 	text-align: left;
-	color: #fff;
+	color: var(--blanc);
 	font-family: Arial, sans-serif;
 }
 
@@ -81,7 +81,7 @@
 	font-size: 14px;
 	font-weight: 600;
 	letter-spacing: 0.4px;
-	color: #c9c9c9;
+	color: var(--muted);
 }
 
 .program {
@@ -89,7 +89,7 @@
 	max-width: 360px;
 	width: 90%;
 	text-align: center;
-	color: #fff;
+	color: var(--blanc);
 	font-family: Arial, sans-serif;
 }
 
@@ -127,11 +127,11 @@
 }
 
 .program-list li:nth-child(odd) {
-	color: #ffffff;
+	color: var(--blanc);
 }
 
 .program-list li:nth-child(even) {
-	color: #f61ff1;
+	color: var(--rose);
 }
 
 .program-logo {
@@ -143,8 +143,8 @@
 	min-width: 180px;
 	border-radius: 22px;
 	border: none;
-	background: #ffffff;
-	color: #000000;
+	background: var(--blanc);
+	color: var(--noir);
 	font-family: Arial, sans-serif;
 	font-size: 16px;
 	font-weight: 600;
@@ -174,7 +174,7 @@
 	max-width: 360px;
 	width: 90%;
 	text-align: left;
-	color: #fff;
+	color: var(--blanc);
 	font-family: Arial, sans-serif;
 }
 
@@ -191,7 +191,7 @@
 	font-weight: 400;
 	line-height: 1.4;
 	margin: 0 0 16px;
-	color: #e0e0e0;
+	color: var(--muted);
 }
 
 .vibrations-highlight {
@@ -199,7 +199,7 @@
 	font-weight: 600;
 	line-height: 1.8;
 	margin: 0;
-	color: #fffffff3;
+	color: var(--blanc);
 }
 
 .historique-logo {
@@ -211,8 +211,8 @@
 	min-width: 150px;
 	border-radius: 20px;
 	border: none;
-	background: #ffffff;
-	color: #000000;
+	background: var(--blanc);
+	color: var(--noir);
 	font-family: Arial, sans-serif;
 	font-size: 16px;
 	font-weight: 600;
@@ -235,7 +235,7 @@
 	max-width: 360px;
 	width: 90%;
 	text-align: left;
-	color: #fff;
+	color: var(--blanc);
 	font-family: Arial, sans-serif;
 }
 

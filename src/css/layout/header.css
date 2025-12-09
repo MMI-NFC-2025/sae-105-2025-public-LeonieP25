@@ -32,19 +32,19 @@
 }
 
 .btn-lang {
-	background: #fff;
-	color: #000;
+	background: var(--blanc);
+	color: var(--noir);
 }
 
 .btn-menu {
-	background: var(--rose, #f61ff1);
-	color: #fff;
+	background: var(--rose);
+	color: var(--blanc);
 	position: relative;
 }
 
 .btn-close {
-	background: #fff;
-	color: #000;
+	background: var(--blanc);
+	color: var(--noir);
 }
 
 .btn-close .menu-lines {
@@ -107,7 +107,7 @@ header {
 
 .festival {
 	position: relative;
-	color: #f61ff1;
+	color: var(--rose);
 	text-align: center;
 	margin-top: 24px;
 	font-weight: 700;
@@ -121,7 +121,7 @@ h1 {
 	margin: 0;
 	font-weight: 900;
 	letter-spacing: 3px;
-	color: #fff;
+	color: var(--blanc);
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.95), 0 1px 40px rgba(255, 255, 255, 0.6);
 	line-height: 0.9;
 }

@@ -5,8 +5,8 @@
   display: inline-flex;
   align-items: center;
   padding: 12px 20px;
-  background: var(--rose, #f61ff1);
-  color: #000;
+  background: var(--rose);
+  color: var(--noir);
   text-decoration: none;
   border-radius: 22px;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
@@ -21,7 +21,7 @@
 }
 
 .billetterie-text {
-  color: #000;
+  color: var(--noir);
   letter-spacing: 0;
 }
 

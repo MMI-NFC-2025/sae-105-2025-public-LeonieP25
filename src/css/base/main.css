@@ -3,7 +3,7 @@ body {
 	height: 100%;
 	margin: 0;
 	font-family: Arial, sans-serif;
-	color: #fff;
+	color: var(--blanc);
 	overflow-x: hidden;
 	touch-action: pan-y;
 	overscroll-behavior-x: none;
@@ -11,7 +11,7 @@ body {
 
 body {
 	position: relative;
-	background: #000;
+	background: var(--noir);
 }
 
 .bg-video {
@@ -23,5 +23,5 @@ body {
 	object-fit: cover;
 	z-index: -1;
 	pointer-events: none;
-	background: #000;
+	background: var(--noir);
 }
