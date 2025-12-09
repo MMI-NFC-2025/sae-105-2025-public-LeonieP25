@@ -1,0 +1,31 @@
+.billetterie {
+  position: fixed;
+  left: calc(env(safe-area-inset-left, 18px) + 9px);
+  top: calc(env(safe-area-inset-top, 20px) + 29px);
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--rose, #f61ff1);
+  color: #000;
+  text-decoration: none;
+  border-radius: 22px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+  z-index: 999999 !important;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  user-select: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.billetterie-text {
+  color: #000;
+  letter-spacing: 0;
+}
+
+.billetterie:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}

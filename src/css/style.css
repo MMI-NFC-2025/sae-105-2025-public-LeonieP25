@@ -6,9 +6,13 @@
 
 /* 3. Base - Éléments HTML bruts */
 @import "base/main.css";           
+@import "base/media.css";
 
 /* 4. Layout - Structure de page */
 @import "layout/header.css";       
+@import "layout/layouts.css";
+@import "layout/footer.css";
 
 /* 5. Components - Spécificité la plus forte */
 @import "components/button.css";
+@import "components/carousel.css";

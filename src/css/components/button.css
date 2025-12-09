@@ -1,0 +1,16 @@
+.btn-top {
+	position: fixed;
+	right: 18px;
+	bottom: 30px;
+	width: 46px;
+	height: 46px;
+	background: url("/assets/img/svg/goup.svg") center/cover no-repeat;
+}
+
+.btn-top::after {
+	content: none;
+}
+
+.btn-top:active {
+	transform: translateY(1px);
+}

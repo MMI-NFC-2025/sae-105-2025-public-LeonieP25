@@ -1,0 +1,20 @@
+:root {
+  /* Mode 1 */
+  /* Couleurs */
+  --blanc: #ffffff;
+  --bleu: #00daff;
+  --teal: #f61ff1;
+  --muted: #c9c9c9;
+  --noir: #000000;
+  --rose: #f61ff1;
+  --violet: #ed6aff;
+}
+/* Typographies */
+:root {
+  /* Texte */
+  --text-sous-titre: 0.625rem;
+  --text-texte-rose: 0.9375rem;
+  --text-texte-blanc: 1.25rem;
+  /* Typographie */
+  --text-font-sans: Arial;
+}
