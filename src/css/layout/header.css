@@ -170,6 +170,17 @@ h1 {
 		right: 15px;
 		top: 25px;
 	}
+
+.logo-link {
+    position: fixed;
+    top: -5px;
+    left: -20px;
+    z-index: 9999;
 }
 
+.logo {
+    height: 125px;
+    width: auto;
+    display: block;
+}
 
