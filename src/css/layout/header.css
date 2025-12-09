@@ -42,6 +42,31 @@
 	position: relative;
 }
 
+.btn-close {
+	background: #fff;
+	color: #000;
+}
+
+.btn-close .menu-lines {
+	background: transparent;
+}
+
+.btn-close .menu-lines::before,
+.btn-close .menu-lines::after {
+	top: 0;
+	width: 22px;
+	left: 2px;
+	background: currentColor;
+}
+
+.btn-close .menu-lines::before {
+	transform: rotate(45deg);
+}
+
+.btn-close .menu-lines::after {
+	transform: rotate(-45deg);
+}
+
 .btn-menu .menu-lines,
 .btn-menu .menu-lines::before,
 .btn-menu .menu-lines::after {
