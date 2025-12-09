@@ -43,28 +43,24 @@
 }
 
 .btn-close {
-	background: var(--blanc);
-	color: var(--noir);
+	background: var(--rose);
+	color: var(--blanc);
+}
+
+.btn-menu.btn-close img {
+	width: 16px;
+	height: 16px;
+	display: block;
 }
 
 .btn-close .menu-lines {
-	background: transparent;
+	width: 13px;
+	height: 12px;
 }
 
 .btn-close .menu-lines::before,
 .btn-close .menu-lines::after {
-	top: 0;
-	width: 22px;
-	left: 2px;
-	background: currentColor;
-}
-
-.btn-close .menu-lines::before {
-	transform: rotate(45deg);
-}
-
-.btn-close .menu-lines::after {
-	transform: rotate(-45deg);
+	display: none;
 }
 
 .btn-menu .menu-lines,

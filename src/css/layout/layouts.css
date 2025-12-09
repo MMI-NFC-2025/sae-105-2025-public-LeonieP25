@@ -226,7 +226,7 @@
 }
 
 .historique-logo:active {
-	transform: translateY(1px) scale(0.99);
+	transform: translateX(100px) translateY(1px) scale(0.99);
 	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
