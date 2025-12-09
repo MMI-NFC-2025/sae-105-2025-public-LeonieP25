@@ -1,0 +1,14 @@
+/* 1. Vendors - Spécificité la plus faible */
+@import "vendors/normalize.css";  
+
+/* 2. Utils - Variables globales */
+@import "utils/variables.css";    
+
+/* 3. Base - Éléments HTML bruts */
+@import "base/main.css";           
+
+/* 4. Layout - Structure de page */
+@import "layout/header.css";       
+
+/* 5. Components - Spécificité la plus forte */
+@import "components/button.css";

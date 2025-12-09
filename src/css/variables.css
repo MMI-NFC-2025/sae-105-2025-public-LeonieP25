@@ -1,0 +1,43 @@
+/* Couleurs */
+:root {
+  /* Mode 1 */
+  /* color */
+  --blanc: #ffffff;
+  --bleu: #00daff;
+  --noir: #000000;
+  --rose: #f61ff1;
+  --violet: #ed6aff;
+}
+/* Espaces */
+:root {
+  /* Mode 1 */
+  /* number */
+  --space-sm: 0.125rem;
+  --space-base: 0.25rem;
+  --space-unit: 0.25rem;
+  --space-md: 0.5rem;
+  --space-lg: 0.75rem;
+  --space-xl: 1rem;
+  --space-2xl: 1.25rem;
+  --space-3xl: 1.5rem;
+  --space-4xl: 2rem;
+  --space-5xl: 2.5rem;
+  --space-6xl: 3.25rem;
+}
+/* Typographies */
+:root {
+  /* Mode 1 */
+  /* number */
+  --text-sous-titre: 0.625rem;
+  --text-texte-rose: 0.9375rem;
+  --text-texte-blanc: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-titre: 3.125rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  /* string */
+  --text-font-sans: Arial;
+}
