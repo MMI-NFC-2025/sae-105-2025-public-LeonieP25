@@ -1,0 +1,17 @@
+.hero-gif {
+    width: auto;
+    height: 55vh;
+    max-width: none;
+    margin-inline: auto;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 190;
+    text-align: left;
+    margin-left: -200px;
+    margin-top: 200px;
+    color: var(--blanc) !important;
+    text-shadow: none !important;
+    filter: none !important;
+}

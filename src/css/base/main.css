@@ -25,3 +25,10 @@ body {
 	pointer-events: none;
 	background: var(--noir);
 }
+
+@media (max-width:720px){
+  .hero{padding-top:2px;}
+  .hero-gif{width:auto;height:55vh;max-width:none;transform:translateY(-17px);margin-inline:auto;}
+  h1{font-size:34px;}
+  .topbar{right:15px;top:25px;}
+}
