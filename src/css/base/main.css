@@ -6,6 +6,7 @@ html,
 body {
 	font-family: Arial, sans-serif;
 	color: var(--blanc);
+	height: 100%;
 }
 
 html {
@@ -15,6 +16,14 @@ html {
 body {
 	position: relative;
 	background: var(--noir);
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* Make main expand to push footer to the bottom when content is short */
+main {
+	flex: 1 1 auto;
 }
 
 .bg-video {

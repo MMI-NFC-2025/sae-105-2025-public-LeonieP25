@@ -368,3 +368,14 @@
 	margin-top: 8px;
 	color: var(--muted);
 }
+
+/* Festival page - align team headings with section titles */
+.festival-page .team-section {
+	/* match section horizontal padding so titles line up */
+	padding: 0 20px 40px 20px;
+}
+
+.festival-page .technical-subtitle {
+	/* match section horizontal padding so titles line up */
+	padding: 0 20px 40px 20px;
+}
