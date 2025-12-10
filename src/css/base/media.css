@@ -1,0 +1,28 @@
+/* Gallery cards: center images and size to match the provided mockup */
+.programmation-photos {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+}
+.programmation-photos .programmation-photo {
+	height: 400px !important;
+	max-width: 100% !important;
+	object-fit: cover !important;
+	border-radius: 14px !important;
+}
+
+@media (max-width:420px) {
+ 	.programmation-photos .programmation-photo {
+ 		width: 86vw !important;
+ 		height: 44vh !important;
+ 		border-radius: 12px !important;
+ 	}
+}
+
+/* Card wrappers: badge + caption */
+.programmation-card {
+	position: relative;
+	display: block;
+	text-align: center;
+}
+

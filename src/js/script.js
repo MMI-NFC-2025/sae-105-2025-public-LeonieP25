@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const s = d.querySelector('.filter-summary');
             if(s && !s.dataset.default) s.dataset.default = s.textContent.trim();
         });
+        // Ensure gallery is filtered initially according to any pre-selected filters
+        if(typeof updateGalleryFilter === 'function') updateGalleryFilter();
     }
 });
 
@@ -143,6 +145,8 @@ document.addEventListener('click', function(e){
             details.open = false;
         }
 
+        // Refresh gallery filtering after deselect
+        if(typeof updateGalleryFilter === 'function') updateGalleryFilter();
         return; // stop here for deselect
     }
 
@@ -173,6 +177,9 @@ document.addEventListener('click', function(e){
     } else {
         details.open = false;
     }
+
+    // Refresh gallery filtering after selection
+    if(typeof updateGalleryFilter === 'function') updateGalleryFilter();
 });
 
 // Manage exclusive open state: when a filter dropdown opens, hide the other filter controls
@@ -204,3 +211,46 @@ document.addEventListener('click', function(e){
         });
     });
 })();
+
+    // Gallery filtering logic: show cards that match all selected categories.
+    // - If no filters are selected, show all cards.
+    // - For categories where a selection exists (genre/date/scene), a card must match that value to be shown.
+    function updateGalleryFilter(){
+        const container = document.querySelector('.program-filters');
+        const cards = Array.from(document.querySelectorAll('.programmation-card'));
+        if(!cards.length) return;
+
+        // Determine current selections (by filter order in the DOM: 1=genre,2=date,3=scene)
+        const selectedGenre = container ? container.querySelector('.filter:nth-of-type(1) .filter-list li.selected') : null;
+        const selectedDate = container ? container.querySelector('.filter:nth-of-type(2) .filter-list li.selected') : null;
+        const selectedScene = container ? container.querySelector('.filter:nth-of-type(3) .filter-list li.selected') : null;
+
+        const genreVal = selectedGenre ? selectedGenre.textContent.trim() : null;
+        const dateVal = selectedDate ? selectedDate.textContent.trim() : null;
+        const sceneVal = selectedScene ? selectedScene.textContent.trim() : null;
+
+        const anySelected = !!(genreVal || dateVal || sceneVal);
+
+        cards.forEach(card => {
+            const img = card.querySelector('img');
+            if(!img) return;
+
+            const cardGenre = img.dataset.genre || null;
+            const cardDate = img.dataset.date || null;
+            const cardScene = img.dataset.scene || null;
+
+            // If no filters selected, show all
+            if(!anySelected){
+                card.style.display = '';
+                return;
+            }
+
+            // For each category that has a selection, require equality. If card lacks that data, treat as non-matching.
+            let match = true;
+            if(genreVal){ if(!cardGenre || cardGenre.trim() !== genreVal) match = false; }
+            if(dateVal){ if(!cardDate || cardDate.trim() !== dateVal) match = false; }
+            if(sceneVal){ if(!cardScene || cardScene.trim() !== sceneVal) match = false; }
+
+            card.style.display = match ? '' : 'none';
+        });
+    }
