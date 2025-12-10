@@ -6,6 +6,14 @@
   --bleu: #00daff;
   --violet: #ed6aff;
 }
+/* RGB helpers for use with rgba(var(--...-rgb), a) */
+:root {
+  --blanc-rgb: 255,255,255;
+  --noir-rgb: 0,0,0;
+  --rose-rgb: 246,31,241;
+  --bleu-rgb: 0,218,255;
+  --violet-rgb: 237,106,255;
+}
 /* Typographies */
 :root {
   /* Texte */

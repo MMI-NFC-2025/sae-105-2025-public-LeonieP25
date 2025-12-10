@@ -1,7 +1,7 @@
 /* Styles pour la section équipe (organisateurs) */
 
 #equipe-section {
-  background: #000;
+  background: var(--noir);
   padding: 60px 0;
   color:var(--blanc);
   font-family: "Inter", sans-serif;

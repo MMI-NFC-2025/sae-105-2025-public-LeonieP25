@@ -55,7 +55,7 @@
    le bas de l'image (overlap) pour l'effet visuel souhaité. */
 .technical-card-content {
   width: 350px;
-  background: rgba(0,0,0,0.85);
+  background: rgba(var(--noir-rgb), 0.85);
   color: var(--blanc);
   padding: 12px 16px;
   margin-top: -50px; /* remonte le bloc pour chevaucher le bas de l'image */

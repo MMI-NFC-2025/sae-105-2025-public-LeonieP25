@@ -404,10 +404,11 @@
 }
 .filter-summary {
 	min-width: 260px;
-	padding: 10px 18px 10px 18px;
-	padding-right: 44px; /* space for arrow on the right */
+	/* move text further to the right: increase left padding and use smaller right padding */
+	padding: 10px 30px 10px 30px;
+	padding-right: 30px; /* keep arrow visible while shifting text */
 	border-radius: 28px;
-	border: 1px solid rgba(255,255,255,0.6);
+	border: 1px solid rgba(var(--blanc-rgb), 0.6);
 	color: var(--blanc);
 	background: transparent;
 	display: inline-flex;
@@ -421,7 +422,7 @@
 details[open] > .filter-summary {
 	outline: none;
 	border-color: rgba(255,255,255,0.98);
-	box-shadow: 0 6px 22px rgba(0,0,0,0.7), 0 0 0 4px rgba(255,255,255,0.04);
+	box-shadow: 0 6px 22px rgba(var(--noir-rgb), 0.7), 0 0 0 4px rgba(var(--blanc-rgb), 0.04);
 }
 .filter-summary::after {
 	content: '';
@@ -440,11 +441,11 @@ details[open] > .filter-summary {
 	left: 50%;
 	transform: translateX(-50%);
 	min-width: 260px;
-	background: rgba(0,0,0,0.55);
-	border: 1px solid rgba(255,255,255,0.06);
+	background: rgba(var(--noir-rgb), 0.55);
+	border: 1px solid rgba(var(--blanc-rgb), 0.06);
 	border-radius: 12px;
 	padding: 8px;
-	box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+	box-shadow: 0 8px 24px rgba(var(--noir-rgb), 0.6);
 	display: none;
 	z-index: 9999;
 	list-style: none; /* remove bullets */
@@ -459,17 +460,17 @@ details[open] > .filter-list { display: block; }
 	border-radius: 8px;
 	margin: 6px 0;
 	transition: background 0.12s ease, transform 0.08s ease, border-color 0.08s ease;
-	border: 2px solid rgba(255,255,255,0.28); /* stronger white contour */
-	background: rgba(255,255,255,0.02);
+	border: 2px solid rgba(var(--blanc-rgb), 0.28); /* stronger white contour */
+	background: rgba(var(--blanc-rgb), 0.02);
 }
 .filter-list li:hover{
-	background: rgba(255,255,255,0.06);
+	background: rgba(var(--blanc-rgb), 0.06);
 	transform: translateY(-2px);
-	border-color: rgba(255,255,255,0.42);
+	border-color: rgba(var(--blanc-rgb), 0.42);
 }
 .filter-list li.selected{
-	background: rgba(255,255,255,0.08);
-	border-color: rgba(255,255,255,0.9);
+	background: rgba(var(--blanc-rgb), 0.08);
+	border-color: rgba(var(--blanc-rgb), 0.9);
 }
 
 /* Remove default marker for details/summary */

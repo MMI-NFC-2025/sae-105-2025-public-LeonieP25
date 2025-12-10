@@ -3,7 +3,7 @@
   background:transparent;
   /* reduced padding so footer content is closer together */
   padding:24px 20px 28px;
-  border-top:1px solid rgba(255,255,255,0.12);
+  border-top:1px solid rgba(var(--blanc-rgb), 0.12);
 }
 
 .footer-content{
@@ -24,7 +24,7 @@
   height:auto;
   margin:0 auto;
   transform:translateX(12px);
-  filter:drop-shadow(0 0 12px rgba(255,255,255,0.35));
+  filter:drop-shadow(0 0 12px rgba(var(--blanc-rgb), 0.35));
 }
 
 .footer-social{
@@ -61,7 +61,7 @@
 .footer-divider{
   width:100%;
   height:1px;
-  background:rgba(255,255,255,0.6);
+  background:rgba(var(--blanc-rgb), 0.6);
   margin:2px 0 8px;
 }
 

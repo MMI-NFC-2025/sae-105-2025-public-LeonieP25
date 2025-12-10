@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const menuLinks = document.querySelectorAll('.menu-navigation .menu-item a');
   if (!menuLinks || menuLinks.length === 0) return;
 
-  // Read CSS variable --rose for inline fallback color
-  let roseColor = '#ff66cc';
+  // Read CSS variable --rose for inline fallback color (use computed value when available)
+  let roseColor = 'var(--rose)';
   try {
     const root = getComputedStyle(document.documentElement);
     const v = root.getPropertyValue('--rose');
