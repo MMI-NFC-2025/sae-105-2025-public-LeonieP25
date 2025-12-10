@@ -1,7 +1,7 @@
 .hero {
-    display: block !important;
-    padding: 0 !important;
-    overflow: visible !important;
+    display: block;
+    padding: 0;
+    overflow: visible;
     position: relative;
     height: 100vh;
 }

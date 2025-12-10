@@ -16,24 +16,4 @@
 .btn-top:active {
 	transform: translateY(1px) scale(0.98);
 }
-
-.festival-page .topbar {
-    right: 33px !important;
-}
-
-.festival-page .btn-top {
-    position: fixed;
-	right: 15px;
-	top: 25px;
-	gap: 12px;
-	align-items: center;
-	pointer-events: auto;
-	user-select: none;
-	z-index: 999999 !important;
-    right: 33px !important;
-    top: 850px !important;
-}
-
-.festival-page .bg-video {
-    right: 33px !important;
-}
+/* Festival-specific overrides removed — positioning handled by layout/header.css or page CSS */
