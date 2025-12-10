@@ -4,22 +4,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Le Festival — LUMIMIX</title>
-    <link rel="stylesheet" href="festival.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="src/css/pages/festival.css" />
+    <link rel="stylesheet" href="src/css/components/card-equipe.css" />
 </head>
 <body>
+    <video class="bg-video" autoplay loop muted playsinline aria-hidden="true">
+        <source src="assets/mp4/FondImage.mp4" type="video/mp4" />
+    </video>
+
     <div class="topbar" aria-hidden="true">
-        <img src="/assets/img/svg/francaisbouton.svg" alt="Français" class="btn-lang">
-        <img src="/assets/img/svg/menuboutton.svg" alt="Menu" class="btn-menu">
+        <button class="btn-lang" type="button" aria-label="Changer de langue">FR</button>
+        <button class="btn-menu" type="button" aria-label="Ouvrir le menu">
+            <span class="menu-lines" aria-hidden="true"></span>
+        </button>
     </div>
 
-    <header class="logo-header">
-        <img src="/assets/img/svg/LogoLumimix.svg" alt="Logo du festival Lumimix" class="logo-festival">
-    </header>
+    <div class="logo-container">
+        <img src="assets/svg/LogoLumimix.svg" alt="LUMIMIX" class="logo-festival">
+    </div>
 
     <main>
         <h2 class="page-title">LE FESTIVAL</h2>
 
-        <img src="/assets/img/img/photofestival.avif" alt="Photo du festival" class="festival-image">
+        <img src="assets/img/photofestival.avif" alt="Photo du festival" class="festival-image">
 
         <section class="section">
             <h3 class="section-title">HISTORIQUE</h3>
@@ -43,6 +51,46 @@
                 <p class="text">
                     Depuis sa création, le festival poursuit la même ligne directrice : célébrer la richesse musicale, encourager la découverte de nouveaux talents et offrir un cadre où chacun peut trouver l'énergie qui lui parle. Lumimix cherche aussi à favoriser le partage, l'expérimentation artistique et une ambiance inclusive, pour faire vibre le public sur plusieurs générations et styles.
                 </p>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h3 class="team-title">ÉQUIPE</h3>
+            <p class="team-subtitle">Organisateurs</p>
+
+            <div class="team-cards">
+                <div class="team-card">
+                    <img src="assets/img/élodiemarçais.avif" alt="Élodie Marçais" class="team-card-image">
+                    <div class="team-card-content">
+                        <h4 class="team-card-name">ÉLODIE MARÇAIS</h4>
+                        <p class="team-card-role">Directrice artistique</p>
+                        <p class="team-card-description">
+                            Supervise la programmation musicale, le choix des artistes et l'identité créative du festival.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="assets/img/karimdelvaux.avif" alt="Karim Delvaux" class="team-card-image">
+                    <div class="team-card-content">
+                        <h4 class="team-card-name">KARIM DELVAUX</h4>
+                        <p class="team-card-role">Responsable de production</p>
+                        <p class="team-card-description">
+                            Coordonne la logistique générale, la gestion des équipes et la mise en place des installations.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="assets/img/thomasriberon.avif" alt="Thomas Riberon" class="team-card-image">
+                    <div class="team-card-content">
+                        <h4 class="team-card-name">THOMAS RIBERON</h4>
+                        <p class="team-card-role">Coordonnateur général</p>
+                        <p class="team-card-description">
+                            Gère la planification globale, le lien avec les partenaires et le bon déroulement de chaque édition.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

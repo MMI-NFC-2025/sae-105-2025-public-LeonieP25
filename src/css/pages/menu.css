@@ -1,14 +1,24 @@
-h1 {
-    font-size: 32px;
-    font-weight: 250;
-    text-align: left;
-    margin-left: -200px;
-    margin-top: 500px;
-    position: absolute;
-    color: var(--blanc);
+.hero {
+    display: block !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    position: relative;
+    height: 100vh;
 }
 
-.menu-nav {
+.menu-page-title {
+    font-size: 40px;
+    font-weight: 250;
+    text-align: left;
+    margin-left: 35px;
+    margin-top:250px;
+    position: absolute;
+    color: var(--blanc);
+    z-index: 10;
+    display: block;
+}
+
+.menu-navigation {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -17,7 +27,7 @@ h1 {
     left: 35px;
 }
 
-.menu-nav h2 {
+.menu-navigation .menu-item {
     font-family: var(--text-font-sans), sans-serif;
     font-size: 25px;
     font-weight: 500;
@@ -25,13 +35,13 @@ h1 {
     line-height: 1.4;
 }
 
-.menu-nav h2 a {
+.menu-navigation .menu-item a {
     color: var(--blanc);
     text-decoration: none;
     transition: opacity 0.2s ease;
 }
 
-.menu-nav h2 a:hover {
+.menu-navigation .menu-item a:hover {
     opacity: 0.7;
 }
 
