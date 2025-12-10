@@ -21,7 +21,6 @@
 	justify-content: center;
 	border: none;
 	cursor: pointer;
-	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
 	padding: 0;
 	font-family: Arial, sans-serif;
 	font-size: 18px;
@@ -92,7 +91,6 @@
 .btn-lang:active,
 .btn-menu:active {
 	transform: translateY(1px) scale(0.99);
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 header {

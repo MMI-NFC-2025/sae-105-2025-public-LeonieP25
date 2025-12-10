@@ -9,7 +9,6 @@
   color: var(--noir);
   text-decoration: none;
   border-radius: 22px;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
   z-index: 999999 !important;
   font-family: Arial, sans-serif;
   font-size: 17px;
@@ -27,7 +26,6 @@
 
 .billetterie:active {
   transform: translateY(1px) scale(0.99);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 .hero-gif {
