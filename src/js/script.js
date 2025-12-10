@@ -124,10 +124,7 @@ document.addEventListener('click', function(e){
     // mark the parent filter as having a selection and clear others
     const parentFilter = li.closest('.filter');
     if(parentFilter){
-        const container = document.querySelector('.program-filters');
-        if(container){
-            container.querySelectorAll('.filter').forEach(f => f.classList.remove('has-selection'));
-        }
+        // keep previous selections — do not clear other .has-selection classes
         parentFilter.classList.add('has-selection');
     }
 

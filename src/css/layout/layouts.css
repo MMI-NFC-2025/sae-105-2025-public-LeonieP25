@@ -434,6 +434,11 @@ details[open] > .filter-summary {
 	height: 10px;
 	border-right: 2px solid var(--blanc);
 	border-bottom: 2px solid var(--blanc);
+	transition: transform 180ms ease, border-color 120ms ease;
+}
+/* rotate the little chevron when the details is open */
+details[open] > .filter-summary::after {
+    transform: translateY(-50%) rotate(-135deg);
 }
 .filter-list {
 	position: absolute;
@@ -514,7 +519,7 @@ details > summary::-webkit-details-marker { display:none; }
 /* turn rose when focused/open or when the parent filter has a selection */
 .programmation-page details[open] > .filter-summary,
 .programmation-page .filter-summary:focus,
-.programmation-page .filter.has-selection > .filter-summary {
+.programmation-page .filter.has-selection .filter-summary {
 	border-color: var(--rose) !important;
 }
 .programmation-page .filter-summary::after {
@@ -522,7 +527,7 @@ details > summary::-webkit-details-marker { display:none; }
 	border-bottom-color: var(--blanc);
 }
 .programmation-page details[open] > .filter-summary::after,
-.programmation-page .filter.has-selection > .filter-summary::after,
+.programmation-page .filter.has-selection .filter-summary::after,
 .programmation-page .filter-summary:focus::after {
 	border-right-color: var(--rose) !important;
 	border-bottom-color: var(--rose) !important;
