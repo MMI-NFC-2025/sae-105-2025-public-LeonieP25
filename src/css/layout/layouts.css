@@ -200,24 +200,23 @@
 }
 
 .historique-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 18px auto 6px; /* bring closer to content above and below */
-    padding: 10px 20px;
-    min-width: 150px;
-    border-radius: 20px;
-    border: none;
-    background: var(--blanc);
-    color: var(--noir);
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.12s ease;
+	display: block; /* make it a block so margin:auto centers it */
+	margin: 18px auto 6px; /* centered horizontally */
+	padding: 10px 20px;
+	min-width: 150px;
+	border-radius: 20px;
+	border: none;
+	background: var(--blanc);
+	color: var(--noir);
+	font-family: Arial, sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 0.8px;
+	text-transform: uppercase;
+	cursor: pointer;
+	user-select: none;
+	transition: transform 0.12s ease;
+	text-align: center; /* ensure label is centered */
 }
 
 .historique-logo:active {
