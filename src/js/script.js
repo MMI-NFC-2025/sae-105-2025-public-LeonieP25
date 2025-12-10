@@ -30,70 +30,74 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-  // Carrousel
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const btnLeft = document.querySelector('.carousel-btn-left');
-    const btnRight = document.querySelector('.carousel-btn-right');
-    const trackContainer = document.querySelector('.carousel-track-container');
-    
-    let currentIndex = 0;
-    
-    const updateCarousel = () => {
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    };
-    
-    btnRight.addEventListener('click', () => {
-        if (currentIndex < slides.length - 1) {
-            currentIndex++;
-            updateCarousel();
-        }
-    });
-    
-    btnLeft.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        }
-    });
-    
-    // Gestion du redimensionnement
-    window.addEventListener('resize', updateCarousel);
+  // Carrousel (guardé pour éviter d'interrompre les autres scripts si l'HTML n'est pas présent)
+    (function(){
+        const track = document.querySelector('.carousel-track');
+        const btnLeft = document.querySelector('.carousel-btn-left');
+        const btnRight = document.querySelector('.carousel-btn-right');
+        const trackContainer = document.querySelector('.carousel-track-container');
+        if(!track || !track.children || !btnLeft || !btnRight || !trackContainer) return;
 
-    // Swipe tactile
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
+        const slides = Array.from(track.children);
+        let currentIndex = 0;
 
-    const onTouchStart = (e) => {
-        startX = e.touches[0].clientX;
-        currentX = startX;
-        isDragging = true;
-    };
+        const updateCarousel = () => {
+            if(!slides.length) return;
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        };
 
-    const onTouchMove = (e) => {
-        if (!isDragging) return;
-        currentX = e.touches[0].clientX;
-    };
+        btnRight.addEventListener('click', () => {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
 
-    const onTouchEnd = () => {
-        if (!isDragging) return;
-        const deltaX = currentX - startX;
-        const threshold = 40; // distance minimale pour déclencher un slide
-        if (deltaX > threshold && currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        } else if (deltaX < -threshold && currentIndex < slides.length - 1) {
-            currentIndex++;
-            updateCarousel();
-        }
-        isDragging = false;
-    };
+        btnLeft.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
 
-    trackContainer.addEventListener('touchstart', onTouchStart, { passive: true });
-    trackContainer.addEventListener('touchmove', onTouchMove, { passive: true });
-    trackContainer.addEventListener('touchend', onTouchEnd, { passive: true });
+        // Gestion du redimensionnement
+        window.addEventListener('resize', updateCarousel);
+
+        // Swipe tactile
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        const onTouchStart = (e) => {
+            startX = e.touches[0].clientX;
+            currentX = startX;
+            isDragging = true;
+        };
+
+        const onTouchMove = (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        };
+
+        const onTouchEnd = () => {
+            if (!isDragging) return;
+            const deltaX = currentX - startX;
+            const threshold = 40; // distance minimale pour déclencher un slide
+            if (deltaX > threshold && currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            } else if (deltaX < -threshold && currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+            isDragging = false;
+        };
+
+        trackContainer.addEventListener('touchstart', onTouchStart, { passive: true });
+        trackContainer.addEventListener('touchmove', onTouchMove, { passive: true });
+        trackContainer.addEventListener('touchend', onTouchEnd, { passive: true });
+    })();
 
 // Update filter summaries when an option is clicked (programmation filters)
 document.addEventListener('click', function(e){
@@ -115,6 +119,16 @@ document.addEventListener('click', function(e){
     if(list){
         list.querySelectorAll('li').forEach(node => node.classList.remove('selected'));
         li.classList.add('selected');
+    }
+
+    // mark the parent filter as having a selection and clear others
+    const parentFilter = li.closest('.filter');
+    if(parentFilter){
+        const container = document.querySelector('.program-filters');
+        if(container){
+            container.querySelectorAll('.filter').forEach(f => f.classList.remove('has-selection'));
+        }
+        parentFilter.classList.add('has-selection');
     }
 
     // Ensure all details close and the container state is cleared so UI visibly closes
