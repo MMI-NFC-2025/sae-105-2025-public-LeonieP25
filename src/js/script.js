@@ -239,6 +239,19 @@ document.addEventListener('click', function(e){
 
         const anySelected = !!(genreVal || dateVal || sceneVal);
 
+        // helper: sort the gallery alphabetically by img alt
+        function sortGalleryByAlt(){
+            const gallery = document.querySelector('.programmation-photos');
+            if(!gallery) return;
+            const items = Array.from(gallery.querySelectorAll('.programmation-card'));
+            items.sort((a,b) => {
+                const aText = (a.querySelector('img')?.alt || '').trim().toLowerCase();
+                const bText = (b.querySelector('img')?.alt || '').trim().toLowerCase();
+                return aText.localeCompare(bText, 'fr', {sensitivity: 'base'});
+            });
+            items.forEach(i => gallery.appendChild(i));
+        }
+
         cards.forEach(card => {
             const img = card.querySelector('img');
             if(!img) return;
@@ -253,20 +266,6 @@ document.addEventListener('click', function(e){
                 return;
             }
 
-            // Sorts the .programmation-photos children by the contained image alt text (A→Z)
-            function sortGalleryByAlt(){
-                const container = document.querySelector('.programmation-photos');
-                if(!container) return;
-                const items = Array.from(container.querySelectorAll('.programmation-card'));
-                items.sort((a,b) => {
-                    const aText = (a.querySelector('img')?.alt || '').trim().toLowerCase();
-                    const bText = (b.querySelector('img')?.alt || '').trim().toLowerCase();
-                    return aText.localeCompare(bText, 'fr', {sensitivity: 'base'});
-                });
-                // Re-append in sorted order
-                items.forEach(i => container.appendChild(i));
-            }
-
             // For each category that has a selection, require equality. If card lacks that data, treat as non-matching.
             let match = true;
             if(genreVal){ if(!cardGenre || cardGenre.trim() !== genreVal) match = false; }
@@ -275,4 +274,23 @@ document.addEventListener('click', function(e){
 
             card.style.display = match ? '' : 'none';
         });
+
+        // Show/hide the empty-results message when no cards are visible and at least one filter is active
+        const visibleCount = cards.filter(c => c.style.display !== 'none').length;
+        const emptyEl = document.querySelector('.programmation-empty');
+        const photosContainer = document.querySelector('.programmation-photos');
+        const mainEl = document.querySelector('main');
+
+        if(visibleCount === 0 && anySelected){
+            if(emptyEl) emptyEl.style.display = '';
+            if(photosContainer) photosContainer.style.display = 'none';
+            if(mainEl) mainEl.style.minHeight = 'auto';
+        } else {
+            if(emptyEl) emptyEl.style.display = 'none';
+            if(photosContainer) photosContainer.style.display = '';
+            if(mainEl) mainEl.style.minHeight = '';
+        }
+
+        // Keep gallery sorted (call once)
+        sortGalleryByAlt();
     }
