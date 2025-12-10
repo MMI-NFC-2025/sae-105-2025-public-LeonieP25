@@ -253,6 +253,20 @@ document.addEventListener('click', function(e){
                 return;
             }
 
+            // Sorts the .programmation-photos children by the contained image alt text (A→Z)
+            function sortGalleryByAlt(){
+                const container = document.querySelector('.programmation-photos');
+                if(!container) return;
+                const items = Array.from(container.querySelectorAll('.programmation-card'));
+                items.sort((a,b) => {
+                    const aText = (a.querySelector('img')?.alt || '').trim().toLowerCase();
+                    const bText = (b.querySelector('img')?.alt || '').trim().toLowerCase();
+                    return aText.localeCompare(bText, 'fr', {sensitivity: 'base'});
+                });
+                // Re-append in sorted order
+                items.forEach(i => container.appendChild(i));
+            }
+
             // For each category that has a selection, require equality. If card lacks that data, treat as non-matching.
             let match = true;
             if(genreVal){ if(!cardGenre || cardGenre.trim() !== genreVal) match = false; }
