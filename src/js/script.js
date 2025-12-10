@@ -8,14 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const closeBtn = document.querySelector(".btn-menu.btn-close");
 	if (closeBtn) {
-		closeBtn.addEventListener("click", () => {
-			// Ferme le menu et revient à la page précédente (accueil par défaut)
-			if (document.referrer) {
-				window.history.back();
-			} else {
-				window.location.href = "index.html";
-			}
-		});
+        // If we're on the menu page (menu navigation present), skip binding immediate navigation
+        if (!document.querySelector('.menu-navigation')) {
+            closeBtn.addEventListener("click", () => {
+                // Ferme le menu et revient à la page précédente (accueil par défaut)
+                if (document.referrer) {
+                    window.history.back();
+                } else {
+                    window.location.href = "index.html";
+                }
+            });
+        }
 	}
 });
 

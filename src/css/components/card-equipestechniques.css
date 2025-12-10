@@ -1,14 +1,14 @@
 /* Styles pour la section équipes techniques */
 
 .technical-section {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .technical-title {
   font-size: 35px;
   font-weight: 100;
   letter-spacing: 0px;
-  margin: 40px 0 25px 0;
+  margin: 40px 0 10px 0;
   text-transform: uppercase;
   font-family: var(--text-font-sans), sans-serif;
   color: var(--blanc);
@@ -18,7 +18,7 @@
   font-size: 17px;
   font-weight: 100;
   letter-spacing: 0px;
-  margin: -15px 0 40px 0;
+  margin: 0 0 20px 0;
   font-family: var(--text-font-sans), sans-serif;
   color: var(--rose);
 }
@@ -27,43 +27,68 @@
 .technical-cards {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 22px;
   width: 90%;
   max-width: 900px;
   margin: 0 auto;
 }
 
-/* Carte individuelle */
+/* Carte individuelle — disposition verticale centrée */
 .technical-card {
   display: flex;
-  gap: 25px;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   background: transparent;
 }
 
 .technical-card-image {
-  width: 200px;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 25px;
+  width: 350px;
+  height: 450px;
+  object-fit: contain;
+  border-radius: 20px;
+  display: block;
 }
 
-/* Contenu texte */
+/* Contenu texte placé immédiatement sous l'image, avec fond sombre
+   pour reproduire le rendu du screenshot. Le bloc recouvre légèrement
+   le bas de l'image (overlap) pour l'effet visuel souhaité. */
 .technical-card-content {
-  margin-top: 10px;
+  width: 350px;
+  background: rgba(0,0,0,0.85);
+  color: var(--blanc);
+  padding: 12px 16px;
+  margin-top: -50px; /* remonte le bloc pour chevaucher le bas de l'image */
+  border-radius: 0 0 18px 18px;
+  box-sizing: border-box;
 }
 
 .technical-card-name {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: var(--blanc);
-  margin: 0 0 5px 0;
+  margin: 0 0 8px 0;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .technical-card-description {
   color: var(--blanc);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.3;
+  margin: 0;
+  word-spacing: 0px;
+  letter-spacing: 0px;
+  font-weight: 400;
+}
+
+/* Small screens: reduce image size so layout stays neat */
+@media (max-width: 480px) {
+  .technical-card-image,
+  .technical-card-content {
+    width: calc(100% - 40px);
+  }
+  .technical-card-image { height: auto; }
+  .technical-card-content { margin-top: -30px; padding: 10px; }
 }
 

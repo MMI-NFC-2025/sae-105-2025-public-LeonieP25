@@ -15,7 +15,6 @@ html {
 body {
 	position: relative;
 	background: var(--noir);
-	padding-bottom: 1000px;
 }
 
 .bg-video {

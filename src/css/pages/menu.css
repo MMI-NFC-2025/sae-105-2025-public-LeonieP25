@@ -61,3 +61,28 @@
     width: 50px;
     height: 50px;
 }
+
+/* Gentle open/close animation for menu elements */
+.menu-page-title,
+.menu-navigation,
+.menu-socials {
+    opacity: 0;
+    transform: translateY(6px);
+    /* use a variable for duration so we can change it when closing */
+    --menu-duration: 240ms;
+    transition: opacity var(--menu-duration) cubic-bezier(.2,.9,.2,1), transform var(--menu-duration) cubic-bezier(.2,.9,.2,1);
+}
+
+/* When body has .menu-open the items fade/slide in */
+.menu-open .menu-page-title { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+.menu-open .menu-navigation { opacity: 1; transform: translateY(0); transition-delay: 0.03s; }
+.menu-open .menu-socials { opacity: 1; transform: translateY(0); transition-delay: 0.06s; }
+
+/* Faster closing: remove stagger and shorten duration */
+.menu-closing {
+    /* when closing, shorten the --menu-duration so transitions are faster */
+    --menu-duration: 140ms;
+}
+.menu-closing .menu-socials { transition-delay: 0s; }
+.menu-closing .menu-navigation { transition-delay: 0s; }
+.menu-closing .menu-page-title { transition-delay: 0s; }
