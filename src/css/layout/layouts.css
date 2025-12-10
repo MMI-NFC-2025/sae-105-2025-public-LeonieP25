@@ -152,7 +152,7 @@
 	text-transform: uppercase;
 	cursor: pointer;
 	user-select: none;
-	transition: transform 0.12s ease, box-shadow 0.12s ease;
+	transition: transform 0.12s ease;
 }
 
 .program-logo:active {
@@ -218,7 +218,7 @@
 	text-transform: uppercase;
 	cursor: pointer;
 	user-select: none;
-	transition: transform 0.12s ease, box-shadow 0.12s ease;
+	transition: transform 0.12s ease;
 	transform: translateX(100px);
 }
 

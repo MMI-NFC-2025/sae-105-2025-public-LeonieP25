@@ -5,8 +5,7 @@
 @import "utils/variables.css";    
 
 /* 3. Base - Éléments HTML bruts */
-@import "base/main.css";           
-@import "base/media.css";
+@import "base/main.css";
 
 /* 4. Layout - Structure de page */
 @import "layout/header.css";       

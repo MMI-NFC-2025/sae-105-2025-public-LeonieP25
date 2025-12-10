@@ -1,12 +1,9 @@
 :root {
-  /* Mode 1 */
   /* Couleurs */
   --blanc: #ffffff;
-  --bleu: #00daff;
-  --teal: #f61ff1;
-  --muted: #ffffff;
   --noir: #000000;
   --rose: #f61ff1;
+  --bleu: #00daff;
   --violet: #ed6aff;
 }
 /* Typographies */
