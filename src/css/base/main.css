@@ -4,13 +4,8 @@
 
 html,
 body {
-	min-height: 100%;
-	margin: 0;
 	font-family: Arial, sans-serif;
 	color: var(--blanc);
-	overflow-x: hidden;
-	touch-action: pan-y;
-	overscroll-behavior-x: none;
 }
 
 html {
@@ -34,14 +29,5 @@ body {
 	background: var(--noir);
 }
 
-a:active,
-a:focus {
-	color: var(--rose) !important;
-}
 
-@media (max-width:720px){
-  .hero{padding-top:2px;}
-  .hero-gif{width:auto;height:55vh;max-width:none;transform:translateY(-17px);margin-inline:auto;}
-  h1{font-size:34px;}
-  .topbar{right:15px;top:25px;}
-}
+
