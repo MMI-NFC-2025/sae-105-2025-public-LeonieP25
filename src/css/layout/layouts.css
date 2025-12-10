@@ -375,4 +375,88 @@
 	padding: 0 20px 40px 20px;
 }
 
+/* Artist page styles (AAZAR-like hero, badge, details panel) */
+.artiste-page .artist-hero {
+	position: relative;
+	min-height: 70vh;
+	display: flex;
+	align-items: flex-end;
+	background-image: url("/assets/img/aazar2.avif");
+	background-size: cover;
+	background-position: top center;
+	color: var(--blanc);
+	margin-top: 0; /* ensure hero sits directly under the fixed header */
+}
+.artiste-page .artist-hero::after{
+	content: '';
+	position: absolute;
+	pointer-events: none;
+}
+.artiste-page .artist-hero-inner{
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	padding: 36px 18px 48px;
+	text-align: center;
+}
+.artiste-page .artist-badge{
+	display: inline-block;
+	background: var(--rose);
+	color: var(--blanc);
+	padding: 8px 14px;
+	border-radius: 20px;
+	font-weight:700;
+	font-size:13px;
+	text-transform:uppercase;
+	margin-bottom: 14px;
+}
+.artiste-page .artist-name{
+	margin: 6px 0 10px;
+	font-size: clamp(28px, 8vw, 56px);
+	font-weight:700;
+	letter-spacing:2px;
+	color: var(--blanc);
+}
+.artiste-page .artist-back{
+	display:inline-block;
+	margin-top:6px;
+	color:var(--blanc);
+	opacity:0.9;
+	text-decoration:none;
+	font-size:13px;
+}
+
+.artiste-page .artist-details{
+	background: #000;
+	color: var(--blanc);
+	padding: 22px 18px 90px;
+	position: relative;
+}
+.artiste-page .artist-details-inner{
+	max-width:780px;
+	margin:0 auto;
+}
+.artiste-page .artist-details-title{
+	font-size:22px;
+	margin:0 0 8px;
+	color:var(--blanc);
+}
+.artiste-page .artist-details-desc{
+	font-size:16px;
+	line-height:1.5;
+	color:var(--blanc);
+	margin:0 0 12px;
+}
+.artiste-page .artist-details-more{color:var(--muted);font-size:14px;line-height:1.45}
+
+.artiste-page .artist-up{
+	position: fixed;
+	right: 18px;
+	bottom: 18px;
+	width:44px;height:44px;border-radius:50%;
+	border:none;background:var(--rose);color:var(--blanc);font-size:20px;
+	display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10005;
+}
+
+
 
