@@ -94,3 +94,67 @@ document.addEventListener("DOMContentLoaded", () => {
     trackContainer.addEventListener('touchstart', onTouchStart, { passive: true });
     trackContainer.addEventListener('touchmove', onTouchMove, { passive: true });
     trackContainer.addEventListener('touchend', onTouchEnd, { passive: true });
+
+// Update filter summaries when an option is clicked (programmation filters)
+document.addEventListener('click', function(e){
+    const li = e.target.closest('.filter-list li');
+    if(!li) return;
+    // Prevent bubbling that could interfere with details toggle
+    e.preventDefault();
+    e.stopPropagation();
+
+    const details = li.closest('details');
+    if(!details) return;
+    const summary = details.querySelector('.filter-summary');
+    if(summary) {
+        summary.textContent = li.textContent.trim();
+    }
+
+    // mark selected item (remove selected from siblings in the same list)
+    const list = li.closest('.filter-list');
+    if(list){
+        list.querySelectorAll('li').forEach(node => node.classList.remove('selected'));
+        li.classList.add('selected');
+    }
+
+    // Ensure all details close and the container state is cleared so UI visibly closes
+    const container = document.querySelector('.program-filters');
+    if(container){
+        const detailsList = Array.from(container.querySelectorAll('details.filter-dropdown'));
+        detailsList.forEach(d => d.open = false);
+        container.classList.remove('filters--one-open');
+        container.querySelectorAll('.filter').forEach(f => f.classList.remove('filter--active'));
+    } else {
+        details.open = false;
+    }
+});
+
+// Manage exclusive open state: when a filter dropdown opens, hide the other filter controls
+(function(){
+    const container = document.querySelector('.program-filters');
+    if(!container) return;
+    const detailsList = Array.from(container.querySelectorAll('details.filter-dropdown'));
+
+    detailsList.forEach(d => {
+        d.addEventListener('toggle', () => {
+            if(d.open){
+                // close other details
+                detailsList.forEach(other => { if(other !== d) other.open = false; });
+                // mark active filter
+                container.classList.add('filters--one-open');
+                container.querySelectorAll('.filter').forEach(f => f.classList.remove('filter--active'));
+                const parent = d.closest('.filter'); if(parent) parent.classList.add('filter--active');
+            } else {
+                // no open details
+                // small timeout to allow another details to open immediately
+                setTimeout(() => {
+                    const anyOpen = detailsList.some(dd => dd.open);
+                    if(!anyOpen){
+                        container.classList.remove('filters--one-open');
+                        container.querySelectorAll('.filter').forEach(f => f.classList.remove('filter--active'));
+                    }
+                }, 0);
+            }
+        });
+    });
+})();

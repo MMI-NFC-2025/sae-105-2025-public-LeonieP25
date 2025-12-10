@@ -375,7 +375,131 @@
 	padding: 0 20px 40px 20px;
 }
 
-.festival-page .technical-subtitle {
-	/* match section horizontal padding so titles line up */
-	padding: 0 20px 40px 20px;
+/* Programming filters (genres / horaires / scenes) - improved visuals */
+.program-filters {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	align-items: center;
+	margin: 6px 0 30px;
 }
+.program-filters .filter {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	max-width: 760px;
+	justify-content: center;
+}
+.program-filters .filter .filter-label {
+	width: 120px;
+	text-align: right;
+	color: var(--blanc);
+	font-weight: 700;
+	font-size: 13px;
+	letter-spacing: 0.6px;
+}
+.filter-dropdown {
+	position: relative;
+}
+.filter-summary {
+	min-width: 260px;
+	padding: 10px 18px 10px 18px;
+	padding-right: 44px; /* space for arrow on the right */
+	border-radius: 28px;
+	border: 1px solid rgba(255,255,255,0.6);
+	color: var(--blanc);
+	background: transparent;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	cursor: pointer;
+	position: relative;
+}
+.filter-summary:focus,
+details[open] > .filter-summary {
+	outline: none;
+	border-color: rgba(255,255,255,0.98);
+	box-shadow: 0 6px 22px rgba(0,0,0,0.7), 0 0 0 4px rgba(255,255,255,0.04);
+}
+.filter-summary::after {
+	content: '';
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%) rotate(45deg);
+	width: 10px;
+	height: 10px;
+	border-right: 2px solid var(--blanc);
+	border-bottom: 2px solid var(--blanc);
+}
+.filter-list {
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 50%;
+	transform: translateX(-50%);
+	min-width: 260px;
+	background: rgba(0,0,0,0.55);
+	border: 1px solid rgba(255,255,255,0.06);
+	border-radius: 12px;
+	padding: 8px;
+	box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+	display: none;
+	z-index: 9999;
+	list-style: none; /* remove bullets */
+	margin: 0;
+}
+details[open] > .filter-list { display: block; }
+.filter-list li {
+	padding: 10px 12px;
+	text-align: center;
+	color: var(--blanc);
+	cursor: pointer;
+	border-radius: 8px;
+	margin: 6px 0;
+	transition: background 0.12s ease, transform 0.08s ease, border-color 0.08s ease;
+	border: 2px solid rgba(255,255,255,0.28); /* stronger white contour */
+	background: rgba(255,255,255,0.02);
+}
+.filter-list li:hover{
+	background: rgba(255,255,255,0.06);
+	transform: translateY(-2px);
+	border-color: rgba(255,255,255,0.42);
+}
+.filter-list li.selected{
+	background: rgba(255,255,255,0.08);
+	border-color: rgba(255,255,255,0.9);
+}
+
+/* Remove default marker for details/summary */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display:none; }
+
+@media (max-width:700px) {
+	.program-filters .filter { justify-content: center; }
+	.program-filters .filter .filter-label { display:none; }
+	.filter-summary, .filter-list { min-width: 200px; }
+}
+
+/* When one filter is open, hide the other filter controls */
+.program-filters.filters--one-open .filter {
+	opacity: 1;
+	transition: opacity 0.18s ease, visibility 0.18s ease;
+}
+.program-filters.filters--one-open .filter:not(.filter--active) {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+/* Use CSS :has() where available to hide other filters when any details is open (no-JS fallback) */
+.program-filters:has(.filter details[open]) .filter:not(:has(details[open])) {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+/* Keep the active filter visible and above others */
+.program-filters .filter.filter--active { z-index: 10000; }
+
