@@ -11,11 +11,9 @@
     font-weight: 250;
     text-align: left;
     margin-left: 35px;
-    margin-top:250px;
+    margin-top: 250px;
     position: absolute;
     color: var(--blanc);
-    z-index: 10;
-    display: block;
 }
 
 .menu-navigation {
@@ -62,10 +60,4 @@
 .menu-socials .social-icon img {
     width: 50px;
     height: 50px;
-    display: block;
-    filter: brightness(1);
-}
-
-.menu-socials .social-icon:hover {
-    opacity: 0.7;
 }
