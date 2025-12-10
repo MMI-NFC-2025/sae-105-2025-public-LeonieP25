@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 	}
+
+	// Redirect HISTORIQUE button to festival page
+	const histBtn = document.querySelector('.historique-logo');
+	if (histBtn) {
+		histBtn.addEventListener('click', () => {
+			window.location.href = 'festival.html';
+		});
+	}
 });
 
   // Carrousel
