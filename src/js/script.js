@@ -28,6 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
 			window.location.href = 'festival.html';
 		});
 	}
+
+    // Initialize default labels for filter summaries so we can restore them on deselect
+    const filterDetails = document.querySelectorAll('details.filter-dropdown');
+    if(filterDetails && filterDetails.length){
+        filterDetails.forEach(d => {
+            const s = d.querySelector('.filter-summary');
+            if(s && !s.dataset.default) s.dataset.default = s.textContent.trim();
+        });
+    }
 });
 
   // Carrousel (guardé pour éviter d'interrompre les autres scripts si l'HTML n'est pas présent)
@@ -110,6 +119,33 @@ document.addEventListener('click', function(e){
     const details = li.closest('details');
     if(!details) return;
     const summary = details.querySelector('.filter-summary');
+    // ensure we have the default label recorded
+    if(summary && !summary.dataset.default) summary.dataset.default = summary.textContent.trim();
+
+    // If this item is already selected, toggle it off (reset to default)
+    if(li.classList.contains('selected')){
+        // deselect this item
+        li.classList.remove('selected');
+        // remove has-selection from parent filter
+        const parentFilter = li.closest('.filter');
+        if(parentFilter) parentFilter.classList.remove('has-selection');
+        // restore summary text to its default
+        if(summary) summary.textContent = summary.dataset.default || summary.textContent.trim();
+
+        // close details and clear UI active state
+        const container = document.querySelector('.program-filters');
+        if(container){
+            const detailsList = Array.from(container.querySelectorAll('details.filter-dropdown'));
+            detailsList.forEach(d => d.open = false);
+            container.classList.remove('filters--one-open');
+            container.querySelectorAll('.filter').forEach(f => f.classList.remove('filter--active'));
+        } else {
+            details.open = false;
+        }
+
+        return; // stop here for deselect
+    }
+
     if(summary) {
         summary.textContent = li.textContent.trim();
     }
@@ -121,14 +157,13 @@ document.addEventListener('click', function(e){
         li.classList.add('selected');
     }
 
-    // mark the parent filter as having a selection and clear others
+    // mark the parent filter as having a selection (do not clear other filters' selections)
     const parentFilter = li.closest('.filter');
     if(parentFilter){
-        // keep previous selections — do not clear other .has-selection classes
         parentFilter.classList.add('has-selection');
     }
 
-    // Ensure all details close and the container state is cleared so UI visibly closes
+    // close details and clear UI active state
     const container = document.querySelector('.program-filters');
     if(container){
         const detailsList = Array.from(container.querySelectorAll('details.filter-dropdown'));
