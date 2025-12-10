@@ -29,6 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
+    // Redirect PROGRAMMATION button from index to programmation page
+    const progBtn = document.querySelector('.program-logo');
+    if (progBtn) {
+        progBtn.addEventListener('click', () => {
+            window.location.href = 'programmation.html';
+        });
+    }
+
     // Initialize default labels for filter summaries so we can restore them on deselect
     const filterDetails = document.querySelectorAll('details.filter-dropdown');
     if(filterDetails && filterDetails.length){
