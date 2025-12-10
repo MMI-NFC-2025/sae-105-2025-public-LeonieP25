@@ -26,6 +26,11 @@ body {
 	background: var(--noir);
 }
 
+a:active,
+a:focus {
+	color: var(--rose) !important;
+}
+
 @media (max-width:720px){
   .hero{padding-top:2px;}
   .hero-gif{width:auto;height:55vh;max-width:none;transform:translateY(-17px);margin-inline:auto;}
