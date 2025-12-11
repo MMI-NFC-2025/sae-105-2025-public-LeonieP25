@@ -1,1 +1,140 @@
-/* Page contact - placeholder. */
+.contact-page {
+	color: var(--blanc);
+}
+
+.contact-main {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 10px 18px 60px;
+}
+
+.contact-hero {
+	text-align: center;
+	margin-bottom: 18px;
+}
+
+.contact-title {
+	margin: 0 0 10px;
+	font-size: 35px;
+	font-weight: 100;
+	letter-spacing: 0;
+	text-transform: uppercase;
+	font-family: var(--text-font-sans), sans-serif;
+}
+
+.contact-form-card {
+	background: rgba(var(--noir-rgb), 0.65);
+	border: 1px solid var(--rose);
+	border-radius: 14px;
+	padding: 18px 16px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+	margin-bottom: 22px;
+}
+
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.contact-field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.contact-label {
+	font-weight: 700;
+	color: var(--rose);
+	font-size: 16px;
+}
+
+.contact-field input,
+.contact-field textarea {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(var(--blanc-rgb), 0.7);
+	color: var(--blanc);
+	padding: 6px 2px 8px;
+	font-size: 15px;
+	font-family: inherit;
+	outline: none;
+}
+
+.contact-field textarea {
+	resize: vertical;
+	min-height: 88px;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+	border-bottom-color: var(--rose);
+}
+
+.contact-submit {
+	align-self: flex-start;
+	margin-top: 6px;
+	padding: 10px 18px;
+	border-radius: 999px;
+	border: none;
+	background: var(--rose);
+	color: var(--noir);
+	font-weight: 800;
+	letter-spacing: 0.6px;
+	cursor: pointer;
+	transition: transform 0.12s ease, opacity 0.15s ease;
+}
+
+.contact-submit:active {
+	transform: translateY(1px) scale(0.99);
+}
+
+.contact-submit:hover {
+	opacity: 0.9;
+}
+
+.contact-subtitle {
+	margin: 0 0 10px;
+	color: var(--rose);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.contact-info {
+	margin-bottom: 22px;
+}
+
+.contact-details {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color: rgba(var(--blanc-rgb), 0.9);
+	line-height: 1.6;
+}
+
+.contact-details li + li { margin-top: 4px; }
+
+.contact-social {
+	margin-bottom: 24px;
+}
+
+.contact-social-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 10px;
+	align-items: center;
+}
+
+.contact-social-link {
+	width: 52px;
+	height: 52px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.12s ease, opacity 0.15s ease;
+}
+
+.contact-social-link img { width: 30px; height: 30px; display: block; }
+
+.contact-social-link:hover { opacity: 0.8; }
+.contact-social-link:active { transform: translateY(1px) scale(0.98); }
