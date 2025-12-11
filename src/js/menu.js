@@ -1,3 +1,10 @@
+/*
+URL visible : /menu.html
+Comportement : animations d'ouverture/fermeture du menu, conservation de l'item actif (localStorage) et gestion des clics
+*/
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
   // trigger gentle open animation
   requestAnimationFrame(() => {

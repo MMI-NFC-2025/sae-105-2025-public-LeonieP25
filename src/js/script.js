@@ -1,3 +1,14 @@
+/*
+URL(s) où l'interaction est visible :
+- /programmation.html : filtrage de la galerie, sélection/désélection des filtres, message "aucun résultat", tri alphabétique
+- /index.html         : bouton PROGRAMMATION (redirection), carrousel de la page d'accueil
+- /festival.html      : redirection du bouton HISTORIQUE
+- /menu.html          : comportements de fermeture/fermeture animée
+- /artiste1.html      : comportements de retour/redirection sur la page artiste
+*/
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 	const menuBtn = document.querySelector(".btn-menu:not(.btn-close)");
 	if (menuBtn) {
