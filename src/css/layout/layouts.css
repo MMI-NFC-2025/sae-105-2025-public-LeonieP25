@@ -535,3 +535,55 @@
 .menu-closing .menu-socials { transition-delay: 0s; }
 .menu-closing .menu-navigation { transition-delay: 0s; }
 .menu-closing .menu-page-title { transition-delay: 0s; }
+
+/* When a menu is opening, hide the artists grid behind it */
+.hide-artists .artists-grid,
+.menu-open .artists-grid {
+	opacity: 0 !important;
+	visibility: hidden !important;
+	pointer-events: none !important;
+	transform: translateY(6px);
+}
+
+/* Filter dropdown overlay behaviour - present the list above the grid */
+.filter-dropdown {
+	position: relative;
+	z-index: 2;
+}
+.filter-dropdown .filter-list {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(100% + 8px);
+	z-index: 1200;
+	background: var(--noir, #0b0b0b);
+	color: var(--blanc);
+	border-radius: 10px;
+	box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+	max-height: 62vh;
+	overflow: auto;
+	padding: 8px 12px;
+}
+.filter-summary {
+	position: relative;
+	z-index: 1220;
+}
+.filter-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.28);
+	z-index: 1100;
+	opacity: 0;
+	transition: opacity 180ms ease;
+	pointer-events: none;
+}
+.filter-overlay.visible {
+	opacity: 1;
+	pointer-events: auto;
+}
+.artists-grid.dimmed {
+	opacity: 0.36;
+	transition: opacity 220ms ease;
+	pointer-events: none;
+	user-select: none;
+}

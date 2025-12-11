@@ -10,12 +10,21 @@ URL(s) où l'interaction est visible :
 
 
 document.addEventListener("DOMContentLoaded", () => {
-	const menuBtn = document.querySelector(".btn-menu:not(.btn-close)");
-	if (menuBtn) {
-		menuBtn.addEventListener("click", () => {
-			window.location.href = "menu.html";
-		});
-	}
+    const menuBtn = document.querySelector(".btn-menu:not(.btn-close)");
+    if (menuBtn) {
+        menuBtn.addEventListener("click", (ev) => {
+            // provide a short visual hide of the artists grid before navigating
+            ev.preventDefault();
+            document.body.classList.add('hide-artists');
+            // allow the UI to update, then navigate
+            setTimeout(() => { window.location.href = "menu.html"; }, 100);
+        });
+    }
+
+    // When the page is shown (including back/forward cache), ensure hide class is removed
+    window.addEventListener('pageshow', function () {
+        document.body.classList.remove('hide-artists');
+    });
 
 	const closeBtn = document.querySelector(".btn-menu.btn-close");
 	if (closeBtn) {

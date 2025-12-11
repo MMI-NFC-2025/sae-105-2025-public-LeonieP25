@@ -48,4 +48,34 @@
             // allow link navigation to proceed
         });
     });
+
+    // Overlay behaviour: keep the artists grid visible but dimmed,
+    // show the filter list as an overlay and allow clicking outside to close.
+    const artistsGrid = document.querySelector('.artists-grid');
+    const overlay = document.createElement('div');
+    overlay.className = 'filter-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.style.display = 'none';
+    overlay.addEventListener('click', ()=>{
+        if(details) details.open = false;
+    });
+    // append early so CSS can target it; it will be hidden until needed
+    document.body.appendChild(overlay);
+
+    if(details){
+        details.addEventListener('toggle', ()=>{
+            if(details.open){
+                overlay.style.display = '';
+                // small delay to allow CSS transition
+                setTimeout(()=> overlay.classList.add('visible'), 10);
+                if(artistsGrid) artistsGrid.classList.add('dimmed');
+                const input = details.querySelector('input');
+                if(input) input.focus();
+            } else {
+                overlay.classList.remove('visible');
+                setTimeout(()=> overlay.style.display = 'none', 220);
+                if(artistsGrid) artistsGrid.classList.remove('dimmed');
+            }
+        });
+    }
 })();
