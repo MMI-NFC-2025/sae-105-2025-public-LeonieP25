@@ -51,7 +51,6 @@
 .artist-thumb{
 	border-radius: inherit;
 	overflow: hidden;
-	-webkit-mask-image: -webkit-radial-gradient(white, black); /* force le masquage matériel dans certains navigateurs */
 }
 .artist-thumb img{
 	border-radius: inherit;
@@ -106,12 +105,6 @@
 	font-weight: 800;
 	letter-spacing: 0.6px;
 	z-index: 4;
-}
-
-/* Si pour une raison quelconque plusieurs badges existent dans une carte, masque les extras */
-.artist-card .artist-badge + .artist-badge,
-.artist-card .artist-badge ~ .artist-badge {
-	display: none !important;
 }
 
 .artist-name{

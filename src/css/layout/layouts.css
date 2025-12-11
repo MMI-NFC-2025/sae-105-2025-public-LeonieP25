@@ -407,7 +407,7 @@
 	position: relative;
 	z-index: 2;
 	width: 100%;
-	padding: 18px 12px 115px;
+	padding: px 12px 115px;
 	/* remonte légèrement la boîte contenant le badge/nom/retour */
 	transform: translateY(-5vh);
 	text-align: center;
@@ -421,7 +421,7 @@
 	font-weight:700;
 	font-size:12px;
 	text-transform:uppercase;
-	margin-bottom: 8px;
+	transform: translate(170px, -80px);
 }
 .artiste-page .artist-name{
 	margin: 4px 0 6px;
