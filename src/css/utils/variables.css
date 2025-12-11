@@ -14,13 +14,5 @@
   --bleu-rgb: 0,218,255;
   --violet-rgb: 237,106,255;
 }
-/* Typographies */
-:root {
-  /* Texte */
-  --text-sous-titre: 0.625rem;
-  --text-texte-rose: 0.9375rem;
-  --text-texte-blanc: 1.25rem;
-  /* Typographie */
-  --text-font-sans: Arial;
-}
+
 

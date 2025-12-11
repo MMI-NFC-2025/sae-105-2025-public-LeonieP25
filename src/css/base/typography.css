@@ -1,1 +1,10 @@
 /* Typographic utility classes (.typo-*) centralized here. Currently unused. */
+/* Typographies */
+:root {
+  /* Texte */
+  --text-sous-titre: 0.625rem;
+  --text-texte-rose: 0.9375rem;
+  --text-texte-blanc: 1.25rem;
+  /* Typographie */
+  --text-font-sans: Arial;
+}

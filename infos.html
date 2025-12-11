@@ -159,7 +159,8 @@
 		let index = 0;
 
 		const update = () => {
-		  const slideWidth = slides[0].getBoundingClientRect().width + 14; // card gap compensation
+		  const gap = parseFloat(getComputedStyle(track).columnGap || '0') || 0;
+		  const slideWidth = slides[0].getBoundingClientRect().width + gap;
 		  track.style.transform = `translateX(-${index * slideWidth}px)`;
 		  btnPrev.disabled = index === 0;
 		  btnNext.disabled = index >= slides.length - 1;

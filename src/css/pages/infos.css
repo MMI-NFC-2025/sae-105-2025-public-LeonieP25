@@ -32,11 +32,11 @@
 }
 
 .infos-block {
-	background: rgba(0, 0, 0, 0.55);
+	background: var(--noir);
 	border-radius: 16px;
 	padding: 36px 16px 14px;
 	margin-bottom: 14px;
-	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+
 }
 
 .block-head {
@@ -93,9 +93,16 @@
 .price-card {
 	background: rgba(var(--violet-rgb), 0.14);
 	border-radius: 12px;
-	padding: 18px 14px 14px;
+	padding: 10px 10px 10px;
 	text-align: center;
-	box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+	width: 100%;
+	height: 100%;
+	min-height: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
 }
 
 .price-name {
