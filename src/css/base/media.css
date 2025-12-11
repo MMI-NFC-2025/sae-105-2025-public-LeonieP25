@@ -26,3 +26,33 @@
 	text-align: center;
 }
 
+/* Artist photos (moved here): small, rounded, overlapping like the provided mockup */
+.artiste-page .artist-photos{
+	position: relative;
+	width: 340px;
+	height: 240px;
+}
+.artiste-page .artist-photo{
+	position: absolute;
+	overflow: hidden;
+	border-radius: 20px;
+}
+.artiste-page .artist-photo img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.artiste-page .artist-photo--large{
+	width: 220px;
+	height: 220px;
+}
+.artiste-page .artist-photo--small{
+	width: 260px;
+	height: 160px;
+	left: 50px;
+	top: 150px;
+	z-index: 2;
+	transform: translate(12px,12px);
+}
+

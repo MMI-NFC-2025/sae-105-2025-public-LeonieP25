@@ -372,6 +372,9 @@
 	/* match section horizontal padding so titles line up */
 	padding: 0 20px 40px 20px;
 }
+.festival-page .technical-subtitle {
+	padding: 0 20px 40px 20px;
+}
 
 /* Artist page styles (AAZAR-like hero, badge, details panel) */
 .artiste-page .artist-hero {
@@ -439,5 +442,3 @@
 	color:var(--blanc);
 	margin:0 0 12px;
 }
-
-
