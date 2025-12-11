@@ -456,6 +456,25 @@
 	margin:0 0 12px;
 }
 
+/* Scenes page layout and cards */
+.scenes-page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+.scenes-page main { flex: 1 0 auto; }
+
+.scenes-grid {
+	display: grid;
+	gap: 22px;
+	grid-template-columns: 1fr;
+}
+.scene-card { display:block; }
+.scene-link { text-decoration:none; color:inherit; display:block; }
+.scene-thumb { border-radius:18px; overflow:hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.45); }
+.scene-thumb img { width:100%; height:auto; display:block; object-fit:cover; }
+.scene-title { margin-top:10px; text-align:center; font-weight:500; color:var(--blanc); letter-spacing:1px; font-size:15px; }
+
 /* Menu page styles moved from src/css/pages/menu.css */
 .menu-page-title {
 	font-size: 40px;
