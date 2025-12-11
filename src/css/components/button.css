@@ -16,4 +16,3 @@
 .btn-top:active {
 	transform: translateY(1px) scale(0.98);
 }
-/* Surcharges spécifiques au festival retirées — positionnement géré par layout/header.css ou CSS de page */

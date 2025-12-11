@@ -27,9 +27,8 @@
 }
 .filter-summary {
 	min-width: 260px;
-	/* move text further to the right: increase left padding and use smaller right padding */
 	padding: 10px 30px 10px 30px;
-	padding-right: 30px; /* keep arrow visible while shifting text */
+	padding-right: 30px; /* garde la flèche visible tout en décalant le texte */
 	border-radius: 28px;
 	border: 1px solid rgba(var(--blanc-rgb), 0.6);
 	color: var(--blanc);

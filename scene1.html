@@ -4,18 +4,18 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg" />
-	<title>Scènes — LUMIMIX</title>
+	<title>La Vibe Luminescente — LUMIMIX</title>
 	<link rel="stylesheet" href="src/css/style.css" />
 </head>
-<body class="scenes-page">
+<body class="scene-page">
 	<div id="top"></div>
 
 	<video class="bg-video" autoplay loop muted playsinline aria-hidden="true">
-		<source src="assets/mp4/FondImage.mp4" type="video/mp4" />
+		<source src="/assets/mp4/FondImage.mp4" type="video/mp4" />
 	</video>
 
 	<nav class="topbar" aria-hidden="true" aria-label="Top navigation">
-		<a href="/" class="logo-link">
+		<a href="index.html" class="logo-link">
 			<img src="assets/svg/LogoLumimix.svg" alt="LUMIMIX" class="logo" />
 		</a>
 		<button class="btn-lang" type="button" aria-label="Changer de langue">FR</button>
@@ -24,43 +24,35 @@
 		</a>
 	</nav>
 
-	<main>
+	<main class="scene-main">
 		<a class="btn-top" href="#top" aria-label="Remonter en haut"></a>
 
-		<header style="text-align:center; padding:10px 18px 8px;">
-			<h2 class="page-title" style="margin-bottom:2px; text-align:center;">SCENES</h2>
-			<p class="program-year" style="text-align:center; margin:0 0 14px; font-size:clamp(20px,6vw,28px); font-weight:300; color:var(--blanc);">2026</p>
-		</header>
-
-		<section class="scenes-grid" aria-label="Grille scènes" style="max-width:940px;margin:0 auto;padding:8px 18px 40px;">
-			<article class="scene-card">
-				<a href="scene1.html" class="scene-link" aria-label="La vibe luminescente">
-					<div class="scene-thumb">
-						<img src="/assets/img/scene1.avif" alt="La vibe luminescente">
-					</div>
-					<div class="scene-title">LA VIBE LUMINESCENTE</div>
-				</a>
+		<section class="scene-hero" aria-label="Bannière scène"></section>
+		<a href="scenes.html" class="scene-back-link">← Retour</a>
+		
+		<section class="scene-content">
+			<h1 class="scene-main-title">LA VIBE LUMINESCENTE</h1>
+			<h2 class="scene-main-subtitle">ARTISTES SUR CETTE SCÈNE</h2>
+			
+			<article class="scene-date-block">
+				<div class="scene-date-badge">07 AOÛT</div>
+				<p class="scene-artists-list">
+					LA P'TITE FUMÉE LIQUID STRANGER MANUDIGITAL
+					<span class="artist-pink">MALA MUNGO'S HI FI N'TO NAÂMAN NOISIA</span>
+					O.B.F SOUND SYSTEM ORBITAL PAUL KALKBRENNER
+				</p>
 			</article>
-
-			<article class="scene-card">
-				<a href="#" class="scene-link" aria-label="Le dub électrique yard">
-					<div class="scene-thumb">
-						<img src="/assets/img/scene2.avif" alt="Le dub électrique yard">
-					</div>
-					<div class="scene-title">LE DUB ÉLECTRIK YARD</div>
-				</a>
-			</article>
-
-			<article class="scene-card">
-				<a href="#" class="scene-link" aria-label="L'arena des pulsations">
-					<div class="scene-thumb">
-						<img src="/assets/img/scene3.avif" alt="L'arena des pulsations">
-					</div>
-					<div class="scene-title">L'ARENA DES PULSATIONS</div>
-				</a>
+			
+			<article class="scene-date-block">
+				<div class="scene-date-badge">08 AOÛT</div>
+				<p class="scene-artists-list">
+					<span class="artist-pink">PANDA DUB RAKOON SEBASTIEN LÉGER</span>
+					STAND HIGH PATROL SYNAPSON TETRA HYDRO K
+					<span class="artist-pink">THE BLOODY BEETROOTS UNICORN ON K</span>
+					WORAKLS ZEDS DEAD
+				</p>
 			</article>
 		</section>
-
 	</main>
 
 	<footer class="footer">
@@ -101,3 +93,4 @@
 	<script src="src/js/script.js"></script>
 </body>
 </html>
+
