@@ -129,6 +129,10 @@
             ev.preventDefault();
             const name = (link.textContent || '').trim();
 
+            // If this name is already shown in the summary, do nothing
+            const current = summary ? (summary.textContent || '').trim().toLowerCase() : '';
+            if(current === name.toLowerCase()) return;
+
             // Update summary text
             if(summary) summary.textContent = name;
 
