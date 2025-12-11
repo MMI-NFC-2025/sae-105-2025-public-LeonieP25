@@ -587,3 +587,50 @@
 	pointer-events: none;
 	user-select: none;
 }
+
+/* Prevent body scroll when modal/solo is open */
+.no-scroll { overflow: hidden; }
+
+/* Solo-overlay (big artist image) */
+.solo-overlay {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.82);
+	z-index: 2000;
+}
+.solo-inner {
+	max-width: min(1200px, 94vw);
+	width: 94vw;
+	max-height: 92vh;
+	position: relative;
+}
+.solo-image {
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+	border-radius: 8px;
+	box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+	display: block;
+}
+.solo-close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	width: 44px;
+	height: 44px;
+	border-radius: 8px;
+	border: none;
+	background: rgba(255,255,255,0.06);
+	color: var(--blanc);
+	font-size: 22px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+/* When solo is active we hide the dropdown list but keep the summary visible */
+.filter-solo-open .filter-list { display: none !important; }

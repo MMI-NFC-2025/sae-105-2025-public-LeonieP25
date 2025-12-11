@@ -78,4 +78,78 @@
             }
         });
     }
+
+    // --------------------------------------------------
+    // Dropdown -> solo image behaviour (Aazar only)
+    // When clicking Aazar in the dropdown (#artist-list a):
+    // - set the summary text to the artist name (kept)
+    // - hide the dropdown list (keep the summary visible)
+    // - show a centered full-size image (/assets/img/aazaroff.avif)
+    // - allow closing with the × button, clicking outside or Escape
+    // --------------------------------------------------
+    function createSoloOverlay(src, alt){
+        const existing = document.querySelector('.solo-overlay');
+        if(existing) return existing;
+        const overlayEl = document.createElement('div');
+        overlayEl.className = 'solo-overlay';
+        overlayEl.innerHTML = `
+            <div class="solo-inner" role="dialog" aria-modal="true">
+                <button class="solo-close" aria-label="Fermer">×</button>
+                <img class="solo-image" src="${src}" alt="${alt||''}" />
+            </div>`;
+        document.body.appendChild(overlayEl);
+        document.body.classList.add('no-scroll');
+
+        const closeBtn = overlayEl.querySelector('.solo-close');
+        function remove(){
+            overlayEl.remove();
+            document.body.classList.remove('no-scroll');
+            document.removeEventListener('keydown', onKey);
+            details.classList.remove('filter-solo-open');
+        }
+        function onKey(e){ if(e.key === 'Escape') remove(); }
+        closeBtn.addEventListener('click', remove);
+        overlayEl.addEventListener('click', (ev)=>{ if(ev.target === overlayEl) remove(); });
+        document.addEventListener('keydown', onKey);
+        return overlayEl;
+    }
+
+    const dropdownLinks = document.querySelectorAll('#artist-list a');
+    function findCardByName(name){
+        const cards = Array.from(document.querySelectorAll('.artist-card'));
+        name = (name || '').trim().toLowerCase();
+        return cards.find(c => {
+            const n = c.querySelector('.artist-name');
+            return n && (n.textContent || '').trim().toLowerCase() === name;
+        });
+    }
+
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', (ev)=>{
+            ev.preventDefault();
+            const name = (link.textContent || '').trim();
+
+            // Update summary text
+            if(summary) summary.textContent = name;
+
+            // close details and mark solo state on the filter
+            if(details){ details.open = false; details.classList.add('filter-solo-open'); }
+
+            // find matching card and its image
+            const card = findCardByName(name);
+            let imgPath = '';
+            if(card){
+                const img = card.querySelector('.artist-thumb img');
+                if(img && img.src) imgPath = img.src;
+            }
+
+            // fallback: attempt to build filename from name (simple normalize)
+            if(!imgPath){
+                const slug = name.toLowerCase().replace(/[^a-z0-9]+/g,'').replace(/\s+/g,'');
+                imgPath = `/assets/img/${slug}off.avif`;
+            }
+
+            createSoloOverlay(imgPath, name);
+        });
+    });
 })();
