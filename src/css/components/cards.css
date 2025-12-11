@@ -72,17 +72,18 @@
 }
 
 .artist-badge{
-	position: absolute;
-	left: 10px;
-	top: 5px;
-	background: var(--rose);
-	color: var(--blanc);
-	padding: 6px 10px;
-	border-radius: 999px;
-	font-size: 12px;
-	font-weight: 800;
-	letter-spacing: 0.6px;
-	z-index: 4;
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  background: var(--rose);
+  color: var(--blanc);
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 550;
+  letter-spacing: 0.4px;
+  z-index: 4;
+  line-height: 1.1;
 }
 
 .artist-name{
