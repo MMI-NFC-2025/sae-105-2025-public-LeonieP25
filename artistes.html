@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicons/logolumimixfavicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg" />
     <title>Artistes — LUMIMIX</title>
     <link rel="stylesheet" href="src/css/style.css" />
     <link rel="stylesheet" href="src/css/components/summary-programmation.css" />
+    <link rel="stylesheet" href="src/css/components/artistscard.css" />
 </head>
 <body class="artistes-page">
     <div id="top"></div>
@@ -94,6 +95,53 @@
         .filter-summary.filter-summary--active { color:var(--blanc); }
         </style>
         
+            <!-- Grille artistes -->
+            <section class="artists-grid" aria-label="Grille artistes">
+                <article class="artist-card">
+                    <a href="artiste1.html" aria-label="Aazar">
+                        <div class="artist-thumb">
+                            <img src="/assets/img/aazarsolo.avif" alt="Aazar">
+                            <div class="artist-badge">08 AOUT</div>
+                        </div>
+                        <div class="artist-overlay"></div>
+                        <div class="artist-name">Aazar</div>
+                    </a>
+                </article>
+
+                <article class="artist-card">
+                    <a href="artiste2.html" aria-label="Acid Arab">
+                        <div class="artist-thumb">
+                            <img src="/assets/img/acidarabsolo.avif" alt="Acid Arab">
+                            <div class="artist-badge">06 AOUT</div>
+                        </div>
+                        <div class="artist-overlay"></div>
+                        <div class="artist-name">Acid Arab</div>
+                    </a>
+                </article>
+
+                <article class="artist-card">
+                    <a href="artiste3.html" aria-label="Asian Dub Foundation">
+                        <div class="artist-thumb">
+                            <img src="/assets/img/asiandubfoundation.avif" alt="Asian Dub Foundation">
+                            <div class="artist-badge">06 AOUT</div>
+                        </div>
+                        <div class="artist-overlay"></div>
+                        <div class="artist-name">Asian Dub Foundation</div>
+                    </a>
+                </article>
+
+                <article class="artist-card">
+                    <a href="artiste4.html" aria-label="Biga*Ranx">
+                        <div class="artist-thumb">
+                            <img src="/assets/img/bigaranx.avif" alt="Biga*Ranx">
+                            <div class="artist-badge">06 AOUT</div>
+                        </div>
+                        <div class="artist-overlay"></div>
+                        <div class="artist-name">Biga*Ranx</div>
+                    </a>
+                </article>
+            </section>
+
             <!-- Grand spacer pour rendre la page plus haute que la fenêtre (pour "mou" / overscroll) -->
             <div class="big-spacer" aria-hidden="true" style="min-height:1500px;"></div>
 

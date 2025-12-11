@@ -1,0 +1,129 @@
+/* Artists card component
+	 Usage: wrap artist links in a container with class `artists-grid`.
+	 Each item should be an element with class `artist-card` containing
+	 a block .artist-thumb > img, an optional .artist-badge and .artist-name.
+*/
+
+.artists-grid{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 18px;
+	max-width: 980px;
+	margin: 20px auto;
+	padding: 0 16px;
+}
+
+.artist-card {
+	display: block;
+	border-radius: 18px;
+	overflow: hidden;
+	position: relative;
+	-webkit-tap-highlight-color: transparent;
+	background: rgba(0,0,0,0.06);
+	box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+}
+
+.artist-card a,
+.artist-card > a { display: block; color: inherit; text-decoration: none; }
+
+.artist-thumb{
+	width: 100%;
+	height: 0;
+	padding-bottom: 100%; /* square */
+	position: relative;
+	background: #111;
+}
+
+/* Ensure thumb area clips its children (badge) to the rounded corners */
+.artist-thumb{
+	border-radius: 18px;
+	overflow: hidden;
+}
+
+/* Extra safety: ensure card and thumb clipping and image rounding */
+.artist-card{
+	border-radius: 18px;
+	overflow: hidden;
+}
+.artist-thumb{
+	border-radius: inherit;
+	overflow: hidden;
+	-webkit-mask-image: -webkit-radial-gradient(white, black); /* force hardware clipping in some browsers */
+}
+.artist-thumb img{
+	border-radius: inherit;
+}
+
+/* Slightly inset the badge to avoid subpixel sliver at the corner */
+.artist-badge{
+	top: 8px;
+	left: 12px;
+	padding: 6px 10px;
+	transform: translateZ(0);
+	border-radius: 12px;
+}
+
+/* Ensure thumb background is fully opaque to help mask edges */
+.artist-thumb{
+	background-color: #000;
+}
+
+.artist-thumb img{
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transform-origin: center center;
+	transition: transform 360ms cubic-bezier(.2,.9,.2,1);
+}
+
+.artist-card:hover .artist-thumb img,
+.artist-card:focus-within .artist-thumb img{
+	transform: scale(1.04);
+}
+
+.artist-overlay{
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.56) 100%);
+	pointer-events: none;
+}
+
+.artist-badge{
+	position: absolute;
+	left: 10px;
+	top: 5px;
+	background: var(--rose);
+	color: var(--blanc);
+	padding: 6px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 0.6px;
+	z-index: 4;
+}
+
+/* If for any reason more than one badge exists inside a card, hide extras */
+.artist-card .artist-badge + .artist-badge,
+.artist-card .artist-badge ~ .artist-badge {
+	display: none !important;
+}
+
+.artist-name{
+	position: absolute;
+	left: 12px;
+	right: 12px;
+	bottom: 12px;
+	z-index: 4;
+	text-align: center;
+	color: var(--blanc);
+	font-weight: 800;
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+.artist-meta{ display:none; }
