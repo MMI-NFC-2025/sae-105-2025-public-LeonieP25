@@ -64,5 +64,5 @@
 }
 
 .historique-logo:active {
-	transform: translateX(100px) translateY(1px) scale(0.99);
+	transform: none;
 }

@@ -10,7 +10,7 @@
 
 .contact-hero {
 	text-align: center;
-	margin-bottom: 18px;
+	margin-bottom: -15px;
 }
 
 .contact-title {
@@ -25,9 +25,9 @@
 .contact-form-card {
 	background: rgba(var(--noir-rgb), 0.65);
 	border: 1px solid var(--rose);
-	border-radius: 14px;
-	padding: 18px 16px;
-	margin-bottom: 22px;
+	border-radius: 10px;
+	padding: 10px 16px;
+	margin-bottom: 5px;
 }
 
 .contact-form {
@@ -93,7 +93,7 @@
 }
 
 .contact-subtitle {
-	margin: 0 0 10px;
+	margin: 30px 0 10px;
 	color: var(--rose);
 	font-size: 18px;
 	font-weight: 700;
@@ -111,21 +111,15 @@
 	line-height: 1.6;
 }
 
-.contact-details li + li { margin-top: 4px; }
-
-.contact-social {
-	margin-bottom: 24px;
-}
-
 .contact-social-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 8px 10px;
+	gap: 0px 0px;
 	align-items: center;
 }
 
 .contact-social-link {
-	width: 52px;
+	width: 62px;
 	height: 52px;
 	display: inline-flex;
 	align-items: center;
@@ -133,7 +127,7 @@
 	transition: transform 0.12s ease, opacity 0.15s ease;
 }
 
-.contact-social-link img { width: 30px; height: 30px; display: block; }
+.contact-social-link img { width: 40px; height: 40px; display: block; }
 
 .contact-social-link:hover { opacity: 0.8; }
 .contact-social-link:active { transform: translateY(1px) scale(0.98); }
