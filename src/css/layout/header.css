@@ -36,15 +36,11 @@
 	color: var(--noir);
 }
 
-.btn-menu {
-	background: var(--rose);
-	color: var(--blanc);
-	position: relative;
-}
-
+.btn-menu,
 .btn-close {
 	background: var(--rose);
 	color: var(--blanc);
+	position: relative;
 }
 
 .btn-menu.btn-close img {

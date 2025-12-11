@@ -134,8 +134,8 @@ details > summary::-webkit-details-marker { display:none; }
 /* Surcharge spécifique à la page : garde les bordures blanches sur la page programmation (évite le rose au clic) */
 .programmation-page .filter-summary{
 	/* par défaut sur programmation : garde la bordure blanche */
-	border-color: rgba(255,255,255,0.98) !important;
-	box-shadow: 0 6px 22px rgba(0,0,0,0.7), 0 0 0 4px rgba(255,255,255,0.04) !important;
+	border-color: rgba(var(--blanc-rgb), 0.98) !important;
+	box-shadow: 0 6px 22px rgba(var(--noir-rgb), 0.7), 0 0 0 4px rgba(var(--blanc-rgb), 0.04) !important;
 }
 
 /* devient rose quand focusé/ouvert ou quand le filtre parent a une sélection */
@@ -157,7 +157,7 @@ details > summary::-webkit-details-marker { display:none; }
 
 .programmation-page .filter-list li.selected {
 	border-color: var(--rose) !important;
-	background: rgba(255,0,119,0.08) !important; /* teinte rose subtile */
+	background: rgba(var(--rose-rgb), 0.08) !important; /* teinte rose subtile */
 	color: var(--blanc) !important;
 }
 

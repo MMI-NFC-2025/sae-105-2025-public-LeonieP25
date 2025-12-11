@@ -39,7 +39,7 @@
                 <details class="filter-dropdown" id="filter-nom">
                     <summary class="filter-summary" id="filter-summary-nom">NOM</summary>
                     <div style="padding:8px 12px 0;">
-                        <input id="artist-search" type="search" placeholder="Rechercher un artiste..." aria-label="Rechercher un artiste" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--blanc);outline:none;" />
+                        <input id="artist-search" type="search" placeholder="Rechercher un artiste..." aria-label="Rechercher un artiste" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(var(--blanc-rgb), 0.08);background:transparent;color:var(--blanc);outline:none;" />
                     </div>
                     <ul class="filter-list" id="artist-list" style="margin-top:8px;padding:8px 12px;">
                         <li><a href="artiste1.html">Aazar</a></li>
@@ -73,7 +73,7 @@
         #artist-list { padding:0; margin:0; }
         #artist-list li { list-style:none; border-radius:8px; margin-bottom:6px; padding:0; }
         #artist-list a { color:var(--blanc); text-decoration:none; display:block; padding:8px 10px; border-radius:8px; transition:color .12s, box-shadow .12s, outline .12s; }
-        #artist-list a:hover, #artist-list a:focus { color:var(--blanc); background: rgba(255,255,255,0.03); }
+        #artist-list a:hover, #artist-list a:focus { color:var(--blanc); background: rgba(var(--blanc-rgb), 0.03); }
 
         /* Quand un item est sélectionné, dessine un contour rose et garde le texte blanc */
         .artistes-page .filter-list li.selected{

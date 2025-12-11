@@ -22,8 +22,8 @@
 	overflow: hidden;
 	position: relative;
 	-webkit-tap-highlight-color: transparent;
-	background: rgba(0,0,0,0.06);
-	box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+	background: rgba(var(--noir-rgb), 0.06);
+	box-shadow: 0 8px 22px rgba(var(--noir-rgb), 0.45);
 }
 
 .artist-card a,
@@ -34,7 +34,7 @@
 	height: 0;
 	padding-bottom: 100%; /* carré */
 	position: relative;
-	background: #111;
+	background: var(--noir);
 }
 
 /* S'assure que la zone de vignette masque ses enfants (badge) avec les coins arrondis */
@@ -68,7 +68,7 @@
 
 /* S'assure que le fond de la vignette est complètement opaque pour aider au masquage des bords */
 .artist-thumb{
-	background-color: #000;
+	background-color: var(--noir);
 }
 
 .artist-thumb img{
@@ -90,7 +90,7 @@
 .artist-overlay{
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.56) 100%);
+	background: linear-gradient(180deg, rgba(var(--noir-rgb), 0) 45%, rgba(var(--noir-rgb), 0.56) 100%);
 	pointer-events: none;
 }
 
@@ -126,7 +126,7 @@
 	font-size: 13px;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+	text-shadow: 0 6px 18px rgba(var(--noir-rgb), 0.6);
 }
 
 .artist-meta{ display:none; }
