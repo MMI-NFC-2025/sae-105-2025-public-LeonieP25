@@ -24,6 +24,10 @@
 }
 .filter-dropdown {
 	position: relative;
+	width: 100%;
+	max-width: 320px;
+	display: flex;
+	justify-content: center;
 }
 .filter-summary {
 	min-width: 260px;
@@ -65,9 +69,11 @@ details[open] > .filter-summary::after {
 .filter-list {
 	position: absolute;
 	top: calc(100% + 10px);
-	left: 50%;
-	transform: translateX(-50%);
-	min-width: 260px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	transform: none;
+	min-width: 100%;
 	background: rgba(var(--noir-rgb), 0.55);
 	border: 1px solid rgba(var(--blanc-rgb), 0.06);
 	border-radius: 12px;
@@ -115,15 +121,15 @@ details > summary::-webkit-details-marker { display:none; }
 	transition: opacity 0.18s ease, visibility 0.18s ease;
 }
 .program-filters.filters--one-open .filter:not(.filter--active) {
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
 }
 
 .program-filters:has(.filter details[open]) .filter:not(:has(details[open])) {
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
 }
 
 .program-filters .filter.filter--active { z-index: 10000; }
