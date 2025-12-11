@@ -1,4 +1,10 @@
 /* Styles du menu plein écran */
+/* Verrouille le scroll quand le menu est ouvert (classe appliquée par menu.js) */
+body.menu-open {
+	overflow: hidden;
+	height: 100vh;
+}
+
 .menu-page-title {
 	font-size: 40px;
 	font-weight: 250;
