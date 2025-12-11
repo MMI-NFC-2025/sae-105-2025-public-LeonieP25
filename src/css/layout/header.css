@@ -1,0 +1,209 @@
+.topbar {
+	position: fixed;
+	right: 15px;
+	top: 25px;
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	pointer-events: auto;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	z-index: 999999 !important;
+	
+}
+
+.btn-lang,
+.btn-menu {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1;
+	user-select: none;
+	transition: transform 0.12s ease;
+}
+
+.btn-lang {
+	background: var(--blanc);
+	color: var(--noir);
+}
+
+.btn-menu {
+	background: var(--rose);
+	color: var(--blanc);
+	position: relative;
+}
+
+.btn-close {
+	background: var(--rose);
+	color: var(--blanc);
+}
+
+.btn-menu.btn-close img {
+	width: 16px;
+	height: 16px;
+	display: block;
+}
+
+.btn-close .menu-lines {
+	width: 13px;
+	height: 12px;
+}
+
+.btn-close .menu-lines::before,
+.btn-close .menu-lines::after {
+	display: none;
+}
+
+.btn-menu .menu-lines,
+.btn-menu .menu-lines::before,
+.btn-menu .menu-lines::after {
+	display: block;
+	width: 25px;
+	height: 1px;
+	background: currentColor;
+	border-radius: 999px;
+	content: "";
+	position: relative;
+}
+
+.btn-menu .menu-lines::before,
+.btn-menu .menu-lines::after {
+	position: absolute;
+	left: 0;
+}
+
+.btn-menu .menu-lines::before {
+	top: -8px;
+}
+
+.btn-menu .menu-lines::after {
+	top: 8px;
+}
+
+.btn-lang:active,
+.btn-menu:active {
+	transform: translateY(1px) scale(0.99);
+}
+
+header {
+	padding: 95px 0 25px;
+	text-align: center;
+	background: transparent;
+}
+
+.festival {
+	position: relative;
+	color: var(--rose);
+	text-align: center;
+	margin-top: 24px;
+	font-weight: 700;
+	font-size: 19px;
+	letter-spacing: 1px;
+}
+
+header h1 {
+	font-family: Arial, sans-serif;
+	font-size: clamp(48px, 12vw, 160px) !important;
+	margin: 0;
+	font-weight: 900;
+	letter-spacing: 3px;
+	color: var(--blanc);
+	line-height: 0.9;
+}
+
+.tag {
+	font-size: 13px;
+	color: var(--muted);
+	margin-top: 8px;
+}
+
+.hero {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px 8px 8px;
+	max-width: 100%;
+	overflow: visible;
+}
+
+.hero-gif {
+	width: 100%;
+	right: 15px;
+	top: 25px;
+	max-width: none;
+	height: auto;
+	opacity: 0.95;
+	display: block;
+	transform: translateY(6px);
+	margin: 0 auto;
+	position: relative;
+	z-index: 0;
+}
+
+
+	.hero {
+		padding-top: 2px;
+	}
+
+	
+
+	.logo-link {
+		position: fixed;
+		top: -5px;
+		left: -20px;
+		z-index: 9999;
+	}
+
+	.logo {
+		height: 125px;
+		width: auto;
+		display: block
+	}
+
+/* Page d'accueil : bouton billetterie et ajustements du gif hero (déplacés depuis src/css/pages/home.css) */
+.billetterie {
+	position: fixed;
+	left: calc(env(safe-area-inset-left, 18px) + 9px);
+	top: calc(env(safe-area-inset-top, 20px) + 29px);
+	display: inline-flex;
+	align-items: center;
+	padding: 12px 20px;
+	background: var(--rose);
+	color: var(--noir);
+	text-decoration: none;
+	border-radius: 22px;
+	z-index: 999999 !important;
+	font-family: Arial, sans-serif;
+	font-size: 17px;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	line-height: 1;
+	user-select: none;
+	transition: transform 0.12s ease;
+}
+
+.billetterie-text {
+	color: var(--noir);
+	letter-spacing: 0;
+}
+
+.billetterie:active {
+	transform: translateY(1px) scale(0.99);
+}
+
+/* Ajustements du gif hero spécifiques à la page d'accueil (depuis pages/home.css) */
+.hero-gif {
+	height: 50vh;
+	max-width: 120vw;
+	object-fit: cover;
+	transform: translateY(-25px);
+}

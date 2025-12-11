@@ -109,7 +109,7 @@
 	position: relative;
 	z-index: 2;
 	width: 100%;
-	padding: px 12px 115px;
+	padding: 0 12px 115px;
 	transform: translateY(-5vh);
 	text-align: center;
 }
@@ -141,7 +141,7 @@
 }
 
 .artiste-page .artist-details{
-	background: (var(--noir));
+	background: var(--noir);
 	color: var(--blanc);
 	padding: 22px 18px 90px;
 	position: relative;
