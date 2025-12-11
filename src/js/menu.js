@@ -1,20 +1,24 @@
 /*
-URL visible : /menu.html
-Comportement : animations d'ouverture/fermeture du menu, conservation de l'item actif (localStorage) et gestion des clics
+Fichier : menu.js
+URL d'action : /menu.html
+Rôle : Gère les animations d'ouverture/fermeture douce du menu de navigation,
+       la persistance de l'item actif via localStorage,
+       et la navigation animée avec retour vers la page précédente.
+Dépendances : nécessite les classes CSS .menu-open, .menu-closing et les variables --rose, --menu-duration
 */
 
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  // trigger gentle open animation
+  // Déclenche l'animation d'ouverture douce du menu
   requestAnimationFrame(() => {
-    // small timeout to ensure CSS initial state applied
+    // Petit délai pour s'assurer que l'état CSS initial est appliqué
     setTimeout(() => document.body.classList.add('menu-open'), 40);
   });
   const menuLinks = document.querySelectorAll('.menu-navigation .menu-item a');
   if (!menuLinks || menuLinks.length === 0) return;
 
-  // Read CSS variable --rose for inline fallback color (use computed value when available)
+  // Lit la variable CSS --rose pour la couleur de fallback inline (utilise la valeur calculée si disponible)
   let roseColor = 'var(--rose)';
   try {
     const root = getComputedStyle(document.documentElement);
@@ -22,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (v) roseColor = v.trim();
   } catch (e) {}
 
-  // Apply stored active item on load (persisted via localStorage)
+  // Applique l'item actif stocké au chargement (persisté via localStorage)
+  // Permet de garder le menu synchronisé entre les pages
   try {
     const activeHref = localStorage.getItem('menuActiveHref');
     if (activeHref) {
@@ -36,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   } catch (e) {}
 
-  // Click handlers: set active class and persist selection
+  // Gestionnaires de clic : active la classe et persiste la sélection dans localStorage
   menuLinks.forEach((link) => {
     link.addEventListener('click', function () {
-      // clear previous
+      // Efface la sélection précédente
       menuLinks.forEach((l) => {
         const p = l.closest('.menu-item');
         if (p) p.classList.remove('active');
@@ -56,27 +61,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Handle animated close: when clicking the close button, play closing animation then navigate
+  // Gère la fermeture animée : au clic sur le bouton fermer, joue l'animation puis navigue
+  // Utilise la classe .menu-closing pour raccourcir la durée de transition
   const closeBtn = document.querySelector('.btn-menu.btn-close');
   if (closeBtn) {
     closeBtn.addEventListener('click', function (ev) {
       ev.preventDefault();
-      // Add closing class first so the shorter duration applies
+      // Ajoute la classe closing d'abord pour que la durée raccourcie s'applique
       document.body.classList.add('menu-closing');
 
-      // Force a reflow to ensure the browser applies the class before we remove menu-open
-      // so the closing transition uses the shortened --menu-duration
+      // Force un reflow pour s'assurer que le navigateur applique la classe avant de retirer menu-open
+      // afin que la transition de fermeture utilise la --menu-duration raccourcie
       void document.body.offsetWidth;
 
       document.body.classList.remove('menu-open');
 
-      // Compute duration from CSS variable (fallback to 140ms)
+      // Calcule la durée depuis la variable CSS (fallback à 140ms)
       let durationMs = 140;
       try {
         const cs = getComputedStyle(document.body);
         const v = cs.getPropertyValue('--menu-duration');
         if (v) {
-          // parse value like '140ms' or '0.14s'
+          // Parse des valeurs comme '140ms' ou '0.14s'
           const ms = v.trim().endsWith('ms') ? parseFloat(v) : (parseFloat(v) * 1000);
           if (!Number.isNaN(ms)) durationMs = ms;
         }

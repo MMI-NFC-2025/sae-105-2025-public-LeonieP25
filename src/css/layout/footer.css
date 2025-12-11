@@ -1,7 +1,7 @@
 /* Footer */
 .footer{
   background:transparent;
-  /* reduced padding so footer content is closer together */
+  /* padding réduit pour que le contenu du footer soit plus rapproché */
   padding:24px 20px 28px;
   border-top:1px solid rgba(var(--blanc-rgb), 0.12);
 }
@@ -14,7 +14,7 @@
   display:flex;
   flex-direction:column;
   align-items:center;
-  /* tighter stack spacing */
+  /* espacement de pile plus serré */
   gap:10px;
   text-align:center;
 }
@@ -65,7 +65,7 @@
   margin:2px 0 8px;
 }
 
-/* Force social links to use white (remove browser default blue) */
+/* Force les liens sociaux à utiliser le blanc (retire le bleu par défaut du navigateur) */
 .social-link,
 .social-link:visited,
 .social-link:hover,

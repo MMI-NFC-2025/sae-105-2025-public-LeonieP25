@@ -32,7 +32,7 @@
         <h2 class="page-title" style="margin-bottom:2px; text-align:center;">ARTISTES</h2>
         <p class="program-year" style="text-align:center; margin:0 0 14px; font-size:clamp(40px,10vw,56px); font-weight:300; color:var(--blanc);">2026</p>
 
-        <!-- Menu 'Nom' (une seule catégorie) with search -->
+        <!-- Menu 'Nom' (une seule catégorie) avec recherche -->
         <nav class="program-filters" aria-label="Filtres artistes" style="max-width:980px;margin:0 auto;padding:10px 18px;">
             <div class="filter">
                 <span class="filter-label">NOM :</span>
@@ -69,13 +69,13 @@
         </nav>
 
         <style>
-        /* Ensure artist names are white; style selected item similarly to programmation page */
+        /* S'assure que les noms d'artistes sont blancs ; style de l'item sélectionné similaire à la page programmation */
         #artist-list { padding:0; margin:0; }
         #artist-list li { list-style:none; border-radius:8px; margin-bottom:6px; padding:0; }
         #artist-list a { color:var(--blanc); text-decoration:none; display:block; padding:8px 10px; border-radius:8px; transition:color .12s, box-shadow .12s, outline .12s; }
         #artist-list a:hover, #artist-list a:focus { color:var(--blanc); background: rgba(255,255,255,0.03); }
 
-        /* When an item is selected, draw a pink contour and keep text white */
+        /* Quand un item est sélectionné, dessine un contour rose et garde le texte blanc */
         .artistes-page .filter-list li.selected{
             border: 2px solid var(--rose) !important;
             color: var(--blanc) !important;
@@ -85,7 +85,7 @@
             text-decoration: none;
         }
 
-        /* When the filter has a selection, highlight the summary border like programmation */
+        /* Quand le filtre a une sélection, met en évidence le contour du summary comme sur programmation */
         .artistes-page details[open] > .filter-summary,
         .artistes-page .filter-summary:focus,
         .artistes-page .filter.has-selection .filter-summary {
@@ -95,7 +95,7 @@
         .filter-summary.filter-summary--active { color:var(--blanc); }
         </style>
         
-            <!-- Grille artistes -->
+            <!-- Grille des artistes -->
             <section class="artists-grid" aria-label="Grille artistes">
                 <article class="artist-card">
                     <a href="artiste1.html" aria-label="Aazar">
@@ -151,7 +151,7 @@
                     </a>
                 </article>
 
-                <!-- Autres cartes générées à partir des images *solo.avif */ -->
+                <!-- Autres cartes générées à partir des images *solo.avif -->
                 <article class="artist-card">
                     <a href="#" aria-label="Boris Brejcha">
                         <div class="artist-thumb">

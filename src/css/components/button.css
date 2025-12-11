@@ -16,4 +16,4 @@
 .btn-top:active {
 	transform: translateY(1px) scale(0.98);
 }
-/* Festival-specific overrides removed — positioning handled by layout/header.css or page CSS */
+/* Surcharges spécifiques au festival retirées — positionnement géré par layout/header.css ou CSS de page */

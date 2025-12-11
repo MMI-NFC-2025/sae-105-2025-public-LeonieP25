@@ -1,4 +1,4 @@
-/* Programming filters (genres / horaires / scenes) - moved from layouts.css */
+/* Filtres de programmation (genres / horaires / scènes) - déplacés depuis layouts.css */
 .program-filters {
 	display: flex;
 	flex-direction: column;
@@ -59,7 +59,7 @@ details[open] > .filter-summary {
 	border-bottom: 2px solid var(--blanc);
 	transition: transform 180ms ease, border-color 120ms ease;
 }
-/* rotate the little chevron when the details is open */
+/* fait pivoter le petit chevron quand les details sont ouverts */
 details[open] > .filter-summary::after {
 	transform: translateY(-50%) rotate(-135deg);
 }
@@ -76,7 +76,7 @@ details[open] > .filter-summary::after {
 	box-shadow: 0 8px 24px rgba(var(--noir-rgb), 0.6);
 	display: none;
 	z-index: 9999;
-	list-style: none; /* remove bullets */
+	list-style: none; /* retire les puces */
 	margin: 0;
 }
 details[open] > .filter-list { display: block; }
@@ -88,7 +88,7 @@ details[open] > .filter-list { display: block; }
 	border-radius: 8px;
 	margin: 6px 0;
 	transition: background 0.12s ease, transform 0.08s ease, border-color 0.08s ease;
-	border: 2px solid rgba(var(--blanc-rgb), 0.28); /* stronger white contour */
+	border: 2px solid rgba(var(--blanc-rgb), 0.28); /* contour blanc plus fort */
 	background: rgba(var(--blanc-rgb), 0.02);
 }
 .filter-list li:hover{
@@ -101,7 +101,7 @@ details[open] > .filter-list { display: block; }
 	border-color: rgba(var(--blanc-rgb), 0.9);
 }
 
-/* Remove default marker for details/summary */
+/* Retire le marqueur par défaut pour details/summary */
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display:none; }
 
@@ -111,7 +111,7 @@ details > summary::-webkit-details-marker { display:none; }
 	.filter-summary, .filter-list { min-width: 200px; }
 }
 
-/* When one filter is open, hide the other filter controls */
+/* Quand un filtre est ouvert, cache les autres contrôles de filtre */
 .program-filters.filters--one-open .filter {
 	opacity: 1;
 	transition: opacity 0.18s ease, visibility 0.18s ease;
@@ -122,24 +122,24 @@ details > summary::-webkit-details-marker { display:none; }
 	pointer-events: none;
 }
 
-/* Use CSS :has() where available to hide other filters when any details is open (no-JS fallback) */
+/* Utilise CSS :has() là où disponible pour masquer les autres filtres quand un details est ouvert (fallback sans-JS) */
 .program-filters:has(.filter details[open]) .filter:not(:has(details[open])) {
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
 }
 
-/* Keep the active filter visible and above others */
+/* Garde le filtre actif visible et au-dessus des autres */
 .program-filters .filter.filter--active { z-index: 10000; }
 
-/* Page-specific override: keep borders white on the programmation page (prevent pink on click) */
-.programmation-page .filter-summary {
-	/* default on programmation: keep white border */
+/* Surcharge spécifique à la page : garde les bordures blanches sur la page programmation (évite le rose au clic) */
+.programmation-page .filter-summary{
+	/* par défaut sur programmation : garde la bordure blanche */
 	border-color: rgba(255,255,255,0.98) !important;
 	box-shadow: 0 6px 22px rgba(0,0,0,0.7), 0 0 0 4px rgba(255,255,255,0.04) !important;
 }
 
-/* turn rose when focused/open or when the parent filter has a selection */
+/* devient rose quand focusé/ouvert ou quand le filtre parent a une sélection */
 .programmation-page details[open] > .filter-summary,
 .programmation-page .filter-summary:focus,
 .programmation-page .filter.has-selection .filter-summary {
@@ -158,7 +158,7 @@ details > summary::-webkit-details-marker { display:none; }
 
 .programmation-page .filter-list li.selected {
 	border-color: var(--rose) !important;
-	background: rgba(255,0,119,0.08) !important; /* subtle rose tint */
+	background: rgba(255,0,119,0.08) !important; /* teinte rose subtile */
 	color: var(--blanc) !important;
 }
 

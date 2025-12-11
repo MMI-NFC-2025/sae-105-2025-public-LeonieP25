@@ -1,7 +1,10 @@
-/* Artists card component
-	 Usage: wrap artist links in a container with class `artists-grid`.
-	 Each item should be an element with class `artist-card` containing
-	 a block .artist-thumb > img, an optional .artist-badge and .artist-name.
+/* Composant carte d'artiste
+   Fichier : artistscard.css
+   Utilisé sur : /artistes.html
+   Rôle : Stylise la grille et les cartes d'artistes avec vignettes, badges et transitions.
+   Usage : Entourer les liens d'artistes dans un conteneur avec la classe `artists-grid`.
+           Chaque item doit être un élément avec classe `artist-card` contenant
+           un bloc .artist-thumb > img, un .artist-badge optionnel et .artist-name.
 */
 
 .artists-grid{
@@ -29,18 +32,18 @@
 .artist-thumb{
 	width: 100%;
 	height: 0;
-	padding-bottom: 100%; /* square */
+	padding-bottom: 100%; /* carré */
 	position: relative;
 	background: #111;
 }
 
-/* Ensure thumb area clips its children (badge) to the rounded corners */
+/* S'assure que la zone de vignette masque ses enfants (badge) avec les coins arrondis */
 .artist-thumb{
 	border-radius: 18px;
 	overflow: hidden;
 }
 
-/* Extra safety: ensure card and thumb clipping and image rounding */
+/* Sécurité supplémentaire : assure le masquage de la carte, vignette et arrondissement de l'image */
 .artist-card{
 	border-radius: 18px;
 	overflow: hidden;
@@ -48,13 +51,13 @@
 .artist-thumb{
 	border-radius: inherit;
 	overflow: hidden;
-	-webkit-mask-image: -webkit-radial-gradient(white, black); /* force hardware clipping in some browsers */
+	-webkit-mask-image: -webkit-radial-gradient(white, black); /* force le masquage matériel dans certains navigateurs */
 }
 .artist-thumb img{
 	border-radius: inherit;
 }
 
-/* Slightly inset the badge to avoid subpixel sliver at the corner */
+/* Décale légèrement le badge vers l'intérieur pour éviter un liseré subpixel au coin */
 .artist-badge{
 	top: 8px;
 	left: 12px;
@@ -63,7 +66,7 @@
 	border-radius: 12px;
 }
 
-/* Ensure thumb background is fully opaque to help mask edges */
+/* S'assure que le fond de la vignette est complètement opaque pour aider au masquage des bords */
 .artist-thumb{
 	background-color: #000;
 }
@@ -105,7 +108,7 @@
 	z-index: 4;
 }
 
-/* If for any reason more than one badge exists inside a card, hide extras */
+/* Si pour une raison quelconque plusieurs badges existent dans une carte, masque les extras */
 .artist-card .artist-badge + .artist-badge,
 .artist-card .artist-badge ~ .artist-badge {
 	display: none !important;

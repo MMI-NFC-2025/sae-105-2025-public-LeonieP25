@@ -23,7 +23,7 @@ body {
 	min-height: 100vh;
 }
 
-/* Make main expand to push footer to the bottom when content is short */
+/* Fait en sorte que main se développe pour pousser le footer en bas quand le contenu est court */
 main {
 	flex: 1 1 auto;
 }

@@ -1,4 +1,4 @@
-/* Gallery cards: center images and size to match the provided mockup */
+/* Cartes de galerie : centre les images et dimensionne pour correspondre à la maquette fournie */
 .programmation-photos {
 	display: flex !important;
 	flex-direction: column !important;
@@ -18,7 +18,7 @@
  		border-radius: 12px !important;
  	}
 
-/* Styles for the decorative A DECOUVRIR panel with overlaid images */
+/* Styles pour le panneau décoratif A DECOUVRIR avec images superposées */
 .fond-a-decouvrir-wrap{
 	position: relative;
 	width: 396px;
@@ -51,14 +51,14 @@
 }
 }
 
-/* Card wrappers: badge + caption */
+/* Conteneurs de cartes : badge + légende */
 .programmation-card {
 	position: relative;
 	display: block;
 	text-align: center;
 }
 
-/* Artist photos (moved here): small, rounded, overlapping like the provided mockup */
+/* Photos d'artistes (déplacées ici) : petites, arrondies, superposées comme dans la maquette fournie */
 .artiste-page .artist-photos{
 	position: relative;
 	width: 340px;

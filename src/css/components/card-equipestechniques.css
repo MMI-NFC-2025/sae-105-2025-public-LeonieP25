@@ -82,7 +82,7 @@
   font-weight: 400;
 }
 
-/* Small screens: reduce image size so layout stays neat */
+/* Petits écrans : réduit la taille de l'image pour garder une disposition propre */
 @media (max-width: 480px) {
   .technical-card-image,
   .technical-card-content {

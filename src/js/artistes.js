@@ -1,5 +1,12 @@
-// URL visible : /artistes.html
-// Comportement : recherche par nom et coloration des éléments sélectionnés
+/*
+Fichier : artistes.js
+URL d'action : /artistes.html
+Rôle : Gère la recherche d'artistes par nom dans le dropdown,
+       la coloration des éléments sélectionnés,
+       l'overlay de filtre avec fond assombri,
+       et l'affichage en mode solo des images d'artistes au clic dans le menu déroulant.
+Dépendances : nécessite #artist-search, #artist-list, #filter-nom, .artists-grid
+*/
 
 
 (function(){
@@ -31,13 +38,13 @@
                 li.style.display = match ? '' : 'none';
                 if(match) any = true;
             });
-            // open details when searching
+            // Ouvre le details automatiquement pendant la recherche
             if(details){ details.open = any; }
             setSummaryActive(any || false);
         });
     }
 
-    // Click selection coloring
+    // Coloration de la sélection au clic (contour rose)
     items.forEach(li => {
         const a = li.querySelector('a');
         if(!a) return;
@@ -45,12 +52,12 @@
             clearSelection();
             a.classList.add('selected');
             setSummaryActive(true);
-            // allow link navigation to proceed
+            // Permet à la navigation du lien de se poursuivre
         });
     });
 
-    // Overlay behaviour: keep the artists grid visible but dimmed,
-    // show the filter list as an overlay and allow clicking outside to close.
+    // Comportement de l'overlay : garde la grille d'artistes visible mais atténuée,
+    // affiche la liste de filtres en superposition et permet de fermer en cliquant à l'extérieur.
     const artistsGrid = document.querySelector('.artists-grid');
     const overlay = document.createElement('div');
     overlay.className = 'filter-overlay';
@@ -59,14 +66,14 @@
     overlay.addEventListener('click', ()=>{
         if(details) details.open = false;
     });
-    // append early so CSS can target it; it will be hidden until needed
+    // Ajoute l'overlay tôt pour que le CSS puisse le cibler ; il sera caché jusqu'à utilisation
     document.body.appendChild(overlay);
 
     if(details){
         details.addEventListener('toggle', ()=>{
             if(details.open){
                 overlay.style.display = '';
-                // small delay to allow CSS transition
+                // Petit délai pour permettre la transition CSS
                 setTimeout(()=> overlay.classList.add('visible'), 10);
                 if(artistsGrid) artistsGrid.classList.add('dimmed');
                 const input = details.querySelector('input');
@@ -80,12 +87,12 @@
     }
 
     // --------------------------------------------------
-    // Dropdown -> solo image behaviour (Aazar only)
-    // When clicking Aazar in the dropdown (#artist-list a):
-    // - set the summary text to the artist name (kept)
-    // - hide the dropdown list (keep the summary visible)
-    // - show a centered full-size image (/assets/img/aazaroff.avif)
-    // - allow closing with the × button, clicking outside or Escape
+    // Comportement image solo depuis le dropdown (tous les artistes)
+    // Quand on clique sur un nom d'artiste dans le dropdown (#artist-list a) :
+    // - met à jour le texte du summary avec le nom de l'artiste (conservé)
+    // - masque la liste déroulante (garde le summary visible)
+    // - affiche une image plein écran centrée (ex: /assets/img/aazaroff.avif)
+    // - permet de fermer avec le bouton ×, en cliquant à l'extérieur ou avec Escape
     // --------------------------------------------------
     function createSoloOverlay(src, alt){
         const existing = document.querySelector('.solo-overlay');
@@ -129,17 +136,17 @@
             ev.preventDefault();
             const name = (link.textContent || '').trim();
 
-            // If this name is already shown in the summary, do nothing
+            // Si ce nom est déjà affiché dans le summary, ne rien faire (évite de rouvrir)
             const current = summary ? (summary.textContent || '').trim().toLowerCase() : '';
             if(current === name.toLowerCase()) return;
 
-            // Update summary text
+            // Met à jour le texte du summary avec le nom sélectionné
             if(summary) summary.textContent = name;
 
-            // close details and mark solo state on the filter
+            // Ferme le details et marque l'état solo sur le filtre
             if(details){ details.open = false; details.classList.add('filter-solo-open'); }
 
-            // find matching card and its image
+            // Trouve la carte correspondante et son image
             const card = findCardByName(name);
             let imgPath = '';
             if(card){
@@ -147,7 +154,7 @@
                 if(img && img.src) imgPath = img.src;
             }
 
-            // fallback: attempt to build filename from name (simple normalize)
+            // Fallback : tente de construire le nom de fichier depuis le nom (normalisation simple)
             if(!imgPath){
                 const slug = name.toLowerCase().replace(/[^a-z0-9]+/g,'').replace(/\s+/g,'');
                 imgPath = `/assets/img/${slug}off.avif`;

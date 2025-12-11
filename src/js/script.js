@@ -13,22 +13,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuBtn = document.querySelector(".btn-menu:not(.btn-close)");
     if (menuBtn) {
         menuBtn.addEventListener("click", (ev) => {
-            // provide a short visual hide of the artists grid before navigating
+            // Masque visuellement la grille des artistes avant la navigation pour feedback utilisateur
             ev.preventDefault();
             document.body.classList.add('hide-artists');
-            // allow the UI to update, then navigate
+            // Laisse le temps au DOM de mettre à jour la classe CSS, puis navigue vers menu.html
             setTimeout(() => { window.location.href = "menu.html"; }, 100);
         });
     }
 
-    // When the page is shown (including back/forward cache), ensure hide class is removed
+    // Quand la page est affichée (y compris via le cache back/forward du navigateur),
+    // retire la classe 'hide-artists' pour s'assurer que le contenu est visible
     window.addEventListener('pageshow', function () {
         document.body.classList.remove('hide-artists');
     });
 
 	const closeBtn = document.querySelector(".btn-menu.btn-close");
 	if (closeBtn) {
-        // If we're on the menu page (menu navigation present), skip binding immediate navigation
+        // Si on est sur la page menu (navigation menu présente), ignore le binding de navigation immédiate
+        // (la gestion de fermeture du menu est dans menu.js)
         if (!document.querySelector('.menu-navigation')) {
             closeBtn.addEventListener("click", () => {
                 // Ferme le menu et revient à la page précédente (accueil par défaut)
@@ -41,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 	}
 
-	// Redirect HISTORIQUE button to festival page
+	// Redirection du bouton HISTORIQUE vers la page festival (/festival.html)
 	const histBtn = document.querySelector('.historique-logo');
 	if (histBtn) {
 		histBtn.addEventListener('click', () => {
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-    // Redirect PROGRAMMATION button from index to programmation page
+    // Redirection du bouton PROGRAMMATION de l'index vers la page programmation (/programmation.html)
     const progBtn = document.querySelector('.program-logo');
     if (progBtn) {
         progBtn.addEventListener('click', () => {
@@ -57,19 +59,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initialize default labels for filter summaries so we can restore them on deselect
+    // Initialise les libellés par défaut des résumés de filtres pour pouvoir les restaurer lors de la désélection
+    // (Utilisé sur /programmation.html pour les filtres Genre/Date/Scène)
     const filterDetails = document.querySelectorAll('details.filter-dropdown');
     if(filterDetails && filterDetails.length){
         filterDetails.forEach(d => {
             const s = d.querySelector('.filter-summary');
             if(s && !s.dataset.default) s.dataset.default = s.textContent.trim();
         });
-        // Ensure gallery is filtered initially according to any pre-selected filters
+        // S'assure que la galerie est filtrée au chargement selon les filtres pré-sélectionnés
         if(typeof updateGalleryFilter === 'function') updateGalleryFilter();
     }
 });
 
-  // Carrousel (guardé pour éviter d'interrompre les autres scripts si l'HTML n'est pas présent)
+  // Carrousel de la page d'accueil (/index.html)
+  // Guardé pour éviter d'interrompre les autres scripts si l'HTML n'est pas présent
     (function(){
         const track = document.querySelector('.carousel-track');
         const btnLeft = document.querySelector('.carousel-btn-left');
@@ -100,10 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Gestion du redimensionnement
+        // Gestion du redimensionnement de la fenêtre pour adapter la position des slides
         window.addEventListener('resize', updateCarousel);
 
-        // Swipe tactile
+        // Swipe tactile pour navigation par glissement sur mobile
         let startX = 0;
         let currentX = 0;
         let isDragging = false;
@@ -122,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const onTouchEnd = () => {
             if (!isDragging) return;
             const deltaX = currentX - startX;
-            const threshold = 40; // distance minimale pour déclencher un slide
+            const threshold = 40; // Distance minimale en pixels pour déclencher un changement de slide
             if (deltaX > threshold && currentIndex > 0) {
                 currentIndex--;
                 updateCarousel();
@@ -138,31 +142,32 @@ document.addEventListener("DOMContentLoaded", () => {
         trackContainer.addEventListener('touchend', onTouchEnd, { passive: true });
     })();
 
-// Update filter summaries when an option is clicked (programmation filters)
+// Mise à jour des résumés de filtres au clic sur une option (filtres programmation)
+// Utilisé sur /programmation.html pour gérer la sélection/désélection des filtres genre/date/scène
 document.addEventListener('click', function(e){
     const li = e.target.closest('.filter-list li');
     if(!li) return;
-    // Prevent bubbling that could interfere with details toggle
+    // Empêche la propagation qui pourrait interférer avec le basculement details
     e.preventDefault();
     e.stopPropagation();
 
     const details = li.closest('details');
     if(!details) return;
     const summary = details.querySelector('.filter-summary');
-    // ensure we have the default label recorded
+    // S'assure que le label par défaut est enregistré
     if(summary && !summary.dataset.default) summary.dataset.default = summary.textContent.trim();
 
-    // If this item is already selected, toggle it off (reset to default)
+    // Si cet item est déjà sélectionné, le désactive (réinitialise au défaut)
     if(li.classList.contains('selected')){
-        // deselect this item
+        // Désélectionne cet item
         li.classList.remove('selected');
-        // remove has-selection from parent filter
+        // Retire has-selection du filtre parent
         const parentFilter = li.closest('.filter');
         if(parentFilter) parentFilter.classList.remove('has-selection');
-        // restore summary text to its default
+        // Restaure le texte du summary à sa valeur par défaut
         if(summary) summary.textContent = summary.dataset.default || summary.textContent.trim();
 
-        // close details and clear UI active state
+        // Ferme les details et efface l'état actif de l'interface
         const container = document.querySelector('.program-filters');
         if(container){
             const detailsList = Array.from(container.querySelectorAll('details.filter-dropdown'));
@@ -173,29 +178,29 @@ document.addEventListener('click', function(e){
             details.open = false;
         }
 
-        // Refresh gallery filtering after deselect
+        // Rafraîchit le filtrage de la galerie après désélection
         if(typeof updateGalleryFilter === 'function') updateGalleryFilter();
-        return; // stop here for deselect
+        return; // Stoppe l'exécution ici pour la désélection
     }
 
     if(summary) {
         summary.textContent = li.textContent.trim();
     }
 
-    // mark selected item (remove selected from siblings in the same list)
+    // Marque l'item sélectionné (retire selected des frères dans la même liste)
     const list = li.closest('.filter-list');
     if(list){
         list.querySelectorAll('li').forEach(node => node.classList.remove('selected'));
         li.classList.add('selected');
     }
 
-    // mark the parent filter as having a selection (do not clear other filters' selections)
+    // Marque le filtre parent comme ayant une sélection (ne désélectionne pas les autres filtres)
     const parentFilter = li.closest('.filter');
     if(parentFilter){
         parentFilter.classList.add('has-selection');
     }
 
-    // close details and clear UI active state
+    // Ferme les details et efface l'état actif de l'interface
     const container = document.querySelector('.program-filters');
     if(container){
         const detailsList = Array.from(container.querySelectorAll('details.filter-dropdown'));
@@ -206,11 +211,12 @@ document.addEventListener('click', function(e){
         details.open = false;
     }
 
-    // Refresh gallery filtering after selection
+    // Rafraîchit le filtrage de la galerie après sélection
     if(typeof updateGalleryFilter === 'function') updateGalleryFilter();
 });
 
-// Manage exclusive open state: when a filter dropdown opens, hide the other filter controls
+// Gère l'état d'ouverture exclusive : quand un filtre s'ouvre, masque les autres contrôles de filtre
+// Utilisé sur /programmation.html pour empêcher plusieurs filtres d'être ouverts simultanément
 (function(){
     const container = document.querySelector('.program-filters');
     if(!container) return;
@@ -219,15 +225,15 @@ document.addEventListener('click', function(e){
     detailsList.forEach(d => {
         d.addEventListener('toggle', () => {
             if(d.open){
-                // close other details
+                // Ferme les autres details
                 detailsList.forEach(other => { if(other !== d) other.open = false; });
-                // mark active filter
+                // Marque le filtre actif
                 container.classList.add('filters--one-open');
                 container.querySelectorAll('.filter').forEach(f => f.classList.remove('filter--active'));
                 const parent = d.closest('.filter'); if(parent) parent.classList.add('filter--active');
             } else {
-                // no open details
-                // small timeout to allow another details to open immediately
+                // Aucun details ouvert
+                // Petit délai pour permettre à un autre details de s'ouvrir immédiatement
                 setTimeout(() => {
                     const anyOpen = detailsList.some(dd => dd.open);
                     if(!anyOpen){
@@ -240,9 +246,10 @@ document.addEventListener('click', function(e){
     });
 })();
 
-    // Gallery filtering logic: show cards that match all selected categories.
-    // - If no filters are selected, show all cards.
-    // - For categories where a selection exists (genre/date/scene), a card must match that value to be shown.
+    // Logique de filtrage de la galerie : affiche les cartes qui correspondent à toutes les catégories sélectionnées.
+    // - Si aucun filtre n'est sélectionné, affiche toutes les cartes.
+    // - Pour les catégories où une sélection existe (genre/date/scène), une carte doit correspondre à cette valeur pour être affichée.
+    // (Utilisé sur /programmation.html pour filtrer les cartes artistes)
     function updateGalleryFilter(){
         const container = document.querySelector('.program-filters');
         const cards = Array.from(document.querySelectorAll('.programmation-card'));
@@ -286,7 +293,7 @@ document.addEventListener('click', function(e){
                 return;
             }
 
-            // For each category that has a selection, require equality. If card lacks that data, treat as non-matching.
+            // Pour chaque catégorie qui a une sélection, requiert l'égalité. Si la carte manque cette donnée, la traiter comme non-correspondante.
             let match = true;
             if(genreVal){ if(!cardGenre || cardGenre.trim() !== genreVal) match = false; }
             if(dateVal){ if(!cardDate || cardDate.trim() !== dateVal) match = false; }

@@ -169,7 +169,7 @@ header h1 {
 		display: block
 	}
 
-/* Home page: billetterie button and hero gif tweaks (moved from src/css/pages/home.css) */
+/* Page d'accueil : bouton billetterie et ajustements du gif hero (déplacés depuis src/css/pages/home.css) */
 .billetterie {
 	position: fixed;
 	left: calc(env(safe-area-inset-left, 18px) + 9px);
@@ -200,7 +200,7 @@ header h1 {
 	transform: translateY(1px) scale(0.99);
 }
 
-/* Home-specific hero gif tweaks (from pages/home.css) */
+/* Ajustements du gif hero spécifiques à la page d'accueil (depuis pages/home.css) */
 .hero-gif {
 	height: 50vh;
 	max-width: 120vw;

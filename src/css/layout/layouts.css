@@ -160,14 +160,14 @@
 
 .pouple-img {
     display: block;
-    margin: 12px auto 6px; /* reduced top space */
+    margin: 12px auto 6px; /* espace supérieur réduit */
     max-width: 400px;
     width: 90%;
     height: auto;
 }
 
 .vibrations {
-    margin: 36px auto 36px; /* tightened vertical spacing */
+    margin: 36px auto 36px; /* espacement vertical resserré */
     max-width: 360px;
     width: 90%;
     text-align: left;
@@ -200,8 +200,8 @@
 }
 
 .historique-logo {
-	display: block; /* make it a block so margin:auto centers it */
-	margin: 18px auto 6px; /* centered horizontally */
+	display: block; /* en fait un bloc pour que margin:auto le centre */
+	margin: 18px auto 6px; /* centré horizontalement */
 	padding: 10px 20px;
 	min-width: 150px;
 	border-radius: 20px;
@@ -216,7 +216,7 @@
 	cursor: pointer;
 	user-select: none;
 	transition: transform 0.12s ease;
-	text-align: center; /* ensure label is centered */
+	text-align: center; /* s'assure que le label est centré */
 }
 
 .historique-logo:active {
@@ -224,7 +224,7 @@
 }
 
 .partenaires {
-    margin: 40px auto 60px; /* reduce top gap from previous section */
+    margin: 40px auto 60px; /* réduit l'écart supérieur par rapport à la section précédente */
     max-width: 360px;
     width: 90%;
     text-align: left;
@@ -240,7 +240,7 @@
 	margin: 0 0 20px;
 }
 
-/* Festival Page */
+/* Page Festival */
 .logo-container {
 	position: fixed;
 	left: -10px;
@@ -258,7 +258,7 @@
 	padding: 0;
 }
 
-/* Sticky footer for the artistes page: keep footer flush to the bottom */
+/* Footer collé pour la page artistes : garde le footer en bas de la page */
 .artistes-page {
   display: flex;
   flex-direction: column;
@@ -380,16 +380,16 @@
 	color: var(--muted);
 }
 
-/* Festival page - align team headings with section titles */
+/* Page festival - aligne les titres d'équipe avec les titres de section */
 .festival-page .team-section {
-	/* match section horizontal padding so titles line up */
+	/* fait correspondre le padding horizontal des sections pour aligner les titres */
 	padding: 0 20px 40px 20px;
 }
 .festival-page .technical-subtitle {
 	padding: 0 20px 40px 20px;
 }
 
-/* Artist page styles (AAZAR-like hero, badge, details panel) */
+/* Styles de la page artiste (hero de type AAZAR, badge, panneau de détails) */
 .artiste-page .artist-hero {
 	position: relative;
 	min-height: 70vh;
@@ -399,7 +399,7 @@
 	background-size: cover;
 	background-position: top center;
 	color: var(--blanc);
-	margin-top: 0; /* ensure hero sits directly under the fixed header */
+	margin-top: 0; /* s'assure que le hero se place directement sous le header fixe */
 }
 .artiste-page .artist-hero::after{
 	content: '';
@@ -456,7 +456,7 @@
 	margin:0 0 12px;
 }
 
-/* Scenes page layout and cards */
+/* Disposition et cartes de la page scènes */
 .scenes-page {
 	display: flex;
 	flex-direction: column;
@@ -475,15 +475,15 @@
 .scene-thumb img { width:100%; height:auto; display:block; object-fit:cover; }
 .scene-title { margin-top:10px; text-align:center; font-weight:500; color:var(--blanc); letter-spacing:1px; font-size:15px; }
 
-/* Menu page styles moved from src/css/pages/menu.css */
+/* Styles de la page menu déplacés depuis src/css/pages/menu.css */
 .menu-page-title {
 	font-size: 40px;
 	font-weight: 250;
 	text-align: left;
 	position: absolute;
-	left: 35px; /* align with menu-navigation */
-	top: 240px; /* sit above the links */
-	z-index: 2; /* ensure title appears above links */
+	left: 35px; /* aligne avec menu-navigation */
+	top: 240px; /* se place au-dessus des liens */
+	z-index: 2; /* s'assure que le titre apparaît au-dessus des liens */
 	color: var(--blanc);
 }
 
@@ -493,7 +493,7 @@
 	gap: 8px;
 	position: absolute;
 	top: 320px;
-	left: 35px; /* same left coordinate as title */
+	left: 35px; /* même coordonnée gauche que le titre */
 	z-index: 1;
 }
 
@@ -534,7 +534,7 @@
 	height: 50px;
 }
 
-/* Gentle open/close animation for menu elements (moved from pages/menu.css) */
+/* Animation douce d'ouverture/fermeture pour les éléments de menu (déplacé depuis pages/menu.css) */
 .menu-page-title,
 .menu-navigation,
 .menu-socials {
@@ -555,7 +555,7 @@
 .menu-closing .menu-navigation { transition-delay: 0s; }
 .menu-closing .menu-page-title { transition-delay: 0s; }
 
-/* When a menu is opening, hide the artists grid behind it */
+/* Quand un menu s'ouvre, cache la grille d'artistes derrière lui */
 .hide-artists .artists-grid,
 .menu-open .artists-grid {
 	opacity: 0 !important;
@@ -564,7 +564,7 @@
 	transform: translateY(6px);
 }
 
-/* Filter dropdown overlay behaviour - present the list above the grid */
+/* Comportement de l'overlay du dropdown de filtre - présente la liste au-dessus de la grille */
 .filter-dropdown {
 	position: relative;
 	z-index: 2;
@@ -607,10 +607,10 @@
 	user-select: none;
 }
 
-/* Prevent body scroll when modal/solo is open */
+/* Empêche le défilement du body quand un modal/solo est ouvert */
 .no-scroll { overflow: hidden; }
 
-/* Solo-overlay (big artist image) */
+/* Solo-overlay (grande image d'artiste) */
 .solo-overlay {
 	position: fixed;
 	inset: 0;
@@ -651,5 +651,5 @@
 	cursor: pointer;
 }
 
-/* When solo is active we hide the dropdown list but keep the summary visible */
+/* Quand le mode solo est actif, on cache la liste déroulante mais on garde le summary visible */
 .filter-solo-open .filter-list { display: none !important; }
