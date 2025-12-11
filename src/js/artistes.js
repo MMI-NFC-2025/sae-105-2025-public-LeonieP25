@@ -5,7 +5,6 @@ Rôle : Gère la recherche d'artistes par nom dans le dropdown,
        la coloration des éléments sélectionnés,
        l'overlay de filtre avec fond assombri,
        et l'affichage en mode solo des images d'artistes au clic dans le menu déroulant.
-Dépendances : nécessite #artist-search, #artist-list, #filter-nom, .artists-grid
 */
 
 

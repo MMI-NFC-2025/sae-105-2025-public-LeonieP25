@@ -4,7 +4,6 @@ URL d'action : /menu.html
 Rôle : Gère les animations d'ouverture/fermeture douce du menu de navigation,
        la persistance de l'item actif via localStorage,
        et la navigation animée avec retour vers la page précédente.
-Dépendances : nécessite les classes CSS .menu-open, .menu-closing et les variables --rose, --menu-duration
 */
 
 

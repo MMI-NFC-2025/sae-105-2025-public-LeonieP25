@@ -1,3 +1,9 @@
+/*
+Fichier : script.js
+URL d’action : toutes les pages sauf menu.html (menu plein écran dédié à src/js/menu.js)
+Rôle : gère les interactions globales du site : ouverture du menu principal depuis les boutons ronds, fermeture du faux bouton close hors menu, redirections des logos (historique / programme), et comportements des filtres de programmation (sélection, exclusivité d’ouverture, filtrage dynamique de la galerie, message vide, tri alpha).
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
     // Menu navigation
     const menuBtn = document.querySelector(".btn-menu:not(.btn-close)");

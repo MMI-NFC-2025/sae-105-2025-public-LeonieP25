@@ -12,7 +12,6 @@
 	
 }
 
-.btn-lang,
 .btn-menu {
 	width: 50px;
 	height: 50px;
@@ -30,12 +29,6 @@
 	user-select: none;
 	transition: transform 0.12s ease;
 }
-
-.btn-lang {
-	background: var(--blanc);
-	color: var(--noir);
-}
-
 .btn-menu,
 .btn-close {
 	background: var(--rose);
@@ -85,7 +78,6 @@
 	top: 8px;
 }
 
-.btn-lang:active,
 .btn-menu:active {
 	transform: translateY(1px) scale(0.99);
 }
