@@ -258,6 +258,19 @@
 	padding: 0;
 }
 
+/* Sticky footer for the artistes page: keep footer flush to the bottom */
+.artistes-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.artistes-page main {
+  flex: 1 0 auto;
+}
+.artistes-page .footer {
+  margin-top: auto;
+}
+
 .page-title {
 	font-size: 38px;
 	font-weight: 300;

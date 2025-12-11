@@ -54,6 +54,7 @@
                         <li><a href="#">Etienne De Crécy</a></li>
                         <li><a href="#">EVD</a></li>
                         <li><a href="#">Flox</a></li>
+                        <li><a href="#">GPF</a></li>                       
                         <li><a href="#">Groundation</a></li>
                         <li><a href="#">High Tone</a></li>
                     </ul>
@@ -70,7 +71,6 @@
 
         /* When an item is selected, draw a pink contour and keep text white */
         .artistes-page .filter-list li.selected{
-            background: rgba(255,0,119,0.06) !important; /* subtle rose tint */
             border: 2px solid var(--rose) !important;
             color: var(--blanc) !important;
         }
@@ -88,6 +88,9 @@
 
         .filter-summary.filter-summary--active { color:var(--blanc); }
         </style>
+        
+            <!-- Grand spacer pour rendre la page plus haute que la fenêtre (pour "mou" / overscroll) -->
+            <div class="big-spacer" aria-hidden="true" style="min-height:1500px;"></div>
 
 
     </main>
