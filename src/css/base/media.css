@@ -17,6 +17,38 @@
  		height: 44vh !important;
  		border-radius: 12px !important;
  	}
+
+/* Styles for the decorative A DECOUVRIR panel with overlaid images */
+.fond-a-decouvrir-wrap{
+	position: relative;
+	width: 396px;
+	max-width: calc(100% - 32px);
+	margin: 18px auto 0;
+}
+.fond-a-decouvrir-svg{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.fond-a-decouvrir-svg{ position: relative; z-index: 1; }
+.fond-a-decouvrir-svg{ position: relative; z-index: 1; }
+.fond-a-decouvrir-wrap .fo-img{
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+	border-radius: 12px;
+	box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+.fond-a-decouvrir-wrap .fo-img-1{ width: auto; max-width: 340px; }
+.fond-a-decouvrir-wrap .fo-img-2{ width: auto; max-width: 340px; }
+.fond-a-decouvrir-wrap .fo-img-3{ width: auto; max-width: 340px; }
+
+@media (max-width: 600px){
+	.fond-a-decouvrir-wrap{ width: 92%; }
+	.fond-a-decouvrir-img{ position: relative; left: 0; width: 100%; height: auto; margin: 12px 0; }
+}
 }
 
 /* Card wrappers: badge + caption */
@@ -55,4 +87,3 @@
 	z-index: 2;
 	transform: translate(12px,12px);
 }
-
