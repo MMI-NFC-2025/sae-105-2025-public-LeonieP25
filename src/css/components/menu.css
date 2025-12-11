@@ -11,7 +11,7 @@ body.menu-open {
 	text-align: left;
 	position: absolute;
 	left: 35px;
-	top: 240px;
+	top: 230px;
 	z-index: 2;
 	color: var(--blanc);
 }

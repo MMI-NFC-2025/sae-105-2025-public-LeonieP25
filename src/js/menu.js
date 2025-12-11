@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Déclenche l'animation d'ouverture douce du menu
   requestAnimationFrame(() => {
     // Petit délai pour s'assurer que l'état CSS initial est appliqué
-    setTimeout(() => document.body.classList.add('menu-open'), 40);
+    setTimeout(() => document.body.classList.add('menu-open'), 30);
   });
   const menuLinks = document.querySelectorAll('.menu-navigation .menu-item a');
   if (!menuLinks || menuLinks.length === 0) return;
