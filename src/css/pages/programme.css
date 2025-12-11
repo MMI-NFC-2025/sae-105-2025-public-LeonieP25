@@ -1,4 +1,4 @@
-/* Filtres de programmation (genres / horaires / scènes) - déplacés depuis layouts.css */
+/* Filtres de programmation (genres / horaires / scènes) - déplacés depuis summary-programmation.css */
 .program-filters {
 	display: flex;
 	flex-direction: column;
@@ -28,7 +28,7 @@
 .filter-summary {
 	min-width: 260px;
 	padding: 10px 30px 10px 30px;
-	padding-right: 30px; /* garde la flèche visible tout en décalant le texte */
+	padding-right: 30px;
 	border-radius: 28px;
 	border: 1px solid rgba(var(--blanc-rgb), 0.6);
 	color: var(--blanc);
@@ -75,7 +75,7 @@ details[open] > .filter-summary::after {
 	box-shadow: 0 8px 24px rgba(var(--noir-rgb), 0.6);
 	display: none;
 	z-index: 9999;
-	list-style: none; /* retire les puces */
+	list-style: none;
 	margin: 0;
 }
 details[open] > .filter-list { display: block; }
@@ -87,7 +87,7 @@ details[open] > .filter-list { display: block; }
 	border-radius: 8px;
 	margin: 6px 0;
 	transition: background 0.12s ease, transform 0.08s ease, border-color 0.08s ease;
-	border: 2px solid rgba(var(--blanc-rgb), 0.28); /* contour blanc plus fort */
+	border: 2px solid rgba(var(--blanc-rgb), 0.28);
 	background: rgba(var(--blanc-rgb), 0.02);
 }
 .filter-list li:hover{
@@ -100,7 +100,6 @@ details[open] > .filter-list { display: block; }
 	border-color: rgba(var(--blanc-rgb), 0.9);
 }
 
-/* Retire le marqueur par défaut pour details/summary */
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display:none; }
 
@@ -121,24 +120,20 @@ details > summary::-webkit-details-marker { display:none; }
 	pointer-events: none;
 }
 
-/* Utilise CSS :has() là où disponible pour masquer les autres filtres quand un details est ouvert (fallback sans-JS) */
 .program-filters:has(.filter details[open]) .filter:not(:has(details[open])) {
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
 }
 
-/* Garde le filtre actif visible et au-dessus des autres */
 .program-filters .filter.filter--active { z-index: 10000; }
 
 /* Surcharge spécifique à la page : garde les bordures blanches sur la page programmation (évite le rose au clic) */
 .programmation-page .filter-summary{
-	/* par défaut sur programmation : garde la bordure blanche */
 	border-color: rgba(var(--blanc-rgb), 0.98) !important;
 	box-shadow: 0 6px 22px rgba(var(--noir-rgb), 0.7), 0 0 0 4px rgba(var(--blanc-rgb), 0.04) !important;
 }
 
-/* devient rose quand focusé/ouvert ou quand le filtre parent a une sélection */
 .programmation-page details[open] > .filter-summary,
 .programmation-page .filter-summary:focus,
 .programmation-page .filter.has-selection .filter-summary {
@@ -157,11 +152,10 @@ details > summary::-webkit-details-marker { display:none; }
 
 .programmation-page .filter-list li.selected {
 	border-color: var(--rose) !important;
-	background: rgba(var(--rose-rgb), 0.08) !important; /* teinte rose subtile */
+	background: rgba(var(--rose-rgb), 0.08) !important;
 	color: var(--blanc) !important;
 }
 
-/* Harmonise la typographie des summaries et des éléments de liste */
 .filter-summary,
 .filter-list li {
 	font-family: var(--text-font-sans), Arial, sans-serif;
@@ -171,7 +165,5 @@ details > summary::-webkit-details-marker { display:none; }
 	font-size: 14px;
 }
 
-/* Assure que le bloc de filtres est centré horizontalement and remonte un peu */
 .programmation-page main { display: flex; flex-direction: column; align-items: center; }
 .programmation-page .program-filters { margin: 0vh 0 30px; }
-

@@ -1,24 +1,36 @@
-/* 1. Vendors - Spécificité la plus faible */
-@import "vendors/normalize.css";  
+/* 1) Utils */
+@import "utils/variables.css";
 
-/* 2. Utils - Variables globales */
-@import "utils/variables.css";    
+/* 2) Vendors */
+@import "vendors/normalize.css";
 
-/* 3. Base - Éléments HTML bruts */
-@import "base/main.css";
-@import "base/media.css";
+/* 3) Base */
+@import "base/global.css";
+@import "base/typography.css";
 
-/* 4. Layout - Structure de page */
-@import "layout/header.css";       
-@import "layout/layouts.css";
-@import "layout/footer.css";
+/* 4) Layout */
+@import "layout/layout.css";
+@import "layout/sections.css";
 
-/* 5. Components - Spécificité la plus forte */
-@import "components/button.css";
-@import "components/carousel.css";
-@import "components/scene.css";
-@import "components/artistscard.css";
-@import "components/card-equipestechniques.css";
-@import "components/card-festival.css";
-@import "components/card-organisateurs.css";
-@import "components/summary-programmation.css";
+/* 5) Components */
+@import "components/header.css";
+@import "components/hero.css";
+@import "components/menu.css";
+@import "components/date.css";
+@import "components/intro.css";
+@import "components/nav-cards.css";
+@import "components/partenaires.css";
+@import "components/footer.css";
+@import "components/buttons.css";
+@import "components/cards.css";
+
+/* 6) Pages */
+@import "pages/about.css";
+@import "pages/artistes.css";
+@import "pages/artistetemplate.css";
+@import "pages/contact.css";
+@import "pages/error.css";
+@import "pages/grandescene.css";
+@import "pages/infos.css";
+@import "pages/programme.css";
+@import "pages/scene.css";

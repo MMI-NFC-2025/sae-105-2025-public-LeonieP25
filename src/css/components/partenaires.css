@@ -1,3 +1,21 @@
+.partenaires {
+    margin: 40px auto 60px;
+    max-width: 360px;
+    width: 90%;
+    text-align: left;
+    color: var(--blanc);
+    font-family: Arial, sans-serif;
+}
+
+.partenaires-title {
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	line-height: 1.3;
+	margin: 0 0 20px;
+}
+
+/* Carousel partenaires */
 .carousel-container {
 	position: relative;
 	display: flex;

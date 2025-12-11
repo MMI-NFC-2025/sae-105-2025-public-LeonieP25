@@ -1,0 +1,98 @@
+.artistes-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.artistes-page main {
+  flex: 1 0 auto;
+}
+.artistes-page .footer {
+  margin-top: auto;
+}
+
+/* Dropdown filtres artistes & overlay */
+.filter-dropdown {
+  position: relative;
+  z-index: 2;
+}
+.filter-dropdown .filter-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 1200;
+  background: var(--noir);
+  color: var(--blanc);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(var(--noir-rgb), 0.35);
+  max-height: 62vh;
+  overflow: auto;
+  padding: 8px 12px;
+}
+.filter-summary {
+  position: relative;
+  z-index: 1220;
+}
+.filter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--noir-rgb), 0.28);
+  z-index: 1100;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+.filter-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.artists-grid.dimmed {
+  opacity: 0.36;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.no-scroll { overflow: hidden; }
+
+.solo-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--noir-rgb), 0.82);
+  z-index: 2000;
+}
+.solo-inner {
+  max-width: min(1200px, 94vw);
+  width: 94vw;
+  max-height: 92vh;
+  position: relative;
+}
+.solo-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(var(--noir-rgb), 0.6);
+  display: block;
+}
+.solo-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(var(--blanc-rgb), 0.06);
+  color: var(--blanc);
+  font-size: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.filter-solo-open .filter-list { display: none !important; }

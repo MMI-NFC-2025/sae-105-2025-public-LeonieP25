@@ -1,22 +1,26 @@
 /* Page Scène - La Vibe Luminescente */
 
+.scenes-page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+.scenes-page main { flex: 1 0 auto; }
+
 .scene-page {
 	position: relative;
 	min-height: 100vh;
 }
 
-/* La vidéo de fond est déjà gérée par bg-video dans main.css */
 .scene-page .bg-video {
 	z-index: -1;
 }
 
-/* Main container */
 .scene-main {
 	position: relative;
 	z-index: 1;
 }
 
-/* Hero section avec image incrustée */
 .scene-hero {
 	position: relative;
 	width: 100%;
@@ -43,9 +47,7 @@
 	transition: opacity 0.3s ease;
 }
 
-.scene-back:hover {
-	opacity: 0.7;
-}
+.scene-back:hover { opacity: 0.7; }
 
 .scene-back-link {
 	display: block;
@@ -59,7 +61,6 @@
 	transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Section contenu principal */
 .scene-content {
 	max-width: 600px;
 	margin: 30px auto 20px;
@@ -87,9 +88,7 @@
 	text-align: left;
 }
 
-.scene-date-block {
-	margin-bottom: 40px;
-}
+.scene-date-block { margin-bottom: 40px; }
 
 .scene-date-badge {
 	display: inline-block;
@@ -112,9 +111,7 @@
 	text-transform: uppercase;
 }
 
-.artist-pink {
-	color: var(--rose);
-}
+.artist-pink { color: var(--rose); }
 
 .scene-title {
 	font-size: 20px;
@@ -135,7 +132,6 @@
 	text-transform: uppercase;
 }
 
-/* Liste des artistes */
 .scene-artists {
 	display: flex;
 	flex-direction: column;

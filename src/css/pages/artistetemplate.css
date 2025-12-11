@@ -1,4 +1,4 @@
-/* Cartes de galerie : centre les images et dimensionne pour correspondre à la maquette fournie */
+/* Contenus déplacés depuis base/media.css pour les pages artiste et programmations */
 .programmation-photos {
 	display: flex !important;
 	flex-direction: column !important;
@@ -86,4 +86,70 @@
 	top: 150px;
 	z-index: 2;
 	transform: translate(12px,12px);
+}
+
+/* Hero et panneau détails de la page artiste */
+.artiste-page .artist-hero {
+	position: relative;
+	min-height: 70vh;
+	display: flex;
+	align-items: flex-end;
+	background-image: url("/assets/img/aazar2.avif");
+	background-size: cover;
+	background-position: top center;
+	color: var(--blanc);
+	margin-top: 0;
+}
+.artiste-page .artist-hero::after{
+	content: '';
+	position: absolute;
+	pointer-events: none;
+}
+.artiste-page .artist-hero-inner{
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	padding: px 12px 115px;
+	transform: translateY(-5vh);
+	text-align: center;
+}
+.artiste-page .artist-badge{
+	display: inline-block;
+	background: var(--rose);
+	color: var(--blanc);
+	padding: 6px 10px;
+	border-radius: 18px;
+	font-weight:700;
+	font-size:12px;
+	text-transform:uppercase;
+	transform: translate(170px, -80px);
+}
+.artiste-page .artist-name{
+	margin: 4px 0 6px;
+	font-size: clamp(24px, 7vw, 48px);
+	font-weight:700;
+	letter-spacing:0px;
+	color: var(--blanc);
+}
+.artiste-page .artist-back{
+	display:inline-block;
+	margin-top:4px;
+	color:var(--blanc);
+	opacity:0.95;
+	text-decoration:none;
+	font-size:12px;
+}
+
+.artiste-page .artist-details{
+	background: (var(--noir));
+	color: var(--blanc);
+	padding: 22px 18px 90px;
+	position: relative;
+}
+
+.artiste-page .artist-details-desc{
+	font-size:16px;
+	line-height:1.5;
+	color:var(--blanc);
+	margin:0 0 12px;
 }

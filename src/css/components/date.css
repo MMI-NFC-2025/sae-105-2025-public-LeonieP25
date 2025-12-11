@@ -1,0 +1,52 @@
+.dates {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	align-items: flex-end;
+	z-index: 1001;
+}
+
+.dates .date {
+	text-align: center;
+	color: var(--blanc);
+	line-height: 1;
+}
+
+.dates .date .day {
+	display: block;
+	font-weight: 700;
+	font-size: 80px;
+	letter-spacing: 4px;
+}
+
+.dates .date .month {
+	position: relative;
+	text-align: center;
+	margin-top: 24px;
+	font-family: Arial, sans-serif;
+	font-weight: 700;
+	font-size: 19px;
+	letter-spacing: 1px;
+	color: var(--rose);
+}
+
+.dates .sep {
+	width: 33px;
+	height: 93px;
+	background: url("/assets/img/svg/separateurdates.svg") center/contain no-repeat;
+	align-self: center;
+}
+
+.dj {
+	position: relative;
+	text-align: center;
+	margin-top: 24px;
+	font-family: Arial, sans-serif;
+	font-weight: 700;
+	font-size: 19px;
+	letter-spacing: 1px;
+	color: var(--bleu);
+}
+
+.dj .electro { color: var(--rose); }
+.dj .raggae { color: var(--violet); }

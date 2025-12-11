@@ -1,0 +1,68 @@
+/* Boutons génériques */
+.btn-top {
+	position: fixed;
+	right: 18px;
+	bottom: 30px;
+	width: 52px;
+	height: 52px;
+	background: url("/assets/svg/goup.svg") center/contain no-repeat;
+	border: none;
+	border-radius: 50%;
+	display: block;
+	cursor: pointer;
+	z-index: 999999;
+	transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.btn-top:active {
+	transform: translateY(1px) scale(0.98);
+}
+
+.program-logo {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 50px auto 0;
+	padding: 12px 24px;
+	min-width: 180px;
+	border-radius: 22px;
+	border: none;
+	background: var(--blanc);
+	color: var(--noir);
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 0.8px;
+	text-transform: uppercase;
+	cursor: pointer;
+	user-select: none;
+	transition: transform 0.12s ease;
+}
+
+.program-logo:active {
+	transform: translateY(1px) scale(0.99);
+}
+
+.historique-logo {
+	display: block;
+	margin: 18px auto 6px;
+	padding: 10px 20px;
+	min-width: 150px;
+	border-radius: 20px;
+	border: none;
+	background: var(--blanc);
+	color: var(--noir);
+	font-family: Arial, sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: 0.8px;
+	text-transform: uppercase;
+	cursor: pointer;
+	user-select: none;
+	transition: transform 0.12s ease;
+	text-align: center;
+}
+
+.historique-logo:active {
+	transform: translateX(100px) translateY(1px) scale(0.99);
+}
