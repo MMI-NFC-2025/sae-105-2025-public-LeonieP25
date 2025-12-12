@@ -1,7 +1,7 @@
 /*
 Fichier : script.js
-URL d’action : toutes les pages sauf /menu.html.
-Rôle : gère les interactions globales du site : ouverture du menu principal depuis les boutons ronds, fermeture du faux bouton close hors menu, redirections des logos (historique / programme), et comportements des filtres de programmation (sélection, exclusivité d’ouverture, filtrage dynamique de la galerie, message vide, tri alpha).
+URL d’action : toutes les pages.
+Rôle : gère les interactions globales : création/animation du menu overlay (ouverture, fermeture, persistance active), redirections des boutons historiques/programme, filtres de programmation (sélection, ouverture exclusive, filtrage, tri alpha, message vide) et carrousel partenaires.
 */
 
 document.addEventListener("DOMContentLoaded", () => {

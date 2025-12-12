@@ -1,9 +1,7 @@
 /*
 Fichier : menu.js
-URL d'action : /menu.html
-Rôle : Gère les animations d'ouverture/fermeture douce du menu de navigation,
-       la persistance de l'item actif via localStorage,
-       et la navigation animée avec retour vers la page précédente.
+URL d'action : /menu.html uniquement.
+Rôle : Ancien gestionnaire d’ouverture/fermeture du menu plein écran dédié, persistance d’item actif et retour animé. Conserver uniquement si la page legacy /menu.html est réutilisée.
 */
 
 
