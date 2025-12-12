@@ -1,7 +1,7 @@
 /*
 Fichier : script.js
 URL d’action : toutes les pages.
-Rôle : gère les interactions globales : création/animation du menu overlay (ouverture, fermeture, persistance active), redirections des boutons historiques/programme, filtres de programmation (sélection, ouverture exclusive, filtrage, tri alpha, message vide) et carrousel partenaires.
+Rôle : interactions globales : création/animation du menu overlay (ouverture/fermeture/persistance active), redirections boutons historique/programme, filtres programmation (sélection, ouverture exclusive, filtrage, tri alpha, message vide), carrousel partenaires, animations de reveal au scroll.
 */
 
 document.addEventListener("DOMContentLoaded", () => {

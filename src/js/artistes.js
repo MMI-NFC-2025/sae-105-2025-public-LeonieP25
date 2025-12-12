@@ -1,10 +1,7 @@
 /*
 Fichier : artistes.js
 URL d'action : /artistes.html
-Rôle : Gère la recherche d'artistes par nom dans le dropdown,
-       la coloration des éléments sélectionnés,
-       l'overlay de filtre avec fond assombri,
-       et l'affichage en mode solo des images d'artistes au clic dans le menu déroulant.
+Rôle : recherche d'artistes dans le dropdown, surbrillance de la sélection, overlay de filtre assombri, et affichage solo des images au clic dans le menu déroulant.
 */
 
 

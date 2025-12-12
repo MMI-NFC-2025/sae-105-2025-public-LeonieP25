@@ -1,7 +1,7 @@
 /*
 Fichier : menu.js
 URL d'action : /menu.html uniquement.
-Rôle : Ancien gestionnaire d’ouverture/fermeture du menu plein écran dédié, persistance d’item actif et retour animé. Conserver uniquement si la page legacy /menu.html est réutilisée.
+Rôle : ancien gestionnaire du menu plein écran dédié : ouverture/fermeture douce, persistance de l’item actif, retour animé. À conserver seulement si /menu.html est encore servi.
 */
 
 
