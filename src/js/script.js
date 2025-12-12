@@ -4,33 +4,24 @@ URL d’action : toutes les pages.
 Rôle : interactions globales : création/animation du menu overlay (ouverture/fermeture/persistance active), redirections boutons historique/programme, filtres programmation (sélection, ouverture exclusive, filtrage, tri alpha, message vide), carrousel partenaires, animations de reveal au scroll.
 */
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Scroll to top au clic sur le bouton goup
-    const btnTop = document.querySelector('.btn-top');
-    if (btnTop) {
-        btnTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    // Scroll to top
+    document.querySelector('.btn-top')?.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     const body = document.body;
     let menuOverlay;
-
     const readMenuDuration = () => {
-        let durationMs = 180;
+        let d = 180;
         try {
-            const v = getComputedStyle(body).getPropertyValue('--menu-duration');
-            if (v) {
-                const trimmed = v.trim();
-                durationMs = trimmed.endsWith('ms') ? parseFloat(trimmed) : parseFloat(trimmed) * 1000;
-            }
-        } catch (e) {}
-        return Number.isNaN(durationMs) ? 180 : durationMs;
+            const v = getComputedStyle(body).getPropertyValue('--menu-duration').trim();
+            d = v.endsWith('ms') ? parseFloat(v) : parseFloat(v) * 1000;
+        } catch {}
+        return isNaN(d) ? 180 : d;
     };
-
     const ensureMenuOverlay = () => {
-        if (menuOverlay && document.body.contains(menuOverlay)) return menuOverlay;
-
+        if (menuOverlay && body.contains(menuOverlay)) return menuOverlay;
         const layer = document.createElement('div');
         layer.className = 'menu-layer';
         layer.setAttribute('aria-hidden', 'true');
@@ -79,50 +70,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 </main>
             </div>
         `;
-
-        document.body.appendChild(layer);
+        body.appendChild(layer);
         menuOverlay = layer;
-
         const closeBtn = layer.querySelector('.btn-menu.btn-close');
         const menuLinks = layer.querySelectorAll('.menu-navigation .menu-item a');
-
         const applyActive = () => {
             try {
                 const activeHref = localStorage.getItem('menuActiveHref');
-                menuLinks.forEach((link) => {
-                    const parent = link.closest('.menu-item');
-                    if (parent) parent.classList.remove('active');
+                menuLinks.forEach(link => {
+                    link.closest('.menu-item')?.classList.remove('active');
                     link.style.color = '';
                 });
                 if (activeHref) {
                     const activeLink = layer.querySelector(`.menu-navigation .menu-item a[href="${activeHref}"]`);
                     if (activeLink) {
-                        const parent = activeLink.closest('.menu-item');
-                        if (parent) parent.classList.add('active');
+                        activeLink.closest('.menu-item')?.classList.add('active');
                         activeLink.style.color = getComputedStyle(document.documentElement).getPropertyValue('--rose') || 'var(--rose)';
                     }
                 }
-            } catch (e) {}
+            } catch {}
         };
-
-        menuLinks.forEach((link) => {
+        menuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                try { localStorage.setItem('menuActiveHref', link.getAttribute('href') || ''); } catch (e) {}
+                try { localStorage.setItem('menuActiveHref', link.getAttribute('href') || ''); } catch {}
                 applyActive();
             });
         });
         applyActive();
-
-        if (closeBtn) {
-            closeBtn.addEventListener('click', (ev) => {
-                ev.preventDefault();
-                closeMenuOverlay();
-            });
-        }
-
+        closeBtn?.addEventListener('click', ev => {
+            ev.preventDefault();
+            closeMenuOverlay();
+        });
         return layer;
     };
-
     const openMenuOverlay = () => {
         const layer = ensureMenuOverlay();
         layer.hidden = false;
@@ -131,98 +111,68 @@ document.addEventListener("DOMContentLoaded", () => {
         body.classList.add('hide-artists');
         requestAnimationFrame(() => body.classList.add('menu-open'));
     };
-
     const closeMenuOverlay = () => {
         if (!menuOverlay) return;
         body.classList.add('menu-closing');
         void body.offsetWidth;
         body.classList.remove('menu-open');
-        const duration = readMenuDuration();
         setTimeout(() => {
             menuOverlay.setAttribute('aria-hidden', 'true');
             menuOverlay.hidden = true;
-            body.classList.remove('menu-closing');
-            body.classList.remove('hide-artists');
-        }, Math.max(0, Math.round(duration + 60)));
+            body.classList.remove('menu-closing', 'hide-artists');
+        }, Math.max(0, Math.round(readMenuDuration() + 60)));
     };
-
-    // Animations d'apparition au scroll
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+    // Reveal animation
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
                 io.unobserve(entry.target);
             }
         });
     }, { threshold: 0, rootMargin: '20% 0px 0px 0px' });
-
     const bindReveals = () => {
         const nodes = Array.from(document.querySelectorAll(
             'header, header > *, main, main > section, main > article, main > div, .hero, body > section, body > div:not(.topbar):not(.bg-video):not(.menu-layer), .programmation-card, .artists-grid .artist-card, .scene-card, .price-card, .infos-block, .faq-item, footer'
         ));
-
         nodes.forEach((el, idx) => {
             if (el.dataset.revealBound) return;
             el.dataset.revealBound = '1';
             el.classList.add('reveal-item');
             el.style.setProperty('--reveal-delay', `${Math.min(idx * 40, 240)}ms`);
-
             const rect = el.getBoundingClientRect();
             const inView = rect.top < window.innerHeight * 0.98;
             const isProgramCard = el.classList.contains('programmation-card');
-
-            if (inView || isProgramCard && rect.top < window.innerHeight * 1.05) {
+            if (inView || (isProgramCard && rect.top < window.innerHeight * 1.05)) {
                 el.classList.add('is-visible');
             } else {
                 io.observe(el);
             }
         });
     };
-
     bindReveals();
-
     // Menu navigation
-    const menuBtn = document.querySelector('.btn-menu:not(.btn-close)');
-    if (menuBtn) {
-        menuBtn.addEventListener('click', (ev) => {
-            ev.preventDefault();
-            openMenuOverlay();
-        });
-    }
-
-    window.addEventListener('pageshow', () => {
-        document.body.classList.remove('hide-artists');
+    document.querySelector('.btn-menu:not(.btn-close)')?.addEventListener('click', ev => {
+        ev.preventDefault();
+        openMenuOverlay();
     });
-
+    window.addEventListener('pageshow', () => body.classList.remove('hide-artists'));
     const closeBtn = document.querySelector('.btn-menu.btn-close');
     if (closeBtn && !document.querySelector('.menu-navigation')) {
         closeBtn.addEventListener('click', () => {
             document.referrer ? window.history.back() : window.location.href = 'index.html';
         });
     }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && body.classList.contains('menu-open')) {
-            closeMenuOverlay();
-        }
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && body.classList.contains('menu-open')) closeMenuOverlay();
     });
-
-    // Redirections boutons
-    const histBtn = document.querySelector('.historique-logo');
-    if (histBtn) histBtn.addEventListener('click', () => window.location.href = 'festival.html');
-
-    const progBtn = document.querySelector('.program-logo');
-    if (progBtn) progBtn.addEventListener('click', () => window.location.href = 'programmation.html');
-
-    // Filtres programmation
-    const filterDetails = document.querySelectorAll('details.filter-dropdown');
-    if (filterDetails.length) {
-        filterDetails.forEach(d => {
-            const s = d.querySelector('.filter-summary');
-            if (s && !s.dataset.default) s.dataset.default = s.textContent.trim();
-        });
-        if (typeof updateGalleryFilter === 'function') updateGalleryFilter();
-    }
+    document.querySelector('.historique-logo')?.addEventListener('click', () => window.location.href = 'festival.html');
+    document.querySelector('.program-logo')?.addEventListener('click', () => window.location.href = 'programmation.html');
+    document.querySelectorAll('details.filter-dropdown').forEach(d => {
+        const s = d.querySelector('.filter-summary');
+        if (s && !s.dataset.default) s.dataset.default = s.textContent.trim();
+    });
+    if (typeof updateGalleryFilter === 'function') updateGalleryFilter();
 });
 
 // Carrousel
