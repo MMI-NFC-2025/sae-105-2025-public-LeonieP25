@@ -1,3 +1,7 @@
+.menu-open .btn-top {
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
 /* Bouton remonter en haut (goup.svg) */
 .btn-top {
 	position: fixed;
