@@ -1,3 +1,24 @@
+/* Bouton remonter en haut (goup.svg) */
+.btn-top {
+	position: fixed;
+	right: 18px;
+	bottom: 30px;
+	width: 52px;
+	height: 52px;
+	background: none;
+	border: none;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 1200001;
+	box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+	transition: opacity 0.18s, transform 0.12s;
+}
+.btn-top:active {
+	transform: scale(0.97);
+}
 
 
 .program-logo {

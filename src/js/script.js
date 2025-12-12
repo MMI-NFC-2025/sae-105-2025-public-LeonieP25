@@ -5,6 +5,14 @@ Rôle : interactions globales : création/animation du menu overlay (ouverture/f
 */
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Scroll to top au clic sur le bouton goup
+    const btnTop = document.querySelector('.btn-top');
+    if (btnTop) {
+        btnTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
     const body = document.body;
     let menuOverlay;
 
