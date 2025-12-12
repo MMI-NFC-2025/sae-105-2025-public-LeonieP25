@@ -5,9 +5,15 @@
 }
 .artistes-page main {
   flex: 1 0 auto;
+  padding-bottom: 160px; /* espace de sécurité pour le footer sur mobile */
 }
 .artistes-page .footer {
   margin-top: auto;
+}
+
+/* Ajoute de l'air sous la grille pour éviter tout chevauchement avec le footer */
+.artistes-page .artists-grid {
+  margin-bottom: 140px;
 }
 
 .filter-dropdown {
@@ -32,26 +38,6 @@
   position: relative;
   z-index: 1220;
 }
-.filter-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(var(--noir-rgb), 0.28);
-  z-index: 1100;
-  opacity: 0;
-  transition: opacity 180ms ease;
-  pointer-events: none;
-}
-.filter-overlay.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-.artists-grid.dimmed {
-  opacity: 0.36;
-  transition: opacity 220ms ease;
-  pointer-events: none;
-  user-select: none;
-}
-
 .no-scroll { overflow: hidden; }
 
 .solo-overlay {

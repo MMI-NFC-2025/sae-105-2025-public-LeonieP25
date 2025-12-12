@@ -1,22 +1,4 @@
-/* Boutons génériques */
-.btn-top {
-	position: fixed;
-	right: 18px;
-	bottom: 30px;
-	width: 52px;
-	height: 52px;
-	background: url("/assets/svg/goup.svg") center/contain no-repeat;
-	border: none;
-	border-radius: 50%;
-	display: block;
-	cursor: pointer;
-	z-index: 999999;
-	transition: transform 0.12s ease, opacity 0.12s ease;
-}
 
-.btn-top:active {
-	transform: translateY(1px) scale(0.98);
-}
 
 .program-logo {
 	display: inline-flex;

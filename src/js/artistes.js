@@ -11,6 +11,8 @@ Rôle : recherche d'artistes dans le dropdown, surbrillance de la sélection, ov
     const items = list ? Array.from(list.querySelectorAll('li')) : [];
     const summary = document.getElementById('filter-summary-nom');
     const details = document.getElementById('filter-nom');
+    const defaultSummary = summary ? (summary.textContent || '').trim() : '';
+    const cards = Array.from(document.querySelectorAll('.artist-card'));
 
     function setSummaryActive(active){
         if(!summary) return;
@@ -52,111 +54,70 @@ Rôle : recherche d'artistes dans le dropdown, surbrillance de la sélection, ov
         });
     });
 
-    // Comportement de l'overlay : garde la grille d'artistes visible mais atténuée,
-    // affiche la liste de filtres en superposition et permet de fermer en cliquant à l'extérieur.
-    const artistsGrid = document.querySelector('.artists-grid');
-    const overlay = document.createElement('div');
-    overlay.className = 'filter-overlay';
-    overlay.setAttribute('aria-hidden', 'true');
-    overlay.style.display = 'none';
-    overlay.addEventListener('click', ()=>{
-        if(details) details.open = false;
-    });
-    // Ajoute l'overlay tôt pour que le CSS puisse le cibler ; il sera caché jusqu'à utilisation
-    document.body.appendChild(overlay);
-
     if(details){
         details.addEventListener('toggle', ()=>{
             if(details.open){
-                overlay.style.display = '';
-                // Petit délai pour permettre la transition CSS
-                setTimeout(()=> overlay.classList.add('visible'), 10);
-                if(artistsGrid) artistsGrid.classList.add('dimmed');
                 const input = details.querySelector('input');
                 if(input) input.focus();
-            } else {
-                overlay.classList.remove('visible');
-                setTimeout(()=> overlay.style.display = 'none', 220);
-                if(artistsGrid) artistsGrid.classList.remove('dimmed');
             }
         });
     }
 
     // --------------------------------------------------
-    // Comportement image solo depuis le dropdown (tous les artistes)
-    // Quand on clique sur un nom d'artiste dans le dropdown (#artist-list a) :
-    // - met à jour le texte du summary avec le nom de l'artiste (conservé)
-    // - masque la liste déroulante (garde le summary visible)
-    // - affiche une image plein écran centrée (ex: /assets/img/aazaroff.avif)
-    // - permet de fermer avec le bouton ×, en cliquant à l'extérieur ou avec Escape
+    // Filtrage de la grille depuis le dropdown : affiche uniquement la carte sélectionnée
+    // Second clic sur le même artiste => réinitialise et montre toute la grille
     // --------------------------------------------------
-    function createSoloOverlay(src, alt){
-        const existing = document.querySelector('.solo-overlay');
-        if(existing) return existing;
-        const overlayEl = document.createElement('div');
-        overlayEl.className = 'solo-overlay';
-        overlayEl.innerHTML = `
-            <div class="solo-inner" role="dialog" aria-modal="true">
-                <button class="solo-close" aria-label="Fermer">×</button>
-                <img class="solo-image" src="${src}" alt="${alt||''}" />
-            </div>`;
-        document.body.appendChild(overlayEl);
-        document.body.classList.add('no-scroll');
-
-        const closeBtn = overlayEl.querySelector('.solo-close');
-        function remove(){
-            overlayEl.remove();
-            document.body.classList.remove('no-scroll');
-            document.removeEventListener('keydown', onKey);
-            details.classList.remove('filter-solo-open');
-        }
-        function onKey(e){ if(e.key === 'Escape') remove(); }
-        closeBtn.addEventListener('click', remove);
-        overlayEl.addEventListener('click', (ev)=>{ if(ev.target === overlayEl) remove(); });
-        document.addEventListener('keydown', onKey);
-        return overlayEl;
-    }
-
     const dropdownLinks = document.querySelectorAll('#artist-list a');
-    function findCardByName(name){
-        const cards = Array.from(document.querySelectorAll('.artist-card'));
-        name = (name || '').trim().toLowerCase();
-        return cards.find(c => {
-            const n = c.querySelector('.artist-name');
-            return n && (n.textContent || '').trim().toLowerCase() === name;
+    function filterCardsByName(name){
+        const target = (name || '').trim().toLowerCase();
+        if(!cards.length){ return; }
+        if(!target){
+            cards.forEach(card => card.style.display = '');
+            return;
+        }
+        let matched = false;
+        cards.forEach(card => {
+            const n = card.querySelector('.artist-name');
+            const isMatch = n && (n.textContent || '').trim().toLowerCase() === target;
+            card.style.display = isMatch ? '' : 'none';
+            if(isMatch) matched = true;
         });
+        if(!matched){
+            cards.forEach(card => card.style.display = '');
+        }
     }
 
     dropdownLinks.forEach(link => {
         link.addEventListener('click', (ev)=>{
+            const href = link.getAttribute('href') || '';
+            const isRealNav = href && href !== '#';
+            const isModifiedClick = ev.ctrlKey || ev.metaKey || ev.button === 1;
+
+            // Laisse la navigation native pour Ctrl/Cmd/Middle click
+            if(isRealNav && isModifiedClick) return;
+
             ev.preventDefault();
             const name = (link.textContent || '').trim();
 
-            // Si ce nom est déjà affiché dans le summary, ne rien faire (évite de rouvrir)
             const current = summary ? (summary.textContent || '').trim().toLowerCase() : '';
-            if(current === name.toLowerCase()) return;
+            const normalized = name.toLowerCase();
+
+            // Second clic sur le même artiste : réinitialise l'affichage complet
+            if(current === normalized){
+                if(summary) summary.textContent = defaultSummary || 'NOM';
+                filterCardsByName('');
+                clearSelection();
+                return;
+            }
 
             // Met à jour le texte du summary avec le nom sélectionné
             if(summary) summary.textContent = name;
 
-            // Ferme le details et marque l'état solo sur le filtre
-            if(details){ details.open = false; details.classList.add('filter-solo-open'); }
+            // Ferme le details
+            if(details){ details.open = false; }
 
-            // Trouve la carte correspondante et son image
-            const card = findCardByName(name);
-            let imgPath = '';
-            if(card){
-                const img = card.querySelector('.artist-thumb img');
-                if(img && img.src) imgPath = img.src;
-            }
-
-            // Fallback : tente de construire le nom de fichier depuis le nom (normalisation simple)
-            if(!imgPath){
-                const slug = name.toLowerCase().replace(/[^a-z0-9]+/g,'').replace(/\s+/g,'');
-                imgPath = `/assets/img/${slug}off.avif`;
-            }
-
-            createSoloOverlay(imgPath, name);
+            // Affiche uniquement la carte correspondante (ou tout si non trouvée)
+            filterCardsByName(name);
         });
     });
 })();
