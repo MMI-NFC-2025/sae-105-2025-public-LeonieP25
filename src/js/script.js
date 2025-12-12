@@ -1,17 +1,149 @@
 /*
 Fichier : script.js
-URL d’action : toutes les pages sauf menu.html (menu plein écran dédié à src/js/menu.js)
+URL d’action : toutes les pages sauf /menu.html.
 Rôle : gère les interactions globales du site : ouverture du menu principal depuis les boutons ronds, fermeture du faux bouton close hors menu, redirections des logos (historique / programme), et comportements des filtres de programmation (sélection, exclusivité d’ouverture, filtrage dynamique de la galerie, message vide, tri alpha).
 */
 
 document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+    let menuOverlay;
+
+    const readMenuDuration = () => {
+        let durationMs = 180;
+        try {
+            const v = getComputedStyle(body).getPropertyValue('--menu-duration');
+            if (v) {
+                const trimmed = v.trim();
+                durationMs = trimmed.endsWith('ms') ? parseFloat(trimmed) : parseFloat(trimmed) * 1000;
+            }
+        } catch (e) {}
+        return Number.isNaN(durationMs) ? 180 : durationMs;
+    };
+
+    const ensureMenuOverlay = () => {
+        if (menuOverlay && document.body.contains(menuOverlay)) return menuOverlay;
+
+        const layer = document.createElement('div');
+        layer.className = 'menu-layer';
+        layer.setAttribute('aria-hidden', 'true');
+        layer.hidden = true;
+        layer.innerHTML = `
+            <video class="bg-video" autoplay loop muted playsinline aria-hidden="true">
+                <source src="/assets/mp4/FondImage.mp4" type="video/mp4" />
+            </video>
+            <div class="menu-shell">
+                <nav class="topbar" aria-hidden="true" aria-label="Top navigation">
+                    <a href="/" class="logo-link">
+                        <img src="assets/svg/LogoLumimix.svg" alt="LUMIMIX" class="logo" />
+                    </a>
+                    <button class="btn-menu btn-close" type="button" aria-label="Fermer le menu">
+                        <img src="assets/svg/croix.svg" alt="Fermer" aria-hidden="true" />
+                    </button>
+                </nav>
+                <main class="hero" role="presentation">
+                    <h1 class="menu-page-title">MENU</h1>
+                    <nav class="menu-navigation">
+                        <div class="menu-item"><a href="index.html">ACCUEIL</a></div>
+                        <div class="menu-item"><a href="festival.html">LE FESTIVAL</a></div>
+                        <div class="menu-item"><a href="programmation.html">PROGRAMMATION</a></div>
+                        <div class="menu-item"><a href="artistes.html">ARTISTES</a></div>
+                        <div class="menu-item"><a href="scenes.html">SCÈNES</a></div>
+                        <div class="menu-item"><a href="infos.html">INFOS PRATIQUES</a></div>
+                        <div class="menu-item"><a href="contact.html">CONTACT</a></div>
+                    </nav>
+                    <nav class="menu-socials" aria-label="Menu social links">
+                        <a href="https://facebook.com" class="social-icon" aria-label="Facebook">
+                            <img src="assets/svg/facebook.svg" alt="Facebook" />
+                        </a>
+                        <a href="https://x.com" class="social-icon" aria-label="X (Twitter)">
+                            <img src="assets/svg/xtwitter.svg" alt="X (Twitter)" />
+                        </a>
+                        <a href="https://instagram.com" class="social-icon" aria-label="Instagram">
+                            <img src="assets/svg/instagram.svg" alt="Instagram" />
+                        </a>
+                        <a href="https://tiktok.com" class="social-icon" aria-label="TikTok">
+                            <img src="assets/svg/tiktok.svg" alt="TikTok" />
+                        </a>
+                        <a href="https://youtube.com" class="social-icon" aria-label="YouTube">
+                            <img src="assets/svg/youtube.svg" alt="YouTube" />
+                        </a>
+                    </nav>
+                </main>
+            </div>
+        `;
+
+        document.body.appendChild(layer);
+        menuOverlay = layer;
+
+        const closeBtn = layer.querySelector('.btn-menu.btn-close');
+        const menuLinks = layer.querySelectorAll('.menu-navigation .menu-item a');
+
+        const applyActive = () => {
+            try {
+                const activeHref = localStorage.getItem('menuActiveHref');
+                menuLinks.forEach((link) => {
+                    const parent = link.closest('.menu-item');
+                    if (parent) parent.classList.remove('active');
+                    link.style.color = '';
+                });
+                if (activeHref) {
+                    const activeLink = layer.querySelector(`.menu-navigation .menu-item a[href="${activeHref}"]`);
+                    if (activeLink) {
+                        const parent = activeLink.closest('.menu-item');
+                        if (parent) parent.classList.add('active');
+                        activeLink.style.color = getComputedStyle(document.documentElement).getPropertyValue('--rose') || 'var(--rose)';
+                    }
+                }
+            } catch (e) {}
+        };
+
+        menuLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                try { localStorage.setItem('menuActiveHref', link.getAttribute('href') || ''); } catch (e) {}
+                applyActive();
+            });
+        });
+        applyActive();
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (ev) => {
+                ev.preventDefault();
+                closeMenuOverlay();
+            });
+        }
+
+        return layer;
+    };
+
+    const openMenuOverlay = () => {
+        const layer = ensureMenuOverlay();
+        layer.hidden = false;
+        layer.setAttribute('aria-hidden', 'false');
+        body.classList.remove('menu-closing');
+        body.classList.add('hide-artists');
+        requestAnimationFrame(() => body.classList.add('menu-open'));
+    };
+
+    const closeMenuOverlay = () => {
+        if (!menuOverlay) return;
+        body.classList.add('menu-closing');
+        void body.offsetWidth;
+        body.classList.remove('menu-open');
+        const duration = readMenuDuration();
+        setTimeout(() => {
+            menuOverlay.setAttribute('aria-hidden', 'true');
+            menuOverlay.hidden = true;
+            body.classList.remove('menu-closing');
+            body.classList.remove('hide-artists');
+        }, Math.max(0, Math.round(duration + 60)));
+    };
+
     // Menu navigation
-    const menuBtn = document.querySelector(".btn-menu:not(.btn-close)");
+    const menuBtn = document.querySelector('.btn-menu:not(.btn-close)');
     if (menuBtn) {
-        menuBtn.addEventListener("click", (ev) => {
+        menuBtn.addEventListener('click', (ev) => {
             ev.preventDefault();
-            document.body.classList.add('hide-artists');
-            setTimeout(() => window.location.href = "menu.html", 100);
+            openMenuOverlay();
         });
     }
 
@@ -19,12 +151,18 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove('hide-artists');
     });
 
-    const closeBtn = document.querySelector(".btn-menu.btn-close");
+    const closeBtn = document.querySelector('.btn-menu.btn-close');
     if (closeBtn && !document.querySelector('.menu-navigation')) {
-        closeBtn.addEventListener("click", () => {
-            document.referrer ? window.history.back() : window.location.href = "index.html";
+        closeBtn.addEventListener('click', () => {
+            document.referrer ? window.history.back() : window.location.href = 'index.html';
         });
     }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && body.classList.contains('menu-open')) {
+            closeMenuOverlay();
+        }
+    });
 
     // Redirections boutons
     const histBtn = document.querySelector('.historique-logo');
