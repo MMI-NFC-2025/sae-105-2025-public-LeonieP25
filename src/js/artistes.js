@@ -67,4 +67,47 @@ document.addEventListener('DOMContentLoaded', () => {
             filterCardsByName(name);
         });
     });
+
+    if (details && list) {
+        let searchRow = null;
+        let searchInput = null;
+        details.addEventListener('toggle', () => {
+            if (details.open) {
+                if (!searchRow) {
+                    searchRow = document.createElement('li');
+                    searchRow.style.paddingBottom = '4px';
+                    searchRow.style.background = 'none';
+                    searchRow.style.border = 'none';
+                    searchRow.style.cursor = 'auto';
+                    searchInput = document.createElement('input');
+                    searchInput.type = 'search';
+                    searchInput.placeholder = 'Rechercher un artiste';
+                    searchInput.style.width = '100%';
+                    searchInput.style.padding = '8px 10px';
+                    searchInput.style.borderRadius = '8px';
+                    searchInput.style.border = '1px solid #ccc';
+                    searchInput.style.background = 'rgba(255,255,255,0.08)';
+                    searchInput.style.color = 'var(--blanc)';
+                    searchInput.style.fontSize = '1rem';
+                    searchRow.appendChild(searchInput);
+                    list.insertBefore(searchRow, list.firstChild);
+                    searchInput.addEventListener('input', () => {
+                        const q = searchInput.value.trim().toLowerCase();
+                        Array.from(list.querySelectorAll('li')).forEach((li, idx) => {
+                            if (li === searchRow) return;
+                            const a = li.querySelector('a');
+                            if (!a) return;
+                            const match = a.textContent.trim().toLowerCase().includes(q);
+                            li.style.display = match ? '' : 'none';
+                        });
+                    });
+                }
+                searchRow.style.display = '';
+                searchInput.value = '';
+                searchInput.focus();
+            } else if (searchRow) {
+                searchRow.style.display = 'none';
+            }
+        });
+    }
 });
