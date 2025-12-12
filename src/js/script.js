@@ -1,28 +1,33 @@
 /*
-Fichier : script.js
-URL d’action : toutes les pages.
-Rôle : interactions globales : création/animation du menu overlay (ouverture/fermeture/persistance active), redirections boutons historique/programme, filtres programmation (sélection, ouverture exclusive, filtrage, tri alpha, message vide), carrousel partenaires, animations de reveal au scroll.
+URL d'action : toutes les pages
+Actions :
+- Gère le menu overlay (ouverture/fermeture, persistance active)
+- Redirige les boutons historique/programme
+- Gère les filtres de programmation (sélection, ouverture exclusive, filtrage, tri alpha, message vide)
+- Carrousel partenaires
+- Animations de reveal au scroll
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll to top
-    document.querySelector('.btn-top')?.addEventListener('click', e => {
+    // Scroll vers le haut
+    let btnTop = document.querySelector('.btn-top');
+    if (btnTop) btnTop.addEventListener('click', e => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    const body = document.body;
+    let body = document.body;
     let menuOverlay;
-    const readMenuDuration = () => {
+    function readMenuDuration() {
         let d = 180;
         try {
-            const v = getComputedStyle(body).getPropertyValue('--menu-duration').trim();
+            let v = getComputedStyle(body).getPropertyValue('--menu-duration').trim();
             d = v.endsWith('ms') ? parseFloat(v) : parseFloat(v) * 1000;
         } catch {}
         return isNaN(d) ? 180 : d;
-    };
-    const ensureMenuOverlay = () => {
+    }
+    function createMenuOverlay() {
         if (menuOverlay && body.contains(menuOverlay)) return menuOverlay;
-        const layer = document.createElement('div');
+        let layer = document.createElement('div');
         layer.className = 'menu-layer';
         layer.setAttribute('aria-hidden', 'true');
         layer.hidden = true;
@@ -72,46 +77,46 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         body.appendChild(layer);
         menuOverlay = layer;
-        const closeBtn = layer.querySelector('.btn-menu.btn-close');
-        const menuLinks = layer.querySelectorAll('.menu-navigation .menu-item a');
-        const applyActive = () => {
+        let closeBtn = layer.querySelector('.btn-menu.btn-close');
+        let menuLinks = layer.querySelectorAll('.menu-navigation .menu-item a');
+        function setActive() {
             try {
-                const activeHref = localStorage.getItem('menuActiveHref');
+                let activeHref = localStorage.getItem('menuActiveHref');
                 menuLinks.forEach(link => {
                     link.closest('.menu-item')?.classList.remove('active');
                     link.style.color = '';
                 });
                 if (activeHref) {
-                    const activeLink = layer.querySelector(`.menu-navigation .menu-item a[href="${activeHref}"]`);
+                    let activeLink = layer.querySelector(`.menu-navigation .menu-item a[href="${activeHref}"]`);
                     if (activeLink) {
                         activeLink.closest('.menu-item')?.classList.add('active');
                         activeLink.style.color = getComputedStyle(document.documentElement).getPropertyValue('--rose') || 'var(--rose)';
                     }
                 }
             } catch {}
-        };
+        }
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 try { localStorage.setItem('menuActiveHref', link.getAttribute('href') || ''); } catch {}
-                applyActive();
+                setActive();
             });
         });
-        applyActive();
-        closeBtn?.addEventListener('click', ev => {
+        setActive();
+        if (closeBtn) closeBtn.addEventListener('click', ev => {
             ev.preventDefault();
             closeMenuOverlay();
         });
         return layer;
-    };
-    const openMenuOverlay = () => {
-        const layer = ensureMenuOverlay();
+    }
+    function openMenuOverlay() {
+        let layer = createMenuOverlay();
         layer.hidden = false;
         layer.setAttribute('aria-hidden', 'false');
         body.classList.remove('menu-closing');
         body.classList.add('hide-artists');
         requestAnimationFrame(() => body.classList.add('menu-open'));
-    };
-    const closeMenuOverlay = () => {
+    }
+    function closeMenuOverlay() {
         if (!menuOverlay) return;
         body.classList.add('menu-closing');
         void body.offsetWidth;
@@ -121,9 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
             menuOverlay.hidden = true;
             body.classList.remove('menu-closing', 'hide-artists');
         }, Math.max(0, Math.round(readMenuDuration() + 60)));
-    };
-    // Reveal animation
-    const io = new IntersectionObserver(entries => {
+    }
+    // Animation reveal
+    let io = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
@@ -131,33 +136,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0, rootMargin: '20% 0px 0px 0px' });
-    const bindReveals = () => {
-        const nodes = Array.from(document.querySelectorAll(
+    function bindReveals() {
+        let nodes = document.querySelectorAll(
             'header, header > *, main, main > section, main > article, main > div, .hero, body > section, body > div:not(.topbar):not(.bg-video):not(.menu-layer), .programmation-card, .artists-grid .artist-card, .scene-card, .price-card, .infos-block, .faq-item, footer'
-        ));
+        );
         nodes.forEach((el, idx) => {
             if (el.dataset.revealBound) return;
             el.dataset.revealBound = '1';
             el.classList.add('reveal-item');
             el.style.setProperty('--reveal-delay', `${Math.min(idx * 40, 240)}ms`);
-            const rect = el.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight * 0.98;
-            const isProgramCard = el.classList.contains('programmation-card');
+            let rect = el.getBoundingClientRect();
+            let inView = rect.top < window.innerHeight * 0.98;
+            let isProgramCard = el.classList.contains('programmation-card');
             if (inView || (isProgramCard && rect.top < window.innerHeight * 1.05)) {
                 el.classList.add('is-visible');
             } else {
                 io.observe(el);
             }
         });
-    };
+    }
     bindReveals();
     // Menu navigation
-    document.querySelector('.btn-menu:not(.btn-close)')?.addEventListener('click', ev => {
+    let btnMenu = document.querySelector('.btn-menu:not(.btn-close)');
+    if (btnMenu) btnMenu.addEventListener('click', ev => {
         ev.preventDefault();
         openMenuOverlay();
     });
     window.addEventListener('pageshow', () => body.classList.remove('hide-artists'));
-    const closeBtn = document.querySelector('.btn-menu.btn-close');
+    let closeBtn = document.querySelector('.btn-menu.btn-close');
     if (closeBtn && !document.querySelector('.menu-navigation')) {
         closeBtn.addEventListener('click', () => {
             document.referrer ? window.history.back() : window.location.href = 'index.html';
@@ -166,10 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && body.classList.contains('menu-open')) closeMenuOverlay();
     });
-    document.querySelector('.historique-logo')?.addEventListener('click', () => window.location.href = 'festival.html');
-    document.querySelector('.program-logo')?.addEventListener('click', () => window.location.href = 'programmation.html');
+    let histo = document.querySelector('.historique-logo');
+    if (histo) histo.addEventListener('click', () => window.location.href = 'festival.html');
+    let prog = document.querySelector('.program-logo');
+    if (prog) prog.addEventListener('click', () => window.location.href = 'programmation.html');
     document.querySelectorAll('details.filter-dropdown').forEach(d => {
-        const s = d.querySelector('.filter-summary');
+        let s = d.querySelector('.filter-summary');
         if (s && !s.dataset.default) s.dataset.default = s.textContent.trim();
     });
     if (typeof updateGalleryFilter === 'function') updateGalleryFilter();

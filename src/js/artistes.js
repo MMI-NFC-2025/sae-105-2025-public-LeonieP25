@@ -1,84 +1,29 @@
 /*
-Fichier : artistes.js
 URL d'action : /artistes.html
-Rôle : recherche d'artistes dans le dropdown, surbrillance de la sélection, overlay de filtre assombri, et affichage solo des images au clic dans le menu déroulant.
+Actions :
+- Ajoute une barre de recherche dans le menu déroulant des artistes.
+- Permet de filtrer la liste des artistes en direct selon ce que l'utilisateur tape.
+- Si la barre est vide, tous les artistes sont affichés.
+- La ligne de recherche reste toujours visible.
+- Gère la sélection visuelle d'un artiste dans la liste.
 */
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const list = document.getElementById('artist-list');
-    const items = list ? Array.from(list.querySelectorAll('li')) : [];
-    const summary = document.getElementById('filter-summary-nom');
-    const details = document.getElementById('filter-nom');
-    const defaultSummary = summary ? summary.textContent.trim() : '';
-    const cards = Array.from(document.querySelectorAll('.artist-card'));
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupère la liste des artistes et le menu déroulant
+    var list = document.getElementById('artist-list');
+    var details = document.getElementById('filter-nom');
+    var summary = document.getElementById('filter-summary-nom');
+    var items = list ? Array.from(list.querySelectorAll('li')) : [];
 
-    const setSummaryActive = active => summary && summary.classList.toggle('filter-summary--active', !!active);
-    const clearSelection = () => items.forEach(li => li.querySelector('a')?.classList.remove('selected'));
-
-    // Suppression de la logique liée à #artist-search
-
-    items.forEach(li => {
-        const a = li.querySelector('a');
-        if (!a) return;
-        a.addEventListener('click', () => {
-            clearSelection();
-            a.classList.add('selected');
-            setSummaryActive(true);
-        });
-    });
-
-    if (details) {
-        details.addEventListener('toggle', () => {
-            if (details.open) details.querySelector('input')?.focus();
-        });
-    }
-
-    const filterCardsByName = name => {
-        const target = (name || '').trim().toLowerCase();
-        if (!cards.length) return;
-        if (!target) return cards.forEach(card => card.style.display = '');
-        let matched = false;
-        cards.forEach(card => {
-            const n = card.querySelector('.artist-name');
-            const isMatch = n && n.textContent.trim().toLowerCase() === target;
-            card.style.display = isMatch ? '' : 'none';
-            if (isMatch) matched = true;
-        });
-        if (!matched) cards.forEach(card => card.style.display = '');
-    };
-
-    document.querySelectorAll('#artist-list a').forEach(link => {
-        link.addEventListener('click', ev => {
-            const href = link.getAttribute('href') || '';
-            if ((href && href !== '#') && (ev.ctrlKey || ev.metaKey || ev.button === 1)) return;
-            ev.preventDefault();
-            const name = link.textContent.trim();
-            const current = summary ? summary.textContent.trim().toLowerCase() : '';
-            const normalized = name.toLowerCase();
-            if (current === normalized) {
-                if (summary) summary.textContent = defaultSummary || 'NOM';
-                filterCardsByName('');
-                clearSelection();
-                return;
-            }
-            if (summary) summary.textContent = name;
-            if (details) details.open = false;
-            filterCardsByName(name);
-        });
-    });
-
+    // Ajoute la barre de recherche dynamiquement quand on ouvre le menu
     if (details && list) {
-        let searchRow = null;
-        let searchInput = null;
-        details.addEventListener('toggle', () => {
+        var searchRow = null;
+        var searchInput = null;
+        details.addEventListener('toggle', function() {
             if (details.open) {
                 if (!searchRow) {
                     searchRow = document.createElement('li');
-                    searchRow.style.paddingBottom = '4px';
-                    searchRow.style.background = 'none';
-                    searchRow.style.border = 'none';
-                    searchRow.style.cursor = 'auto';
                     searchInput = document.createElement('input');
                     searchInput.type = 'search';
                     searchInput.placeholder = 'Rechercher un artiste';
@@ -91,14 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     searchInput.style.fontSize = '1rem';
                     searchRow.appendChild(searchInput);
                     list.insertBefore(searchRow, list.firstChild);
-                    searchInput.addEventListener('input', () => {
-                        const q = searchInput.value.trim().toLowerCase();
-                        Array.from(list.querySelectorAll('li')).forEach((li, idx) => {
-                            if (li === searchRow) return;
-                            const a = li.querySelector('a');
+                    // Filtrage en direct
+                    searchInput.addEventListener('input', function() {
+                        var q = searchInput.value.trim().toLowerCase();
+                        Array.from(list.querySelectorAll('li')).forEach(function(li) {
+                            if (li === searchRow) {
+                                li.style.display = '';
+                                return;
+                            }
+                            var a = li.querySelector('a');
                             if (!a) return;
-                            const match = a.textContent.trim().toLowerCase().includes(q);
-                            li.style.display = match ? '' : 'none';
+                            if (q === '') {
+                                li.style.display = '';
+                            } else {
+                                li.style.display = a.textContent.trim().toLowerCase().includes(q) ? '' : 'none';
+                            }
                         });
                     });
                 }
@@ -110,4 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Sélection visuelle d'un artiste
+    items.forEach(function(li) {
+        var a = li.querySelector('a');
+        if (!a) return;
+        a.addEventListener('click', function() {
+            items.forEach(function(l) { l.querySelector('a')?.classList.remove('selected'); });
+            a.classList.add('selected');
+        });
+    });
 });
