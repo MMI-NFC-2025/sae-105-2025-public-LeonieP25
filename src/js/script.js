@@ -138,6 +138,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }, Math.max(0, Math.round(duration + 60)));
     };
 
+    // Animations d'apparition au scroll
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0, rootMargin: '20% 0px 0px 0px' });
+
+    const bindReveals = () => {
+        const nodes = Array.from(document.querySelectorAll(
+            'header, header > *, main, main > section, main > article, main > div, .hero, body > section, body > div:not(.topbar):not(.bg-video):not(.menu-layer), .programmation-card, .artists-grid .artist-card, .scene-card, .price-card, .infos-block, .faq-item, footer'
+        ));
+
+        nodes.forEach((el, idx) => {
+            if (el.dataset.revealBound) return;
+            el.dataset.revealBound = '1';
+            el.classList.add('reveal-item');
+            el.style.setProperty('--reveal-delay', `${Math.min(idx * 40, 240)}ms`);
+
+            const rect = el.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight * 0.98;
+            const isProgramCard = el.classList.contains('programmation-card');
+
+            if (inView || isProgramCard && rect.top < window.innerHeight * 1.05) {
+                el.classList.add('is-visible');
+            } else {
+                io.observe(el);
+            }
+        });
+    };
+
+    bindReveals();
+
     // Menu navigation
     const menuBtn = document.querySelector('.btn-menu:not(.btn-close)');
     if (menuBtn) {
