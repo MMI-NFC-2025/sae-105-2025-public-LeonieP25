@@ -6,7 +6,6 @@ Rôle : recherche d'artistes dans le dropdown, surbrillance de la sélection, ov
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const search = document.getElementById('artist-search');
     const list = document.getElementById('artist-list');
     const items = list ? Array.from(list.querySelectorAll('li')) : [];
     const summary = document.getElementById('filter-summary-nom');
@@ -17,20 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const setSummaryActive = active => summary && summary.classList.toggle('filter-summary--active', !!active);
     const clearSelection = () => items.forEach(li => li.querySelector('a')?.classList.remove('selected'));
 
-    if (search) {
-        search.addEventListener('input', e => {
-            const q = e.target.value.trim().toLowerCase();
-            let any = false;
-            items.forEach(li => {
-                const match = q === '' || li.textContent.trim().toLowerCase().includes(q);
-                li.style.display = match ? '' : 'none';
-                if (match) any = true;
-            });
-            // Correction : le dropdown reste ouvert dès qu'il y a du texte dans la barre
-            if (details) details.open = q.length > 0 || any;
-            setSummaryActive(q.length > 0 || any);
-        });
-    }
+    // Suppression de la logique liée à #artist-search
 
     items.forEach(li => {
         const a = li.querySelector('a');

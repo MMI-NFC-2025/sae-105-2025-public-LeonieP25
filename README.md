@@ -6,7 +6,7 @@
 - NOM : PRUNIAUX
 - PRÉNOM : Léonie
 - GROUPE : A1
-- URL du site : Netlify : https://lumimix.netlify.app/
+- URL du site : Netlify : https://lumimix.netlify.app/ Infomaniak : https://lumimix.leonie-pruniaux.fr/
 - URL FIGMA : https://www.figma.com/design/SjqUMoKvz9CLLc8EGgAdEI/Leonie_Pruniaux_SAE105-Lumimix?node-id=0-1&t=8XLn7hmvNv2rVA8x-1
 
 ## Sujet
